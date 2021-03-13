@@ -2,6 +2,11 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/microtrains)
+![Build](https://github.com/CarloMicieli/microtrains/workflows/build/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/CarloMicieli/microtrains/badge.svg?branch=main)](https://coveralls.io/github/CarloMicieli/microtrains?branch=main)
+
 ## How to run
 
 ```
