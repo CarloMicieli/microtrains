@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli;
 
+import io.github.carlomicieli.webapi.ApiVersion;
 import io.micronaut.runtime.Micronaut;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -24,7 +25,7 @@ import io.swagger.v3.oas.annotations.info.License;
     info =
         @Info(
             title = "microtrains",
-            version = "v1",
+            version = ApiVersion.V1,
             description = "A web api for model railway collections",
             license =
                 @License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0")))

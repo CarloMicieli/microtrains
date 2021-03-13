@@ -4,7 +4,7 @@ import io.github.carlomicieli.*
 
 plugins {
     java
-    id("microtrains.jacoco-aggregation")
+    jacoco
     id("com.diffplug.spotless")
     id("com.github.kt3k.coveralls")
 }
@@ -37,12 +37,13 @@ tasks {
     test {
         useJUnitPlatform()
         testLogging {
-            events(FAILED, SKIPPED)
-            exceptionFormat = FULL
+            info.events(PASSED, FAILED, SKIPPED)
+            exceptionFormat = SHORT
             showExceptions = true
             showCauses = true
             showStackTraces = true
         }
+        failFast = false
     }
 }
 
@@ -59,44 +60,15 @@ spotless {
 
 jacoco {
     toolVersion = "0.8.6"
+    reportsDirectory.set(file("${project.rootDir}/build/jacoco-report-dir"))
 }
 
-// Do not generate reports for individual projects
 tasks.jacocoTestReport {
-    enabled = false
-}
-
-// Share sources folder with other projects for aggregated JaCoCo reports
-configurations.create("transitiveSourcesElements") {
-    isVisible = false
-    isCanBeResolved = false
-    isCanBeConsumed = true
-    extendsFrom(configurations.implementation.get())
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("source-folders"))
+    dependsOn(tasks.test)
+    reports {
+        xml.isEnabled = true
+        html.isEnabled = true
     }
-    sourceSets.main.get().java.srcDirs.forEach {
-        outgoing.artifact(it)
-    }
-}
-
-// Share the coverage data to be aggregated for the whole product
-configurations.create("coverageDataElements") {
-    isVisible = false
-    isCanBeResolved = false
-    isCanBeConsumed = true
-    extendsFrom(configurations.implementation.get())
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("jacoco-coverage-data"))
-    }
-    // This will cause the test task to run if the coverage data is requested by the aggregation task
-    outgoing.artifact(tasks.test.map { task ->
-        task.extensions.getByType<JacocoTaskExtension>().destinationFile!!
-    })
 }
 
 tasks.jacocoTestCoverageVerification {

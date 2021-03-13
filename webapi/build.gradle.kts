@@ -13,6 +13,7 @@ micronaut {
 }
 
 dependencies {
+    annotationProcessor("io.micronaut:micronaut-validation")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
     annotationProcessor("io.micronaut.security:micronaut-security-annotations")
 
@@ -38,5 +39,7 @@ tasks.compileJava {
     options.isIncremental = true
     options.isFork = true
     options.isFailOnError = false
-    options.forkOptions.jvmArgs = listOf("-Dmicronaut.openapi.views.spec=swagger-ui.enabled=true,swagger-ui.theme=flattop")
+    options.forkOptions.jvmArgs = listOf(
+        "-Dmicronaut.openapi.views.spec=swagger-ui.enabled=true,swagger-ui.theme=flattop",
+        "-Dmicronaut.openapi.property.naming.strategy=SNAKE_CASE")
 }
