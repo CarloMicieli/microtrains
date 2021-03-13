@@ -4,6 +4,6 @@ object Micronaut {
     const val Version = "2.4.0"
 }
 
-object Log4j {
-    const val Version = "2.12.1"
+object Lombok {
+    const val Version = "1.18.16"
 }

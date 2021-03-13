@@ -123,8 +123,8 @@ tasks.jacocoTestCoverageVerification {
 
 dependencies {
     implementation(platform("io.micronaut:micronaut-bom:${Micronaut.Version}"))
-    annotationProcessor("org.projectlombok:lombok")
-    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok:${Lombok.Version}")
+    compileOnly("org.projectlombok:lombok:${Lombok.Version}")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("org.assertj:assertj-core")
     testImplementation("org.junit.jupiter:junit-jupiter-api")

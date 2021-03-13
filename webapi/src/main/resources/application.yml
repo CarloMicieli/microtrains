@@ -1,9 +1,39 @@
 micronaut:
   application:
     name: microtrains
+  security:
+    intercept-url-map:
+      - pattern: /swagger-ui/**
+        http-method: GET
+        access:
+          - isAnonymous()
+      - pattern: /swagger/**
+        access:
+          - isAnonymous()
+  router:
+    versioning:
+      enabled: true
+      default-version: 'v1'
+      header:
+        enabled: true
+        names:
+          - 'X-API-VERSION'
+          - 'Accept-Version'
+    static-resources:
+      swagger:
+        enabled: true
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        enabled: true
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
 endpoints:
   all:
     enabled: false
     port: 8081
   health:
     enabled: true
+jackson:
+  property-naming-strategy: SNAKE_CASE
+  serialization-inclusion: ALWAYS
