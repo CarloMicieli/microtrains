@@ -33,16 +33,16 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew -q build
 
       - name: Run tests with Gradle
-        run: ./gradlew test
+        run: ./gradlew -q test
 
       - name: Check formatting
-        run: ./gradlew spotlessCheck
+        run: ./gradlew -q spotlessCheck
 
       - name: Send code coverage to coveralls
-        run: ./gradlew codeCoverageReport coveralls
+        run: ./gradlew -q codeCoverageReport coveralls
 
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
