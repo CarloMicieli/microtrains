@@ -4,6 +4,5 @@ plugins {
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":domain"))
-    implementation(project(":application"))
+    implementation("com.google.guava:guava:30.0-jre")
 }

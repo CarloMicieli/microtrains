@@ -1,6 +1,6 @@
 rootProject.name = "microtrains"
 include("common")
-include("catalog")
-include("collecting")
+include("domain")
+include("application")
 include("infrastructure")
 include("webapi")
