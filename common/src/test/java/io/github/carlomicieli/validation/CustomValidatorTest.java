@@ -30,45 +30,45 @@ import org.junit.jupiter.api.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomValidatorTest {
 
-  private Validator validator;
+    private Validator validator;
 
-  @BeforeAll
-  void init() {
-    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    validator = factory.getValidator();
-  }
+    @BeforeAll
+    void init() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
 
-  @Test
-  void should_produce_no_validation_errors_for_valid_beans() {
-    var valid = new MyBean("Label", 42);
-    var errors = beanValidator().validate(valid);
-    assertThat(errors).isEmpty();
-  }
+    @Test
+    void should_produce_no_validation_errors_for_valid_beans() {
+        var valid = new MyBean("Label", 42);
+        var errors = beanValidator().validate(valid);
+        assertThat(errors).isEmpty();
+    }
 
-  @Test
-  void should_produce_validation_errors_for_invalid_beans() {
-    var invalid = new MyBean("", 0);
+    @Test
+    void should_produce_validation_errors_for_invalid_beans() {
+        var invalid = new MyBean("", 0);
 
-    var errors = beanValidator().validate(invalid);
+        var errors = beanValidator().validate(invalid);
 
-    assertThat(errors).isNotEmpty();
-    assertThat(errors).hasSize(2);
+        assertThat(errors).isNotEmpty();
+        assertThat(errors).hasSize(2);
 
-    assertThat(errors).contains(ValidationError.of("label", "must not be blank", ""));
-    assertThat(errors)
-        .contains(ValidationError.of("label", "size must be between 2 and 2147483647", ""));
-  }
+        assertThat(errors).contains(ValidationError.of("label", "must not be blank", ""));
+        assertThat(errors)
+                .contains(ValidationError.of("label", "size must be between 2 and 2147483647", ""));
+    }
 
-  CustomValidator<MyBean> beanValidator() {
-    return () -> validator;
-  }
+    CustomValidator<MyBean> beanValidator() {
+        return () -> validator;
+    }
 
-  @Value
-  static class MyBean {
-    @NotBlank
-    @Size(min = 2)
-    String label;
+    @Value
+    static class MyBean {
+        @NotBlank
+        @Size(min = 2)
+        String label;
 
-    int value;
-  }
+        int value;
+    }
 }

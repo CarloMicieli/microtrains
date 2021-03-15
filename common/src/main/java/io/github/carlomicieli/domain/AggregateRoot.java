@@ -29,12 +29,12 @@ import java.time.Instant;
  * @param <ID> the ID type
  */
 public interface AggregateRoot<ID extends Identifier> extends Entity<ID> {
-  /** The instant when this aggregate was created */
-  Instant getCreatedDate();
+    /** The instant when this aggregate was created */
+    Instant getCreatedDate();
 
-  /** The instant when this aggregate was modified the last time */
-  Instant getModifiedDate();
+    /** The instant when this aggregate was modified the last time */
+    Instant getModifiedDate();
 
-  /** The version number for this aggregate */
-  int getVersion();
+    /** The version number for this aggregate */
+    int getVersion();
 }

@@ -17,8 +17,6 @@ package io.github.carlomicieli.webapi.catalog.catalogitems.createnew;
 
 import io.micronaut.core.annotation.Introspected;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
@@ -26,19 +24,10 @@ import lombok.Data;
 @Data
 @Introspected
 public class CreateCatalogItemRequest {
-  @NotBlank
-  @Size(max = 25)
-  String brand;
-
-  @NotBlank
-  @Size(max = 10)
-  String itemNumber;
-
-  @Size(max = 1000)
-  String description;
-
-  String scale;
-  String railway;
-
-  BigDecimal length;
+    String brand;
+    String itemNumber;
+    String description;
+    String scale;
+    String railway;
+    BigDecimal length;
 }

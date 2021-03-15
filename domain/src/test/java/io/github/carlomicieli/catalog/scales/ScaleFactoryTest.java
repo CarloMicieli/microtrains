@@ -22,6 +22,7 @@ import io.github.carlomicieli.catalog.valueobject.TrackGauge;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -31,37 +32,40 @@ import org.junit.jupiter.api.Test;
 @DisplayName("A Scale factory")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class ScaleFactoryTest {
-  private static final Instant FIXED_INSTANT = Instant.parse("1988-11-25T10:15:30.00Z");
-  private static final ScaleId FIXED_SCALE_ID =
-      ScaleId.of(UUID.fromString("e9f5ed5a-edb6-46fa-a55a-bc8632e89d3a"));
-  private static final Clock FIXED_CLOCK = Clock.fixed(FIXED_INSTANT, ZoneId.systemDefault());
+    private static final Instant FIXED_INSTANT = Instant.parse("1988-11-25T10:15:30.00Z");
+    private static final ScaleId FIXED_SCALE_ID =
+            ScaleId.of(UUID.fromString("e9f5ed5a-edb6-46fa-a55a-bc8632e89d3a"));
+    private static final Clock FIXED_CLOCK = Clock.fixed(FIXED_INSTANT, ZoneId.systemDefault());
 
-  private final ScaleFactory factory;
+    private final ScaleFactory factory;
 
-  public ScaleFactoryTest() {
-    this.factory = new ScaleFactory(FIXED_CLOCK, () -> FIXED_SCALE_ID);
-  }
+    public ScaleFactoryTest() {
+        this.factory = new ScaleFactory(FIXED_CLOCK, () -> FIXED_SCALE_ID);
+    }
 
-  @Test
-  void should_create_new_scales() {
-    var ratio = Ratio.of(87);
-    var gauge =
-        ScaleGauge.builder()
-            .trackGauge(TrackGauge.STANDARD)
-            .millimetres(Gauge.ofMillimeters(16.5))
-            .inches(Gauge.ofInches(0.65))
-            .build();
+    @Test
+    void should_create_new_scales() {
+        var ratio = Ratio.of(87);
+        var gauge =
+                ScaleGauge.builder()
+                        .trackGauge(TrackGauge.STANDARD)
+                        .millimetres(Gauge.ofMillimeters(16.5))
+                        .inches(Gauge.ofInches(0.65))
+                        .build();
 
-    var scale = factory.createNewScale("H0", ratio, gauge, "Scale Half-Zero", 100);
+        var scale =
+                factory.createNewScale(
+                        "H0", ratio, gauge, "Scale Half-Zero", 100, List.of(ScaleStandard.NMRA));
 
-    assertThat(scale).isNotNull();
-    assertThat(scale.getName()).isEqualTo("H0");
-    assertThat(scale.getRatio()).isEqualTo(ratio);
-    assertThat(scale.getGauge()).isEqualTo(gauge);
-    assertThat(scale.getDescription()).isEqualTo("Scale Half-Zero");
-    assertThat(scale.getWeight()).isEqualTo(100);
-    assertThat(scale.getCreatedDate()).isNotNull();
-    assertThat(scale.getModifiedDate()).isNull();
-    assertThat(scale.getVersion()).isEqualTo(1);
-  }
+        assertThat(scale).isNotNull();
+        assertThat(scale.getName()).isEqualTo("H0");
+        assertThat(scale.getRatio()).isEqualTo(ratio);
+        assertThat(scale.getGauge()).isEqualTo(gauge);
+        assertThat(scale.getDescription()).isEqualTo("Scale Half-Zero");
+        assertThat(scale.getWeight()).isEqualTo(100);
+        assertThat(scale.getStandards()).isEqualTo(List.of(ScaleStandard.NMRA));
+        assertThat(scale.getCreatedDate()).isNotNull();
+        assertThat(scale.getModifiedDate()).isNull();
+        assertThat(scale.getVersion()).isEqualTo(1);
+    }
 }

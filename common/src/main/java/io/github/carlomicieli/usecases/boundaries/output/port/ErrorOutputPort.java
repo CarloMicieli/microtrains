@@ -21,12 +21,12 @@ import java.util.List;
 
 /** The {@code output port} when use case handling results in an error. */
 public interface ErrorOutputPort<OutType extends UseCaseOutput> extends OutputPort {
-  /** Output port for generic errors */
-  void error(String errorMessage);
+    /** Output port for generic errors */
+    void error(String errorMessage);
 
-  /** Output port for unhandled exceptions */
-  void error(Throwable ex);
+    /** Output port for unhandled exceptions */
+    void error(Throwable ex);
 
-  /** Output port for requests that failed the validation */
-  void invalidRequest(List<ValidationError> validationErrors);
+    /** Output port for requests that failed the validation */
+    void invalidRequest(List<ValidationError> validationErrors);
 }

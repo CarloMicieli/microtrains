@@ -27,68 +27,69 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class PeriodOfActivityTest {
 
-  private static final LocalDate SINCE_DATE = LocalDate.of(1905, 7, 15);
-  private static final LocalDate UNTIL_DATE = LocalDate.of(1999, 12, 31);
+    private static final LocalDate SINCE_DATE = LocalDate.of(1905, 7, 15);
+    private static final LocalDate UNTIL_DATE = LocalDate.of(1999, 12, 31);
 
-  @Test
-  void can_represent_active_railways() {
-    var period = PeriodOfActivity.activeRailway(SINCE_DATE);
-    assertThat(period).isNotNull();
-    assertThat(period.getRailwayStatus()).isEqualTo(RailwayStatus.ACTIVE);
-    assertThat(period.getOperatingSince()).isEqualTo(SINCE_DATE);
-    assertThat(period.isActive()).isTrue();
-  }
+    @Test
+    void can_represent_active_railways() {
+        var period = PeriodOfActivity.activeRailway(SINCE_DATE);
+        assertThat(period).isNotNull();
+        assertThat(period.getRailwayStatus()).isEqualTo(RailwayStatus.ACTIVE);
+        assertThat(period.getOperatingSince()).isEqualTo(SINCE_DATE);
+        assertThat(period.isActive()).isTrue();
+    }
 
-  @Test
-  void can_represent_inactive_railways() {
-    var period = PeriodOfActivity.inactiveRailway(SINCE_DATE, UNTIL_DATE);
-    assertThat(period).isNotNull();
-    assertThat(period.getRailwayStatus()).isEqualTo(RailwayStatus.INACTIVE);
-    assertThat(period.getOperatingSince()).isEqualTo(SINCE_DATE);
-    assertThat(period.getOperatingUntil()).isEqualTo(UNTIL_DATE);
-    assertThat(period.isActive()).isFalse();
-  }
+    @Test
+    void can_represent_inactive_railways() {
+        var period = PeriodOfActivity.inactiveRailway(SINCE_DATE, UNTIL_DATE);
+        assertThat(period).isNotNull();
+        assertThat(period.getRailwayStatus()).isEqualTo(RailwayStatus.INACTIVE);
+        assertThat(period.getOperatingSince()).isEqualTo(SINCE_DATE);
+        assertThat(period.getOperatingUntil()).isEqualTo(UNTIL_DATE);
+        assertThat(period.isActive()).isFalse();
+    }
 
-  @Test
-  void is_active_without_starting_and_termination_dates_by_default() {
-    var period = PeriodOfActivity.defaultPeriodOfActivity();
-    assertThat(period).isNotNull();
-    assertThat(period.getRailwayStatus()).isEqualTo(RailwayStatus.ACTIVE);
-    assertThat(period.getOperatingSince()).isNull();
-    assertThat(period.getOperatingUntil()).isNull();
-  }
+    @Test
+    void is_active_without_starting_and_termination_dates_by_default() {
+        var period = PeriodOfActivity.defaultPeriodOfActivity();
+        assertThat(period).isNotNull();
+        assertThat(period.getRailwayStatus()).isEqualTo(RailwayStatus.ACTIVE);
+        assertThat(period.getOperatingSince()).isNull();
+        assertThat(period.getOperatingUntil()).isNull();
+    }
 
-  @Test
-  void when_inactive_must_have_both_dates() {
-    var ex =
-        catchThrowableOfType(
-            () -> new PeriodOfActivity(RailwayStatus.INACTIVE, null, null),
-            IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage())
-        .isEqualTo(
-            "Invalid period of activity: both operating until and since are required for an inactive railway");
-  }
+    @Test
+    void when_inactive_must_have_both_dates() {
+        var ex =
+                catchThrowableOfType(
+                        () -> new PeriodOfActivity(RailwayStatus.INACTIVE, null, null),
+                        IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage())
+                .isEqualTo(
+                        "Invalid period of activity: both operating until and since are required for an inactive railway");
+    }
 
-  @Test
-  void when_inactive_operating_since_must_be_before_operating_until_date() {
-    var ex =
-        catchThrowableOfType(
-            () -> new PeriodOfActivity(RailwayStatus.INACTIVE, UNTIL_DATE, SINCE_DATE),
-            IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage())
-        .isEqualTo("Invalid period of activity: operating since > operating until");
-  }
+    @Test
+    void when_inactive_operating_since_must_be_before_operating_until_date() {
+        var ex =
+                catchThrowableOfType(
+                        () -> new PeriodOfActivity(RailwayStatus.INACTIVE, UNTIL_DATE, SINCE_DATE),
+                        IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage())
+                .isEqualTo("Invalid period of activity: operating since > operating until");
+    }
 
-  @Test
-  void when_active_operating_until_date_is_not_allowed() {
-    var ex =
-        catchThrowableOfType(
-            () -> new PeriodOfActivity(RailwayStatus.ACTIVE, SINCE_DATE, UNTIL_DATE),
-            IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage())
-        .isEqualTo("Invalid period of activity: operating until has a value for an active railway");
-  }
+    @Test
+    void when_active_operating_until_date_is_not_allowed() {
+        var ex =
+                catchThrowableOfType(
+                        () -> new PeriodOfActivity(RailwayStatus.ACTIVE, SINCE_DATE, UNTIL_DATE),
+                        IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage())
+                .isEqualTo(
+                        "Invalid period of activity: operating until has a value for an active railway");
+    }
 }

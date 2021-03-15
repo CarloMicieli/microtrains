@@ -28,32 +28,32 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RailwayLengthTest {
 
-  private static final Length ONE_HUNDRED_KM = Length.valueOf(100, MeasureUnit.KILOMETERS);
-  private static final Length SIXTY_TWO_MILES = Length.valueOf(62, MeasureUnit.MILES);
+    private static final Length ONE_HUNDRED_KM = Length.valueOf(100, MeasureUnit.KILOMETERS);
+    private static final Length SIXTY_TWO_MILES = Length.valueOf(62, MeasureUnit.MILES);
 
-  @Test
-  void is_created_via_a_builder() {
-    var railwayLength =
-        RailwayLength.builder().kilometers(ONE_HUNDRED_KM).miles(SIXTY_TWO_MILES).build();
+    @Test
+    void is_created_via_a_builder() {
+        var railwayLength =
+                RailwayLength.builder().kilometers(ONE_HUNDRED_KM).miles(SIXTY_TWO_MILES).build();
 
-    assertThat(railwayLength.getKilometers()).isEqualTo(ONE_HUNDRED_KM);
-    assertThat(railwayLength.getMiles()).isEqualTo(SIXTY_TWO_MILES);
-  }
+        assertThat(railwayLength.getKilometers()).isEqualTo(ONE_HUNDRED_KM);
+        assertThat(railwayLength.getMiles()).isEqualTo(SIXTY_TWO_MILES);
+    }
 
-  @Test
-  void is_created_from_kilometers_value() {
-    var railwayLength = RailwayLength.ofKilometers(100.0);
-    assertThat(railwayLength).isNotNull();
-    assertThat(railwayLength.getKilometers()).isEqualTo(ONE_HUNDRED_KM);
-    assertThat(railwayLength.getMiles()).isEqualTo(Length.valueOf(62.14, MeasureUnit.MILES));
-  }
+    @Test
+    void is_created_from_kilometers_value() {
+        var railwayLength = RailwayLength.ofKilometers(100.0);
+        assertThat(railwayLength).isNotNull();
+        assertThat(railwayLength.getKilometers()).isEqualTo(ONE_HUNDRED_KM);
+        assertThat(railwayLength.getMiles()).isEqualTo(Length.valueOf(62.14, MeasureUnit.MILES));
+    }
 
-  @Test
-  void is_created_from_miles_value() {
-    var railwayLength = RailwayLength.ofMiles(62.0);
-    assertThat(railwayLength).isNotNull();
-    assertThat(railwayLength.getKilometers())
-        .isEqualTo(Length.valueOf(99.78, MeasureUnit.KILOMETERS));
-    assertThat(railwayLength.getMiles()).isEqualTo(SIXTY_TWO_MILES);
-  }
+    @Test
+    void is_created_from_miles_value() {
+        var railwayLength = RailwayLength.ofMiles(62.0);
+        assertThat(railwayLength).isNotNull();
+        assertThat(railwayLength.getKilometers())
+                .isEqualTo(Length.valueOf(99.78, MeasureUnit.KILOMETERS));
+        assertThat(railwayLength.getMiles()).isEqualTo(SIXTY_TWO_MILES);
+    }
 }

@@ -26,42 +26,42 @@ import lombok.*;
 @ToString
 public final class Sorting {
 
-  public static final Sorting DEFAULT_SORT = new Sorting(Collections.emptyList());
-  private final List<SortCriteria> criteriaList;
+    public static final Sorting DEFAULT_SORT = new Sorting(Collections.emptyList());
+    private final List<SortCriteria> criteriaList;
 
-  /** Return the number of criteria defined in this {@code Sorting} */
-  public int size() {
-    return criteriaList.size();
-  }
-
-  public List<SortCriteria> getCriteriaList() {
-    return Collections.unmodifiableList(criteriaList);
-  }
-
-  public static Builder by(String propName, Direction direction) {
-    List<SortCriteria> list = new ArrayList<>();
-    list.add(SortCriteria.of(propName, direction));
-    return new Builder(list);
-  }
-
-  @AllArgsConstructor(access = AccessLevel.PRIVATE)
-  public static class Builder {
-    private final List<SortCriteria> list;
-
-    public Builder andThenBy(String propName, Direction direction) {
-      list.add(SortCriteria.of(propName, direction));
-      return this;
+    /** Return the number of criteria defined in this {@code Sorting} */
+    public int size() {
+        return criteriaList.size();
     }
 
-    public Sorting build() {
-      return new Sorting(list);
+    public List<SortCriteria> getCriteriaList() {
+        return Collections.unmodifiableList(criteriaList);
     }
-  }
 
-  @Value
-  @AllArgsConstructor(staticName = "of")
-  public static class SortCriteria {
-    String propertyName;
-    Direction direction;
-  }
+    public static Builder by(String propName, Direction direction) {
+        List<SortCriteria> list = new ArrayList<>();
+        list.add(SortCriteria.of(propName, direction));
+        return new Builder(list);
+    }
+
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Builder {
+        private final List<SortCriteria> list;
+
+        public Builder andThenBy(String propName, Direction direction) {
+            list.add(SortCriteria.of(propName, direction));
+            return this;
+        }
+
+        public Sorting build() {
+            return new Sorting(list);
+        }
+    }
+
+    @Value
+    @AllArgsConstructor(staticName = "of")
+    public static class SortCriteria {
+        String propertyName;
+        Direction direction;
+    }
 }

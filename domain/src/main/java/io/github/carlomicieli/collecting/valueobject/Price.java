@@ -23,77 +23,77 @@ import lombok.Value;
 /** A value object for prices, it contains two information an amount and a currency */
 @Value
 public class Price {
-  BigDecimal amount;
-  Currency currency;
+    BigDecimal amount;
+    Currency currency;
 
-  public Price(BigDecimal amount, Currency currency) {
-    if (amount.signum() <= 0) {
-      throw new IllegalArgumentException("Price: amount cannot be negative");
+    public Price(BigDecimal amount, Currency currency) {
+        if (amount.signum() <= 0) {
+            throw new IllegalArgumentException("Price: amount cannot be negative");
+        }
+
+        if (currency == null) {
+            throw new IllegalArgumentException("Price: a valid currency is required");
+        }
+
+        this.amount = amount;
+        this.currency = currency;
     }
 
-    if (currency == null) {
-      throw new IllegalArgumentException("Price: a valid currency is required");
+    /**
+     * Add {@code this} price with the {@code other}. In case the two values have different currency
+     * then the operation will fail throwing a {@code DifferentCurrencyException}
+     *
+     * @throws DifferentCurrencyException the two prices have different currency
+     */
+    public Price add(Price other) {
+        ensureSameCurrency(getCurrency(), other.getCurrency());
+        return new Price(this.getAmount().add(other.getAmount()), this.getCurrency());
     }
 
-    this.amount = amount;
-    this.currency = currency;
-  }
+    /**
+     * Subtract {@code other} price from {@code this} price. In case the two values have different
+     * currency then the operation will fail throwing a {@code DifferentCurrencyException}.
+     *
+     * @throws DifferentCurrencyException the two prices have different currency
+     * @throws UnsupportedOperationException when the operation yields a negative {@code Price}
+     */
+    public Price subtract(Price other) {
+        ensureSameCurrency(getCurrency(), other.getCurrency());
 
-  /**
-   * Add {@code this} price with the {@code other}. In case the two values have different currency
-   * then the operation will fail throwing a {@code DifferentCurrencyException}
-   *
-   * @throws DifferentCurrencyException the two prices have different currency
-   */
-  public Price add(Price other) {
-    ensureSameCurrency(getCurrency(), other.getCurrency());
-    return new Price(this.getAmount().add(other.getAmount()), this.getCurrency());
-  }
+        var result = this.getAmount().subtract(other.getAmount());
+        if (result.signum() < 0) {
+            throw new UnsupportedOperationException("Result will produce a negative price");
+        }
 
-  /**
-   * Subtract {@code other} price from {@code this} price. In case the two values have different
-   * currency then the operation will fail throwing a {@code DifferentCurrencyException}.
-   *
-   * @throws DifferentCurrencyException the two prices have different currency
-   * @throws UnsupportedOperationException when the operation yields a negative {@code Price}
-   */
-  public Price subtract(Price other) {
-    ensureSameCurrency(getCurrency(), other.getCurrency());
-
-    var result = this.getAmount().subtract(other.getAmount());
-    if (result.signum() < 0) {
-      throw new UnsupportedOperationException("Result will produce a negative price");
+        return new Price(result, this.getCurrency());
     }
 
-    return new Price(result, this.getCurrency());
-  }
-
-  @Override
-  public String toString() {
-    DecimalFormat df = new DecimalFormat("#,###.00");
-    return df.format(amount) + " " + currency.getSymbol();
-  }
-
-  public static boolean isValidCurrency(String code) {
-    return Currency.getAvailableCurrencies().stream()
-        .anyMatch(c -> c.getCurrencyCode().equals(code));
-  }
-
-  public static Price dollars(BigDecimal value) {
-    return new Price(value, Currency.getInstance("USD"));
-  }
-
-  public static Price euros(BigDecimal value) {
-    return new Price(value, Currency.getInstance("EUR"));
-  }
-
-  public static Price pounds(BigDecimal value) {
-    return new Price(value, Currency.getInstance("GBP"));
-  }
-
-  private static void ensureSameCurrency(Currency lhs, Currency rhs) {
-    if (!lhs.equals(rhs)) {
-      throw new DifferentCurrencyException(lhs, rhs);
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        return df.format(amount) + " " + currency.getSymbol();
     }
-  }
+
+    public static boolean isValidCurrency(String code) {
+        return Currency.getAvailableCurrencies().stream()
+                .anyMatch(c -> c.getCurrencyCode().equals(code));
+    }
+
+    public static Price dollars(BigDecimal value) {
+        return new Price(value, Currency.getInstance("USD"));
+    }
+
+    public static Price euros(BigDecimal value) {
+        return new Price(value, Currency.getInstance("EUR"));
+    }
+
+    public static Price pounds(BigDecimal value) {
+        return new Price(value, Currency.getInstance("GBP"));
+    }
+
+    private static void ensureSameCurrency(Currency lhs, Currency rhs) {
+        if (!lhs.equals(rhs)) {
+            throw new DifferentCurrencyException(lhs, rhs);
+        }
+    }
 }

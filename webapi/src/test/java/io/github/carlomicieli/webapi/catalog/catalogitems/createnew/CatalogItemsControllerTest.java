@@ -32,49 +32,52 @@ import javax.inject.Inject;
 import org.junit.jupiter.api.*;
 
 @MicronautTest
-@DisplayName("POST /catalog_items")
+@DisplayName("POST /api/catalog_items")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CatalogItemsControllerTest {
-  @Inject EmbeddedServer server;
+    @Inject EmbeddedServer server;
 
-  @Inject
-  @Client("/catalog_items")
-  HttpClient client;
+    @Inject
+    @Client("/api/catalog_items")
+    HttpClient client;
 
-  @Test
-  void should_return_422_Unprocessable_Entity_when_the_request_body_is_empty() {
-    var request = HttpRequest.create(HttpMethod.POST, "/");
-    var thrown =
-        catchThrowableOfType(
-            () -> client.toBlocking().exchange(request), HttpClientResponseException.class);
+    @Test
+    void should_return_422_Unprocessable_Entity_when_the_request_body_is_empty() {
+        var request = HttpRequest.create(HttpMethod.POST, "/");
+        var thrown =
+                catchThrowableOfType(
+                        () -> client.toBlocking().exchange(request),
+                        HttpClientResponseException.class);
 
-    HttpClientResponseExceptionAssert.assertThat(thrown).hasStatus(HttpStatus.UNPROCESSABLE_ENTITY);
-  }
+        HttpClientResponseExceptionAssert.assertThat(thrown)
+                .hasStatus(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 
-  @Test
-  void should_return_400_Bad_Request_when_the_request_is_invalid() {
-    var request = HttpRequest.POST("/", CreateCatalogItemRequest.builder().build());
-    var thrown =
-        catchThrowableOfType(
-            () -> client.toBlocking().exchange(request), HttpClientResponseException.class);
-    HttpClientResponseExceptionAssert.assertThat(thrown).hasStatus(HttpStatus.BAD_REQUEST);
-  }
+    @Test
+    void should_return_400_Bad_Request_when_the_request_is_invalid() {
+        var request = HttpRequest.POST("/", CreateCatalogItemRequest.builder().build());
+        var thrown =
+                catchThrowableOfType(
+                        () -> client.toBlocking().exchange(request),
+                        HttpClientResponseException.class);
+        HttpClientResponseExceptionAssert.assertThat(thrown).hasStatus(HttpStatus.BAD_REQUEST);
+    }
 
-  @Test
-  void should_return_201_Created_when_the_catalog_item_is_created_correctly() {
-    var request =
-        CreateCatalogItemRequest.builder()
-            .brand("ACME")
-            .itemNumber("12345")
-            .description("My description goes here")
-            .railway("FS")
-            .scale("H0")
-            .length(BigDecimal.ONE)
-            .build();
+    @Test
+    void should_return_201_Created_when_the_catalog_item_is_created_correctly() {
+        var request =
+                CreateCatalogItemRequest.builder()
+                        .brand("ACME")
+                        .itemNumber("12345")
+                        .description("My description goes here")
+                        .railway("FS")
+                        .scale("H0")
+                        .length(BigDecimal.ONE)
+                        .build();
 
-    var response = client.toBlocking().exchange(HttpRequest.POST("/", request));
+        var response = client.toBlocking().exchange(HttpRequest.POST("/", request));
 
-    Assertions.assertEquals(HttpStatus.CREATED, response.getStatus());
-    Assertions.assertNotNull(response.header(HttpHeaders.LOCATION));
-  }
+        Assertions.assertEquals(HttpStatus.CREATED, response.getStatus());
+        Assertions.assertNotNull(response.header(HttpHeaders.LOCATION));
+    }
 }

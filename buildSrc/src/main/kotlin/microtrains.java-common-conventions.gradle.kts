@@ -57,7 +57,7 @@ spotless {
     java {
         importOrder()
         removeUnusedImports()
-        googleJavaFormat("1.9")
+        googleJavaFormat("1.7").aosp()
         endWithNewline()
         trimTrailingWhitespace()
         licenseHeaderFile("${project.rootDir}/license-header")
@@ -117,6 +117,7 @@ dependencies {
     testImplementation("org.assertj:assertj-core")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
     testImplementation("org.mockito:mockito-core:${Mockito.Version}")
     testImplementation("org.mockito:mockito-junit-jupiter:${Mockito.Version}")
 }

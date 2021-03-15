@@ -26,32 +26,32 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Owner")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class OwnerTest {
-  @Test
-  void is_created_by_the_name() {
-    var owner = Owner.withName("John Doe");
-    assertThat(owner).isNotNull();
-    assertThat(owner.getName()).isEqualTo("John Doe");
-  }
+    @Test
+    void is_created_by_the_name() {
+        var owner = Owner.withName("John Doe");
+        assertThat(owner).isNotNull();
+        assertThat(owner.getName()).isEqualTo("John Doe");
+    }
 
-  @Test
-  void should_have_a_string_representation() {
-    var owner = Owner.withName("John Doe");
-    assertThat(owner.toString()).isEqualTo("John Doe");
-  }
+    @Test
+    void should_have_a_string_representation() {
+        var owner = Owner.withName("John Doe");
+        assertThat(owner.toString()).isEqualTo("John Doe");
+    }
 
-  @Test
-  void must_have_a_name_otherwise_an_exception_is_thrown() {
-    var ex = catchThrowableOfType(() -> Owner.withName(""), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex).hasMessage("Owner name is required");
-  }
+    @Test
+    void must_have_a_name_otherwise_an_exception_is_thrown() {
+        var ex = catchThrowableOfType(() -> Owner.withName(""), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex).hasMessage("Owner name is required");
+    }
 
-  @Test
-  void should_compare_two_owners_for_equality() {
-    var o1 = Owner.withName("John");
-    var o2 = Owner.withName("John");
+    @Test
+    void should_compare_two_owners_for_equality() {
+        var o1 = Owner.withName("John");
+        var o2 = Owner.withName("John");
 
-    assertThat(o1).isEqualTo(o1);
-    assertThat(o1).isEqualTo(o2);
-  }
+        assertThat(o1).isEqualTo(o1);
+        assertThat(o1).isEqualTo(o2);
+    }
 }

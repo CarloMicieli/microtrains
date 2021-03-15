@@ -25,11 +25,11 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class CriteriaBeanValidator<C extends Criteria>
-    implements CriteriaValidator<C>, CustomValidator<C> {
-  private final Validator validator;
+        implements CriteriaValidator<C>, CustomValidator<C> {
+    private final Validator validator;
 
-  @Override
-  public List<ValidationError> validateCriteria(C criteria) {
-    return validate(criteria);
-  }
+    @Override
+    public List<ValidationError> validateCriteria(C criteria) {
+        return validate(criteria);
+    }
 }

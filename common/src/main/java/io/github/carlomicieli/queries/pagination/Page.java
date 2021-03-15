@@ -19,34 +19,34 @@ import lombok.Value;
 
 @Value
 public class Page {
-  int start;
-  int limit;
+    int start;
+    int limit;
 
-  private Page(int start, int limit) {
-    if (start < 0) {
-      throw new IllegalArgumentException("Page starting index cannot be negative");
+    private Page(int start, int limit) {
+        if (start < 0) {
+            throw new IllegalArgumentException("Page starting index cannot be negative");
+        }
+
+        if (limit < 0) {
+            throw new IllegalArgumentException("Page limit cannot be negative");
+        }
+
+        this.start = start;
+        this.limit = limit;
     }
 
-    if (limit < 0) {
-      throw new IllegalArgumentException("Page limit cannot be negative");
+    public static Page of(int start, int limit) {
+        return new Page(start, limit);
     }
 
-    this.start = start;
-    this.limit = limit;
-  }
+    public Page next() {
+        return Page.of(getLimit() + getStart(), getLimit());
+    }
 
-  public static Page of(int start, int limit) {
-    return new Page(start, limit);
-  }
+    public Page prev() {
+        int newStart = getStart() > getLimit() ? getStart() - getLimit() : 0;
+        return Page.of(newStart, getLimit());
+    }
 
-  public Page next() {
-    return Page.of(getLimit() + getStart(), getLimit());
-  }
-
-  public Page prev() {
-    int newStart = getStart() > getLimit() ? getStart() - getLimit() : 0;
-    return Page.of(newStart, getLimit());
-  }
-
-  public static final Page DEFAULT_PAGE = new Page(0, 25);
+    public static final Page DEFAULT_PAGE = new Page(0, 25);
 }

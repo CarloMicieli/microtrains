@@ -21,25 +21,25 @@ import java.util.Objects;
 import org.assertj.core.api.AbstractAssert;
 
 public class HttpClientResponseExceptionAssert
-    extends AbstractAssert<HttpClientResponseExceptionAssert, HttpClientResponseException> {
-  public HttpClientResponseExceptionAssert(HttpClientResponseException e) {
-    super(e, HttpClientResponseExceptionAssert.class);
-  }
-
-  public static HttpClientResponseExceptionAssert assertThat(HttpClientResponseException actual) {
-    return new HttpClientResponseExceptionAssert(actual);
-  }
-
-  public HttpClientResponseExceptionAssert hasStatus(HttpStatus status) {
-    isNotNull();
-    if (!Objects.equals(actual.getStatus(), status)) {
-      failWithActualExpectedAndMessage(
-          actual.getStatus(),
-          status,
-          "Expected http status to be <%s> but was <%s>",
-          status,
-          actual.getStatus());
+        extends AbstractAssert<HttpClientResponseExceptionAssert, HttpClientResponseException> {
+    public HttpClientResponseExceptionAssert(HttpClientResponseException e) {
+        super(e, HttpClientResponseExceptionAssert.class);
     }
-    return this;
-  }
+
+    public static HttpClientResponseExceptionAssert assertThat(HttpClientResponseException actual) {
+        return new HttpClientResponseExceptionAssert(actual);
+    }
+
+    public HttpClientResponseExceptionAssert hasStatus(HttpStatus status) {
+        isNotNull();
+        if (!Objects.equals(actual.getStatus(), status)) {
+            failWithActualExpectedAndMessage(
+                    actual.getStatus(),
+                    status,
+                    "Expected http status to be <%s> but was <%s>",
+                    status,
+                    actual.getStatus());
+        }
+        return this;
+    }
 }

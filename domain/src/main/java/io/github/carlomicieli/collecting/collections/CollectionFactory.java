@@ -21,11 +21,11 @@ import java.time.Clock;
 import java.util.function.Supplier;
 
 public class CollectionFactory extends AggregateRootFactory<Collection, CollectionId> {
-  public CollectionFactory(Clock clock, Supplier<CollectionId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public CollectionFactory(Clock clock, Supplier<CollectionId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  public Collection createNewCollection(Owner owner, String notes) {
-    throw new UnsupportedOperationException("TODO");
-  }
+    public Collection createNewCollection(Owner owner, String notes) {
+        throw new UnsupportedOperationException("TODO");
+    }
 }

@@ -16,33 +16,33 @@
 package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
 
 public enum Couplers {
-  /** Guide per Agganci Corti */
-  NEM_352,
+    /** Guide per Agganci Corti */
+    NEM_352,
 
-  /** Sede per Teste d'aggancio intercambiabili in Scala N */
-  NEM_355,
+    /** Sede per Teste d'aggancio intercambiabili in Scala N */
+    NEM_355,
 
-  /** Testa d'aggancio per Scala N */
-  NEM_356,
+    /** Testa d'aggancio per Scala N */
+    NEM_356,
 
-  /** Stelo della Testa d'aggancio per Scala N */
-  NEM_357,
+    /** Stelo della Testa d'aggancio per Scala N */
+    NEM_357,
 
-  /** Sede per Teste d'aggancio intercambiabili in Scala TT */
-  NEM_358,
+    /** Sede per Teste d'aggancio intercambiabili in Scala TT */
+    NEM_358,
 
-  /** Aggancio standard per Scala H0 */
-  NEM_360,
+    /** Aggancio standard per Scala H0 */
+    NEM_360,
 
-  /** Sede per Teste d'aggancio intercambiabili in Scala H0 */
-  NEM_362,
+    /** Sede per Teste d'aggancio intercambiabili in Scala H0 */
+    NEM_362,
 
-  /** Sede per Teste d'aggancio intercambiabili in Scala H0 con limitato spazio di montaggio */
-  NEM_363,
+    /** Sede per Teste d'aggancio intercambiabili in Scala H0 con limitato spazio di montaggio */
+    NEM_363,
 
-  /** Sede per Teste d'aggancio intercambiabili in Scala S */
-  NEM_364,
+    /** Sede per Teste d'aggancio intercambiabili in Scala S */
+    NEM_364,
 
-  /** Apertura per il timone del gancio di trazione per aggancio a vite corrispondente al reale */
-  NEM_370
+    /** Apertura per il timone del gancio di trazione per aggancio a vite corrispondente al reale */
+    NEM_370
 }

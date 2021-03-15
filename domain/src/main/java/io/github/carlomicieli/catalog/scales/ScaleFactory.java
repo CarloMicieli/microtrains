@@ -18,33 +18,41 @@ package io.github.carlomicieli.catalog.scales;
 import io.github.carlomicieli.domain.AggregateRootFactory;
 import io.github.carlomicieli.util.Slug;
 import java.time.Clock;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ScaleFactory extends AggregateRootFactory<Scale, ScaleId> {
-  public ScaleFactory(Clock clock, Supplier<ScaleId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public ScaleFactory(Clock clock, Supplier<ScaleId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  /**
-   * Creates a new {@code Scale}, this method is not making any validation. The caller needs to
-   * ensure only a valid object is created.
-   */
-  public Scale createNewScale(
-      String name, Ratio ratio, ScaleGauge gauge, String description, Integer weight) {
-    var newId = generateNewId();
-    var createdDate = getCurrentInstant();
+    /**
+     * Creates a new {@code Scale}, this method is not making any validation. The caller needs to
+     * ensure only a valid object is created.
+     */
+    public Scale createNewScale(
+            String name,
+            Ratio ratio,
+            ScaleGauge gauge,
+            String description,
+            Integer weight,
+            List<ScaleStandard> standards) {
+        var newId = generateNewId();
+        var createdDate = getCurrentInstant();
 
-    Slug scaleSlug = Scale.buildSlug(name);
+        Slug scaleSlug = Scale.buildSlug(name);
 
-    return Scale.builder()
-        .name(name)
-        .slug(scaleSlug)
-        .ratio(ratio)
-        .gauge(gauge)
-        .description(description)
-        .weight(weight)
-        .version(1)
-        .createdDate(createdDate)
-        .build();
-  }
+        return Scale.builder()
+                .id(newId)
+                .name(name)
+                .slug(scaleSlug)
+                .ratio(ratio)
+                .gauge(gauge)
+                .description(description)
+                .weight(weight)
+                .standards(standards)
+                .version(1)
+                .createdDate(createdDate)
+                .build();
+    }
 }

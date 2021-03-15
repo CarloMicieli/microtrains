@@ -28,33 +28,33 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LengthOverBufferTest {
 
-  private static final BigDecimal TWO_HUNDRED_TEN = BigDecimal.valueOf(210);
-  private static final BigDecimal THREE_HUNDRED = BigDecimal.valueOf(300);
+    private static final BigDecimal TWO_HUNDRED_TEN = BigDecimal.valueOf(210);
+    private static final BigDecimal THREE_HUNDRED = BigDecimal.valueOf(300);
 
-  @Test
-  void is_created_from_millimeters_value() {
-    var length = LengthOverBuffer.ofMillimeters(TWO_HUNDRED_TEN);
+    @Test
+    void is_created_from_millimeters_value() {
+        var length = LengthOverBuffer.ofMillimeters(TWO_HUNDRED_TEN);
 
-    assertThat(length).isNotNull();
-    assertThat(length.getMillimeters()).isEqualTo(Length.ofMillimeters(TWO_HUNDRED_TEN));
-    assertThat(length.getInches()).isNotNull();
-  }
+        assertThat(length).isNotNull();
+        assertThat(length.getMillimeters()).isEqualTo(Length.ofMillimeters(TWO_HUNDRED_TEN));
+        assertThat(length.getInches()).isNotNull();
+    }
 
-  @Test
-  void is_created_from_inches_value() {
-    var length = LengthOverBuffer.ofInches(TWO_HUNDRED_TEN);
+    @Test
+    void is_created_from_inches_value() {
+        var length = LengthOverBuffer.ofInches(TWO_HUNDRED_TEN);
 
-    assertThat(length).isNotNull();
-    assertThat(length.getInches()).isEqualTo(Length.ofInches(TWO_HUNDRED_TEN));
-    assertThat(length.getMillimeters()).isNotNull();
-  }
+        assertThat(length).isNotNull();
+        assertThat(length.getInches()).isEqualTo(Length.ofInches(TWO_HUNDRED_TEN));
+        assertThat(length.getMillimeters()).isNotNull();
+    }
 
-  @Test
-  void should_compare_two_values() {
-    var length1 = LengthOverBuffer.ofInches(TWO_HUNDRED_TEN);
-    var length2 = LengthOverBuffer.ofInches(THREE_HUNDRED);
+    @Test
+    void should_compare_two_values() {
+        var length1 = LengthOverBuffer.ofInches(TWO_HUNDRED_TEN);
+        var length2 = LengthOverBuffer.ofInches(THREE_HUNDRED);
 
-    assertThat(length1.compareTo(length2)).isNegative();
-    assertThat(length2.compareTo(length1)).isPositive();
-  }
+        assertThat(length1.compareTo(length2)).isNegative();
+        assertThat(length2.compareTo(length1)).isPositive();
+    }
 }

@@ -26,13 +26,13 @@ import lombok.ToString;
 @Getter
 @ToString
 public final class MeasureUnitConverterByRate implements MeasureUnitConverter {
-  private final MeasureUnit fromUnit;
-  private final MeasureUnit toUnit;
-  private final BigDecimal rate;
+    private final MeasureUnit fromUnit;
+    private final MeasureUnit toUnit;
+    private final BigDecimal rate;
 
-  @Override
-  public BigDecimal convert(BigDecimal value, int decimals) {
-    var result = value.multiply(this.getRate());
-    return result.setScale(decimals, RoundingMode.HALF_UP);
-  }
+    @Override
+    public BigDecimal convert(BigDecimal value, int decimals) {
+        var result = value.multiply(this.getRate());
+        return result.setScale(decimals, RoundingMode.HALF_UP);
+    }
 }

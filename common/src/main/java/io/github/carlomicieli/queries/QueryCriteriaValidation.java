@@ -24,14 +24,14 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class QueryCriteriaValidation<C extends Criteria> {
-  private final CriteriaValidator<C> criteriaValidator;
+    private final CriteriaValidator<C> criteriaValidator;
 
-  protected void validateCriteria(C criteria) {
-    Objects.requireNonNull(criteria);
+    protected void validateCriteria(C criteria) {
+        Objects.requireNonNull(criteria);
 
-    var validationErrors = criteriaValidator.validateCriteria(criteria);
-    if (!validationErrors.isEmpty()) {
-      throw new InvalidCriteriaException(validationErrors);
+        var validationErrors = criteriaValidator.validateCriteria(criteria);
+        if (!validationErrors.isEmpty()) {
+            throw new InvalidCriteriaException(validationErrors);
+        }
     }
-  }
 }

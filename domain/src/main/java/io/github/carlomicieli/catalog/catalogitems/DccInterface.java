@@ -17,12 +17,12 @@ package io.github.carlomicieli.catalog.catalogitems;
 
 /** NMRA and NEM Connectors */
 public enum DccInterface {
-  NONE,
-  NEM_651,
-  NEM_652,
-  PLUX_8,
-  PLUX_16,
-  PLUX_22,
-  NEXT_18,
-  MTC_21
+    NONE,
+    NEM_651,
+    NEM_652,
+    PLUX_8,
+    PLUX_16,
+    PLUX_22,
+    NEXT_18,
+    MTC_21
 }

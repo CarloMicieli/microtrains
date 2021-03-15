@@ -22,9 +22,9 @@ import java.math.BigDecimal;
  * units.
  */
 public interface MeasureUnitConverter {
-  BigDecimal convert(BigDecimal value, int decimals);
+    BigDecimal convert(BigDecimal value, int decimals);
 
-  default BigDecimal convert(BigDecimal value) {
-    return convert(value, 2);
-  }
+    default BigDecimal convert(BigDecimal value) {
+        return convert(value, 2);
+    }
 }

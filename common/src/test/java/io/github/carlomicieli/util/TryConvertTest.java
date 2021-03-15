@@ -21,45 +21,45 @@ import static org.assertj.core.api.Assertions.within;
 import org.junit.jupiter.api.Test;
 
 class TryConvertTest {
-  @Test
-  void shouldConvertStringToIntegers() {
-    Try<Integer> num = TryConvert.toInteger("123");
-    assertThat(num.isSuccess()).isTrue();
-    assertThat(num.get()).isEqualTo(123);
-  }
+    @Test
+    void shouldConvertStringToIntegers() {
+        Try<Integer> num = TryConvert.toInteger("123");
+        assertThat(num.isSuccess()).isTrue();
+        assertThat(num.get()).isEqualTo(123);
+    }
 
-  @Test
-  void shouldReturnEmptyFromConversionStringToIntegerWhenInputIsBlank() {
-    Try<Integer> num = TryConvert.toInteger(" ");
-    assertThat(num.isFailure()).isTrue();
-    assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
-  }
+    @Test
+    void shouldReturnEmptyFromConversionStringToIntegerWhenInputIsBlank() {
+        Try<Integer> num = TryConvert.toInteger(" ");
+        assertThat(num.isFailure()).isTrue();
+        assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
+    }
 
-  @Test
-  void shouldReturnEmptyFromConversionStringToIntegerWhenInputIsNotANumber() {
-    Try<Integer> num = TryConvert.toInteger("abc123");
-    assertThat(num.isFailure()).isTrue();
-    assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
-  }
+    @Test
+    void shouldReturnEmptyFromConversionStringToIntegerWhenInputIsNotANumber() {
+        Try<Integer> num = TryConvert.toInteger("abc123");
+        assertThat(num.isFailure()).isTrue();
+        assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
+    }
 
-  @Test
-  void shouldConvertStringToDoubles() {
-    Try<Double> num = TryConvert.toDouble("123.56");
-    assertThat(num.isSuccess()).isTrue();
-    assertThat(num.get()).isCloseTo(123.56, within(0.01));
-  }
+    @Test
+    void shouldConvertStringToDoubles() {
+        Try<Double> num = TryConvert.toDouble("123.56");
+        assertThat(num.isSuccess()).isTrue();
+        assertThat(num.get()).isCloseTo(123.56, within(0.01));
+    }
 
-  @Test
-  void shouldReturnEmptyFromConversionStringToDoubleWhenInputIsBlank() {
-    Try<Double> num = TryConvert.toDouble(" ");
-    assertThat(num.isFailure()).isTrue();
-    assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
-  }
+    @Test
+    void shouldReturnEmptyFromConversionStringToDoubleWhenInputIsBlank() {
+        Try<Double> num = TryConvert.toDouble(" ");
+        assertThat(num.isFailure()).isTrue();
+        assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
+    }
 
-  @Test
-  void shouldReturnEmptyFromConversionStringToDoubleWhenInputIsNotANumber() {
-    Try<Double> num = TryConvert.toDouble("xdr35");
-    assertThat(num.isFailure()).isTrue();
-    assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
-  }
+    @Test
+    void shouldReturnEmptyFromConversionStringToDoubleWhenInputIsNotANumber() {
+        Try<Double> num = TryConvert.toDouble("xdr35");
+        assertThat(num.isFailure()).isTrue();
+        assertThat(num.exception().get()).isInstanceOf(NumberFormatException.class);
+    }
 }

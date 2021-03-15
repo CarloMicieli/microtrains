@@ -32,20 +32,20 @@ import java.util.function.Supplier;
  * @param <ID> the aggregate identifier data type
  */
 public abstract class AggregateRootFactory<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final Clock clock;
-  private final Supplier<ID> identifierSource;
+    private final Clock clock;
+    private final Supplier<ID> identifierSource;
 
-  public AggregateRootFactory(Clock clock, Supplier<ID> identifierSource) {
-    this.clock = Objects.requireNonNull(clock, "A clock instance is required");
-    this.identifierSource =
-        Objects.requireNonNull(identifierSource, "An identifier source is required");
-  }
+    public AggregateRootFactory(Clock clock, Supplier<ID> identifierSource) {
+        this.clock = Objects.requireNonNull(clock, "A clock instance is required");
+        this.identifierSource =
+                Objects.requireNonNull(identifierSource, "An identifier source is required");
+    }
 
-  protected Instant getCurrentInstant() {
-    return clock.instant();
-  }
+    protected Instant getCurrentInstant() {
+        return clock.instant();
+    }
 
-  protected ID generateNewId() {
-    return identifierSource.get();
-  }
+    protected ID generateNewId() {
+        return identifierSource.get();
+    }
 }

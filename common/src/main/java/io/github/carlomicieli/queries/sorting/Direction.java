@@ -16,6 +16,6 @@
 package io.github.carlomicieli.queries.sorting;
 
 public enum Direction {
-  ASC,
-  DESC,
+    ASC,
+    DESC,
 }

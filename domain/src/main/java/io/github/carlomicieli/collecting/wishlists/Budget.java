@@ -21,31 +21,31 @@ import lombok.Value;
 
 @Value
 public class Budget {
-  BigDecimal amount;
-  Currency currency;
+    BigDecimal amount;
+    Currency currency;
 
-  public Budget(BigDecimal amount, Currency currency) {
-    if (amount.signum() < 0) {
-      throw new IllegalArgumentException("A budget must have a non negative amount");
+    public Budget(BigDecimal amount, Currency currency) {
+        if (amount.signum() < 0) {
+            throw new IllegalArgumentException("A budget must have a non negative amount");
+        }
+
+        this.amount = amount;
+        this.currency = currency;
     }
 
-    this.amount = amount;
-    this.currency = currency;
-  }
+    public static Budget ofDollars(int amount) {
+        return fromAmount(amount, "USD");
+    }
 
-  public static Budget ofDollars(int amount) {
-    return fromAmount(amount, "USD");
-  }
+    public static Budget ofEuro(int amount) {
+        return fromAmount(amount, "EUR");
+    }
 
-  public static Budget ofEuro(int amount) {
-    return fromAmount(amount, "EUR");
-  }
+    public static Budget ofPounds(int amount) {
+        return fromAmount(amount, "GBP");
+    }
 
-  public static Budget ofPounds(int amount) {
-    return fromAmount(amount, "GBP");
-  }
-
-  private static Budget fromAmount(int amount, String currency) {
-    return new Budget(BigDecimal.valueOf(amount), Currency.getInstance(currency));
-  }
+    private static Budget fromAmount(int amount, String currency) {
+        return new Budget(BigDecimal.valueOf(amount), Currency.getInstance(currency));
+    }
 }

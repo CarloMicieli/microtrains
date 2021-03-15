@@ -22,7 +22,7 @@ import lombok.Value;
 
 @Value
 public class PurchasedInfo {
-  Price price;
-  ShopId shopId;
-  LocalDate purchasedDate;
+    Price price;
+    ShopId shopId;
+    LocalDate purchasedDate;
 }

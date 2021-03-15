@@ -32,26 +32,32 @@ import lombok.*;
 @With
 @Builder
 public class RailwayLength {
-  Length kilometers;
-  Length miles;
+    Length kilometers;
+    Length miles;
 
-  /** Creates a new {@code RailwayLength} from a kilometers value, converting this value to miles */
-  public static RailwayLength ofKilometers(double value) {
-    var lengthValue = BigDecimal.valueOf(value);
-    var converter =
-        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.KILOMETERS, MeasureUnit.MILES);
-    return new RailwayLength(
-        Length.of(lengthValue, MeasureUnit.KILOMETERS),
-        Length.of(converter.convert(lengthValue), MeasureUnit.MILES));
-  }
+    /**
+     * Creates a new {@code RailwayLength} from a kilometers value, converting this value to miles
+     */
+    public static RailwayLength ofKilometers(double value) {
+        var lengthValue = BigDecimal.valueOf(value);
+        var converter =
+                MeasureUnitsConverters.INSTANCE.getConverter(
+                        MeasureUnit.KILOMETERS, MeasureUnit.MILES);
+        return new RailwayLength(
+                Length.of(lengthValue, MeasureUnit.KILOMETERS),
+                Length.of(converter.convert(lengthValue), MeasureUnit.MILES));
+    }
 
-  /** Creates a new {@code RailwayLength} from a miles value, converting this value to kilometers */
-  public static RailwayLength ofMiles(double value) {
-    var lengthValue = BigDecimal.valueOf(value);
-    var converter =
-        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.MILES, MeasureUnit.KILOMETERS);
-    return new RailwayLength(
-        Length.of(converter.convert(lengthValue), MeasureUnit.KILOMETERS),
-        Length.of(lengthValue, MeasureUnit.MILES));
-  }
+    /**
+     * Creates a new {@code RailwayLength} from a miles value, converting this value to kilometers
+     */
+    public static RailwayLength ofMiles(double value) {
+        var lengthValue = BigDecimal.valueOf(value);
+        var converter =
+                MeasureUnitsConverters.INSTANCE.getConverter(
+                        MeasureUnit.MILES, MeasureUnit.KILOMETERS);
+        return new RailwayLength(
+                Length.of(converter.convert(lengthValue), MeasureUnit.KILOMETERS),
+                Length.of(lengthValue, MeasureUnit.MILES));
+    }
 }

@@ -31,10 +31,10 @@ import io.github.carlomicieli.queries.sorting.Sorting;
  */
 public interface PaginatedQueryWithCriteria<C extends Criteria, T> extends Query<C, T> {
 
-  /**
-   * Execute this {@code Query} in order to select one page of the corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy);
+    /**
+     * Execute this {@code Query} in order to select one page of the corresponding data.
+     *
+     * @throws QueryExecutionException in case of any error
+     */
+    PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy);
 }

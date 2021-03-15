@@ -19,14 +19,14 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public abstract class EntityFactory<T extends Entity<ID>, ID extends Identifier> {
-  private final Supplier<ID> identifierSource;
+    private final Supplier<ID> identifierSource;
 
-  public EntityFactory(Supplier<ID> identifierSource) {
-    this.identifierSource =
-        Objects.requireNonNull(identifierSource, "An identifier source is required");
-  }
+    public EntityFactory(Supplier<ID> identifierSource) {
+        this.identifierSource =
+                Objects.requireNonNull(identifierSource, "An identifier source is required");
+    }
 
-  protected ID generateNewId() {
-    return identifierSource.get();
-  }
+    protected ID generateNewId() {
+        return identifierSource.get();
+    }
 }

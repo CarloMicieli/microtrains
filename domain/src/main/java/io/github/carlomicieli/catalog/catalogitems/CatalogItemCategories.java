@@ -19,11 +19,11 @@ import io.github.carlomicieli.catalog.catalogitems.rollingstocks.Category;
 import java.util.List;
 
 public final class CatalogItemCategories {
-  public static CatalogItemCategory fromCatalogItem(CatalogItem catalogItem) {
-    throw new UnsupportedOperationException();
-  }
+    public static CatalogItemCategory fromCatalogItem(CatalogItem catalogItem) {
+        throw new UnsupportedOperationException();
+    }
 
-  public static CatalogItemCategory fromCategories(List<Category> categoryList) {
-    throw new UnsupportedOperationException();
-  }
+    public static CatalogItemCategory fromCategories(List<Category> categoryList) {
+        throw new UnsupportedOperationException();
+    }
 }

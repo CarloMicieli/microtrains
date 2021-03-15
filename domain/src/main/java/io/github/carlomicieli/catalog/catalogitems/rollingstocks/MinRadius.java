@@ -24,22 +24,22 @@ import lombok.Value;
 @AllArgsConstructor
 @Value
 public class MinRadius {
-  Length value;
+    Length value;
 
-  public static MinRadius ofMillimeters(BigDecimal value) {
-    return new MinRadius(Length.ofMillimeters(value));
-  }
+    public static MinRadius ofMillimeters(BigDecimal value) {
+        return new MinRadius(Length.ofMillimeters(value));
+    }
 
-  public static MinRadius ofMillimeters(int value) {
-    return new MinRadius(Length.ofMillimeters(BigDecimal.valueOf(value)));
-  }
+    public static MinRadius ofMillimeters(int value) {
+        return new MinRadius(Length.ofMillimeters(BigDecimal.valueOf(value)));
+    }
 
-  private Length getValue() {
-    return value;
-  }
+    private Length getValue() {
+        return value;
+    }
 
-  /** Returns this minimum radius in millimeters */
-  public BigDecimal getMillimeters() {
-    return value.getValue();
-  }
+    /** Returns this minimum radius in millimeters */
+    public BigDecimal getMillimeters() {
+        return value.getValue();
+    }
 }

@@ -17,15 +17,15 @@ package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
 
 /** The different kind of trains */
 public enum TrainType {
-  /** The railcar category */
-  RAILCARS,
+    /** The railcar category */
+    RAILCARS,
 
-  /** The electric multiple unit category */
-  ELECTRIC_MULTIPLE_UNITS,
+    /** The electric multiple unit category */
+    ELECTRIC_MULTIPLE_UNITS,
 
-  /** The train set category */
-  TRAIN_SET,
+    /** The train set category */
+    TRAIN_SET,
 
-  /** The starter sets (usually includes the tracks) category */
-  STARTER_SET,
+    /** The starter sets (usually includes the tracks) category */
+    STARTER_SET,
 }

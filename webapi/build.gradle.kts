@@ -26,6 +26,7 @@ dependencies {
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("io.micronaut.rxjava3:micronaut-rxjava3")
 
+    implementation(project(":common"))
     implementation(project(":domain"))
     implementation(project(":application"))
     implementation(project(":infrastructure"))

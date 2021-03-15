@@ -29,14 +29,14 @@ import lombok.With;
 @Builder
 @With
 public class CollectionStats {
-  CollectionId id;
-  Owner owner;
-  Instant modifiedDate;
-  Price totalValue;
-  List<CollectionStatsItem> items;
+    CollectionId id;
+    Owner owner;
+    Instant modifiedDate;
+    Price totalValue;
+    List<CollectionStatsItem> items;
 
-  /** Generates the statistics from the {@code Collection}. */
-  public static CollectionStats fromCollection(Collection collection) {
-    throw new UnsupportedOperationException("TODO");
-  }
+    /** Generates the statistics from the {@code Collection}. */
+    public static CollectionStats fromCollection(Collection collection) {
+        throw new UnsupportedOperationException("TODO");
+    }
 }

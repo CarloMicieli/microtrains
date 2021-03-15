@@ -22,32 +22,32 @@ import lombok.Data;
 /** Gauge is the distance between the inner edges of the two rails that it runs on. */
 @Data
 public final class Gauge implements Comparable<Gauge> {
-  private final BigDecimal value;
-  private final MeasureUnit measureUnit;
+    private final BigDecimal value;
+    private final MeasureUnit measureUnit;
 
-  private Gauge(BigDecimal value, MeasureUnit measureUnit) {
-    this.value = value;
-    this.measureUnit = measureUnit;
-  }
+    private Gauge(BigDecimal value, MeasureUnit measureUnit) {
+        this.value = value;
+        this.measureUnit = measureUnit;
+    }
 
-  public static Gauge of(BigDecimal value, MeasureUnit measureUnit) {
-    return new Gauge(value, measureUnit);
-  }
+    public static Gauge of(BigDecimal value, MeasureUnit measureUnit) {
+        return new Gauge(value, measureUnit);
+    }
 
-  public static Gauge of(float value, MeasureUnit measureUnit) {
-    return new Gauge(BigDecimal.valueOf(value), measureUnit);
-  }
+    public static Gauge of(float value, MeasureUnit measureUnit) {
+        return new Gauge(BigDecimal.valueOf(value), measureUnit);
+    }
 
-  public static Gauge ofMillimeters(double value) {
-    return new Gauge(BigDecimal.valueOf(value), MeasureUnit.MILLIMETERS);
-  }
+    public static Gauge ofMillimeters(double value) {
+        return new Gauge(BigDecimal.valueOf(value), MeasureUnit.MILLIMETERS);
+    }
 
-  public static Gauge ofInches(double value) {
-    return new Gauge(BigDecimal.valueOf(value), MeasureUnit.MILLIMETERS);
-  }
+    public static Gauge ofInches(double value) {
+        return new Gauge(BigDecimal.valueOf(value), MeasureUnit.MILLIMETERS);
+    }
 
-  @Override
-  public int compareTo(Gauge other) {
-    return 0;
-  }
+    @Override
+    public int compareTo(Gauge other) {
+        return 0;
+    }
 }

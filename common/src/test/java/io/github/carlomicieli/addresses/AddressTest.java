@@ -25,30 +25,30 @@ import org.junit.jupiter.api.Test;
 @DisplayName("An address")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AddressTest {
-  @Test
-  void is_created() {
-    var address =
-        Address.builder()
-            .line1("Stuttgarter Straße 55-57")
-            .line2("A")
-            .city("Göppingen")
-            .country("Germany")
-            .region("Baden-Württemberg")
-            .postalCode("D-73033")
-            .build();
-    assertThat(address).isNotNull();
-    assertThat(address.getLine1()).isEqualTo("Stuttgarter Straße 55-57");
-    assertThat(address.getLine2()).isEqualTo("A");
-    assertThat(address.getCity()).isEqualTo("Göppingen");
-    assertThat(address.getCountry()).isEqualTo("Germany");
-    assertThat(address.getRegion()).isEqualTo("Baden-Württemberg");
-    assertThat(address.getPostalCode()).isEqualTo("D-73033");
-  }
+    @Test
+    void is_created() {
+        var address =
+                Address.builder()
+                        .line1("Stuttgarter Straße 55-57")
+                        .line2("A")
+                        .city("Göppingen")
+                        .country("Germany")
+                        .region("Baden-Württemberg")
+                        .postalCode("D-73033")
+                        .build();
+        assertThat(address).isNotNull();
+        assertThat(address.getLine1()).isEqualTo("Stuttgarter Straße 55-57");
+        assertThat(address.getLine2()).isEqualTo("A");
+        assertThat(address.getCity()).isEqualTo("Göppingen");
+        assertThat(address.getCountry()).isEqualTo("Germany");
+        assertThat(address.getRegion()).isEqualTo("Baden-Württemberg");
+        assertThat(address.getPostalCode()).isEqualTo("D-73033");
+    }
 
-  @Test
-  void is_empty_when_no_value_has_been_provided() {
-    var isEmpty = Address.isEmpty(Address.NULL_ADDRESS);
-    assertThat(isEmpty).isTrue();
-    assertThat(Address.isEmpty(null)).isTrue();
-  }
+    @Test
+    void is_empty_when_no_value_has_been_provided() {
+        var isEmpty = Address.isEmpty(Address.NULL_ADDRESS);
+        assertThat(isEmpty).isTrue();
+        assertThat(Address.isEmpty(null)).isTrue();
+    }
 }

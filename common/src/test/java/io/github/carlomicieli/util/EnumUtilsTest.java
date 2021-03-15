@@ -24,52 +24,53 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 class EnumUtilsTest {
-  @Test
-  void shouldReturnAnIterableForEnumLabels() {
-    Iterable<String> it = EnumUtils.labelsFor(Visibility.class);
-    assertThat(it).hasSize(2).contains("public", "private");
-  }
+    @Test
+    void shouldReturnAnIterableForEnumLabels() {
+        Iterable<String> it = EnumUtils.labelsFor(Visibility.class);
+        assertThat(it).hasSize(2).contains("public", "private");
+    }
 
-  @Test
-  void shouldReturnStreamWithEnumLabels() {
-    Stream<String> labelsStream = EnumUtils.labelsStream(Visibility.class);
+    @Test
+    void shouldReturnStreamWithEnumLabels() {
+        Stream<String> labelsStream = EnumUtils.labelsStream(Visibility.class);
 
-    List<String> it = labelsStream.collect(Collectors.toList());
-    assertThat(it).hasSize(2).contains("public", "private");
-  }
+        List<String> it = labelsStream.collect(Collectors.toList());
+        assertThat(it).hasSize(2).contains("public", "private");
+    }
 
-  @Test
-  void shouldParseStringsAsEnumValuesInASafeManner() {
-    Try<Category> cat = EnumUtils.tryParseEnum(Category.class, "electric-locomotives");
-    assertThat(cat.get()).isNotNull().isEqualTo(Category.ELECTRIC_LOCOMOTIVES);
-  }
+    @Test
+    void shouldParseStringsAsEnumValuesInASafeManner() {
+        Try<Category> cat = EnumUtils.tryParseEnum(Category.class, "electric-locomotives");
+        assertThat(cat.get()).isNotNull().isEqualTo(Category.ELECTRIC_LOCOMOTIVES);
+    }
 
-  @Test
-  void shouldParseStringsAsEnumValues() {
-    Category cat = EnumUtils.parseEnum(Category.class, "electric-locomotives");
-    assertThat(cat).isNotNull().isEqualTo(Category.ELECTRIC_LOCOMOTIVES);
-  }
+    @Test
+    void shouldParseStringsAsEnumValues() {
+        Category cat = EnumUtils.parseEnum(Category.class, "electric-locomotives");
+        assertThat(cat).isNotNull().isEqualTo(Category.ELECTRIC_LOCOMOTIVES);
+    }
 
-  @Test
-  void shouldProduceValueForAKeyInEnums() {
-    String key = EnumUtils.keyFor(Category.ELECTRIC_MULTIPLE_UNIT);
-    assertThat(key).isNotEmpty().isEqualTo("electric-multiple-unit");
-  }
+    @Test
+    void shouldProduceValueForAKeyInEnums() {
+        String key = EnumUtils.keyFor(Category.ELECTRIC_MULTIPLE_UNIT);
+        assertThat(key).isNotEmpty().isEqualTo("electric-multiple-unit");
+    }
 
-  @Test
-  void shouldThrowIllegalArgumentExceptionWhenTheValueIsNotValid() {
-    assertThrows(
-        IllegalArgumentException.class, () -> EnumUtils.parseEnum(Category.class, "not-valid"));
-  }
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenTheValueIsNotValid() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> EnumUtils.parseEnum(Category.class, "not-valid"));
+    }
 
-  @SuppressWarnings("unused")
-  enum Visibility {
-    PRIVATE,
-    PUBLIC
-  }
+    @SuppressWarnings("unused")
+    enum Visibility {
+        PRIVATE,
+        PUBLIC
+    }
 
-  enum Category {
-    ELECTRIC_LOCOMOTIVES,
-    ELECTRIC_MULTIPLE_UNIT
-  }
+    enum Category {
+        ELECTRIC_LOCOMOTIVES,
+        ELECTRIC_MULTIPLE_UNIT
+    }
 }

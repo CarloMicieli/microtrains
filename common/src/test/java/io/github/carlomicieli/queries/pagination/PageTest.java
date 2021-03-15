@@ -26,71 +26,71 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class PageTest {
 
-  @Test
-  void is_created_with_a_start_index_and_a_limit() {
-    var page = Page.of(10, 50);
-    assertThat(page).isNotNull();
-    assertThat(page.getStart()).isEqualTo(10);
-    assertThat(page.getLimit()).isEqualTo(50);
-  }
+    @Test
+    void is_created_with_a_start_index_and_a_limit() {
+        var page = Page.of(10, 50);
+        assertThat(page).isNotNull();
+        assertThat(page.getStart()).isEqualTo(10);
+        assertThat(page.getLimit()).isEqualTo(50);
+    }
 
-  @Test
-  void only_allows_non_negative_start_indexes() {
-    var ex = catchThrowableOfType(() -> Page.of(-1, 10), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Page starting index cannot be negative");
-  }
+    @Test
+    void only_allows_non_negative_start_indexes() {
+        var ex = catchThrowableOfType(() -> Page.of(-1, 10), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("Page starting index cannot be negative");
+    }
 
-  @Test
-  void only_allows_non_negative_limits() {
-    var ex = catchThrowableOfType(() -> Page.of(0, -10), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Page limit cannot be negative");
-  }
+    @Test
+    void only_allows_non_negative_limits() {
+        var ex = catchThrowableOfType(() -> Page.of(0, -10), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("Page limit cannot be negative");
+    }
 
-  @Test
-  void has_a_default_page() {
-    assertThat(Page.DEFAULT_PAGE.getStart()).isEqualTo(0);
-    assertThat(Page.DEFAULT_PAGE.getLimit()).isEqualTo(25);
-  }
+    @Test
+    void has_a_default_page() {
+        assertThat(Page.DEFAULT_PAGE.getStart()).isEqualTo(0);
+        assertThat(Page.DEFAULT_PAGE.getLimit()).isEqualTo(25);
+    }
 
-  @Test
-  void can_be_compared_to_other_pages() {
-    var page1 = Page.of(10, 50);
-    var page2 = Page.of(10, 50);
-    var page3 = Page.of(0, 10);
+    @Test
+    void can_be_compared_to_other_pages() {
+        var page1 = Page.of(10, 50);
+        var page2 = Page.of(10, 50);
+        var page3 = Page.of(0, 10);
 
-    assertThat(page1.equals(page2)).isTrue();
-    assertThat(page1.equals(page3)).isFalse();
-  }
+        assertThat(page1.equals(page2)).isTrue();
+        assertThat(page1.equals(page3)).isFalse();
+    }
 
-  @Test
-  void can_find_the_following_page() {
-    var page = Page.of(10, 50);
-    var next = page.next();
+    @Test
+    void can_find_the_following_page() {
+        var page = Page.of(10, 50);
+        var next = page.next();
 
-    assertThat(next).isNotNull();
-    assertThat(next.getLimit()).isEqualTo(50);
-    assertThat(next.getStart()).isEqualTo(60);
-  }
+        assertThat(next).isNotNull();
+        assertThat(next.getLimit()).isEqualTo(50);
+        assertThat(next.getStart()).isEqualTo(60);
+    }
 
-  @Test
-  void can_find_the_previous_page() {
-    var page = Page.of(50, 25);
-    var previous = page.prev();
+    @Test
+    void can_find_the_previous_page() {
+        var page = Page.of(50, 25);
+        var previous = page.prev();
 
-    assertThat(previous).isNotNull();
-    assertThat(previous.getLimit()).isEqualTo(25);
-    assertThat(previous.getStart()).isEqualTo(25);
-  }
+        assertThat(previous).isNotNull();
+        assertThat(previous.getLimit()).isEqualTo(25);
+        assertThat(previous.getStart()).isEqualTo(25);
+    }
 
-  @Test
-  void can_find_the_previous_page_also_when_the_current_page_is_the_first() {
-    var page = Page.of(0, 25);
-    var previous = page.prev();
+    @Test
+    void can_find_the_previous_page_also_when_the_current_page_is_the_first() {
+        var page = Page.of(0, 25);
+        var previous = page.prev();
 
-    assertThat(previous).isNotNull();
-    assertThat(previous.getLimit()).isEqualTo(25);
-    assertThat(previous.getStart()).isEqualTo(0);
-  }
+        assertThat(previous).isNotNull();
+        assertThat(previous.getLimit()).isEqualTo(25);
+        assertThat(previous.getStart()).isEqualTo(0);
+    }
 }

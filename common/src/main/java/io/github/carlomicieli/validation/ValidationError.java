@@ -22,7 +22,7 @@ import lombok.Value;
 @Value
 @AllArgsConstructor(staticName = "of")
 public class ValidationError {
-  String propertyName;
-  String errorMessage;
-  Object invalidValue;
+    String propertyName;
+    String errorMessage;
+    Object invalidValue;
 }

@@ -22,23 +22,23 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class ISOValidationUtilsTest {
-  @Test
-  public void shouldCheckWhetherLanguageCodesAreValid() {
-    assertThat(languageIsValid("en")).isTrue();
-  }
+    @Test
+    public void shouldCheckWhetherLanguageCodesAreValid() {
+        assertThat(languageIsValid("en")).isTrue();
+    }
 
-  @Test
-  public void shouldCheckWhetherLanguageCodesAreNotValid() {
-    assertThat(languageIsValid("rr")).isFalse();
-  }
+    @Test
+    public void shouldCheckWhetherLanguageCodesAreNotValid() {
+        assertThat(languageIsValid("rr")).isFalse();
+    }
 
-  @Test
-  public void shouldCheckWhetherCountryCodesAreValid() {
-    assertThat(countryIsValid("gb")).isTrue();
-  }
+    @Test
+    public void shouldCheckWhetherCountryCodesAreValid() {
+        assertThat(countryIsValid("gb")).isTrue();
+    }
 
-  @Test
-  public void shouldCheckWhetherCountryCodesAreNotValid() {
-    assertThat(countryIsValid("rr")).isFalse();
-  }
+    @Test
+    public void shouldCheckWhetherCountryCodesAreNotValid() {
+        assertThat(countryIsValid("rr")).isFalse();
+    }
 }

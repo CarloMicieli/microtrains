@@ -25,11 +25,11 @@ import io.micronaut.validation.validator.constraints.ConstraintValidatorContext;
 
 /** It represents a validator for countries ISO codes. */
 public final class ISOCountryValidator implements ConstraintValidator<ISOCountry, String> {
-  @Override
-  public boolean isValid(
-      @Nullable String value,
-      @NonNull AnnotationValue<ISOCountry> annotationMetadata,
-      @NonNull ConstraintValidatorContext context) {
-    return ISOValidationUtils.countryIsValid(value);
-  }
+    @Override
+    public boolean isValid(
+            @Nullable String value,
+            @NonNull AnnotationValue<ISOCountry> annotationMetadata,
+            @NonNull ConstraintValidatorContext context) {
+        return ISOValidationUtils.countryIsValid(value);
+    }
 }

@@ -31,25 +31,25 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class ISOCountryValidatorTest {
 
-  private final ISOCountryValidator validator = new ISOCountryValidator();
+    private final ISOCountryValidator validator = new ISOCountryValidator();
 
-  @Mock private ConstraintValidatorContext context;
+    @Mock private ConstraintValidatorContext context;
 
-  @Test
-  void should_validate_empty_values() {
-    assertThat(validator.isValid(null, context)).isTrue();
-    assertThat(validator.isValid("", context)).isTrue();
-  }
+    @Test
+    void should_validate_empty_values() {
+        assertThat(validator.isValid(null, context)).isTrue();
+        assertThat(validator.isValid("", context)).isTrue();
+    }
 
-  @Test
-  void should_validate_correct_ISO_country_codes() {
-    assertThat(validator.isValid("de", context)).isTrue();
-    assertThat(validator.isValid("gb", context)).isTrue();
-  }
+    @Test
+    void should_validate_correct_ISO_country_codes() {
+        assertThat(validator.isValid("de", context)).isTrue();
+        assertThat(validator.isValid("gb", context)).isTrue();
+    }
 
-  @Test
-  void should_fail_to_validate_incorrect_ISO_country_codes() {
-    assertThat(validator.isValid("rr", context)).isFalse();
-    assertThat(validator.isValid("ub", context)).isFalse();
-  }
+    @Test
+    void should_fail_to_validate_incorrect_ISO_country_codes() {
+        assertThat(validator.isValid("rr", context)).isFalse();
+        assertThat(validator.isValid("ub", context)).isFalse();
+    }
 }

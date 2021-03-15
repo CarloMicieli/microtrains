@@ -27,16 +27,18 @@ import javax.validation.Validator;
  * <em>ValidationError</em> values.
  */
 public interface CustomValidator<T> {
-  Validator getValidator();
+    Validator getValidator();
 
-  default List<ValidationError> validate(T input) {
-    Set<ConstraintViolation<T>> errors = getValidator().validate(input);
-    return errors.stream()
-        .map(
-            e ->
-                ValidationError.of(
-                    e.getPropertyPath().toString(), e.getMessage(), e.getInvalidValue()))
-        .sorted(Comparator.comparing(ValidationError::getPropertyName))
-        .collect(Collectors.toList());
-  }
+    default List<ValidationError> validate(T input) {
+        Set<ConstraintViolation<T>> errors = getValidator().validate(input);
+        return errors.stream()
+                .map(
+                        e ->
+                                ValidationError.of(
+                                        e.getPropertyPath().toString(),
+                                        e.getMessage(),
+                                        e.getInvalidValue()))
+                .sorted(Comparator.comparing(ValidationError::getPropertyName))
+                .collect(Collectors.toList());
+    }
 }

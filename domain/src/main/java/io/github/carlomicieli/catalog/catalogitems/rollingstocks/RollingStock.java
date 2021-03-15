@@ -20,17 +20,17 @@ import io.github.carlomicieli.catalog.railways.RailwayId;
 import io.github.carlomicieli.domain.Entity;
 
 public interface RollingStock extends Entity<RollingStockId> {
-  RailwayId getRailway();
+    RailwayId getRailway();
 
-  Category getCategory();
+    Category getCategory();
 
-  Epoch getEpoch();
+    Epoch getEpoch();
 
-  LengthOverBuffer getLengthOverBuffer();
+    LengthOverBuffer getLengthOverBuffer();
 
-  MinRadius getMinRadius();
+    MinRadius getMinRadius();
 
-  Couplers getCouplers();
+    Couplers getCouplers();
 
-  String getLivery();
+    String getLivery();
 }

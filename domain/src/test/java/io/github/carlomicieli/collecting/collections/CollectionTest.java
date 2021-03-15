@@ -26,18 +26,18 @@ import org.junit.jupiter.api.Test;
 @DisplayName("A collection")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CollectionTest {
-  private static final Owner FIXED_OWNER = Owner.withName("George");
+    private static final Owner FIXED_OWNER = Owner.withName("George");
 
-  @Test
-  void is_created_with_an_owner() {
-    var c = Collection.builder().owner(FIXED_OWNER).build();
-    assertThat(c).isNotNull();
-    assertThat(c.getOwner()).isEqualTo(FIXED_OWNER);
-  }
+    @Test
+    void is_created_with_an_owner() {
+        var c = Collection.builder().owner(FIXED_OWNER).build();
+        assertThat(c).isNotNull();
+        assertThat(c.getOwner()).isEqualTo(FIXED_OWNER);
+    }
 
-  @Test
-  void is_created_empty() {
-    var c = Collection.builder().owner(FIXED_OWNER).build();
-    assertThat(c.size()).isZero();
-  }
+    @Test
+    void is_created_empty() {
+        var c = Collection.builder().owner(FIXED_OWNER).build();
+        assertThat(c.size()).isZero();
+    }
 }

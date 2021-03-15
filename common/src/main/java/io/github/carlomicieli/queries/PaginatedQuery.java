@@ -30,12 +30,12 @@ import io.github.carlomicieli.queries.sorting.Sorting;
  */
 public interface PaginatedQuery<T> extends Query<PaginatedQuery.NoCriteria, T> {
 
-  /**
-   * Execute this {@code Query} in order to select one page of the corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  PaginatedResult<T> execute(Page currentPage, Sorting orderBy);
+    /**
+     * Execute this {@code Query} in order to select one page of the corresponding data.
+     *
+     * @throws QueryExecutionException in case of any error
+     */
+    PaginatedResult<T> execute(Page currentPage, Sorting orderBy);
 
-  class NoCriteria implements Criteria {}
+    class NoCriteria implements Criteria {}
 }

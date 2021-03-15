@@ -44,67 +44,68 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @ExtendWith(MockitoExtension.class)
 class UseCaseTest {
-  private final MyTestUseCase useCase;
-  private final MyUseCaseOutputPort outputPort;
+    private final MyTestUseCase useCase;
+    private final MyUseCaseOutputPort outputPort;
 
-  public UseCaseTest(@Mock MyUseCaseOutputPort outputPort) {
-    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    public UseCaseTest(@Mock MyUseCaseOutputPort outputPort) {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
-    var useCaseValidator = new UseCaseBeanValidator<MyUseCaseInput>(factory.getValidator());
-    this.useCase = new MyTestUseCase(useCaseValidator, outputPort);
-    this.outputPort = outputPort;
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @Test
-  void it_should_output_an_error_when_input_is_null() {
-    var thrown = assertThatThrownBy(() -> useCase.execute(null));
-    assertThat(thrown).isNotNull();
-  }
-
-  @Test
-  void it_should_validate_input_before_execution() {
-    var expectedErrors = List.of(ValidationError.of("question", "must not be blank", ""));
-    var input = MyUseCaseInput.of("");
-    useCase.execute(input);
-    verify(outputPort, times(1)).invalidRequest(expectedErrors);
-  }
-
-  @Test
-  void it_should_produce_the_standard_output_on_the_happy_path() {
-    var expectedOutput = MyUseCaseOutput.of(42);
-
-    var input = MyUseCaseInput.of("What's up?");
-    useCase.execute(input);
-
-    verify(outputPort, times(1)).standard(expectedOutput);
-  }
-
-  @AllArgsConstructor(staticName = "of")
-  @Value
-  static class MyUseCaseInput implements UseCaseInput {
-    @NotBlank String question;
-  }
-
-  @Value
-  @AllArgsConstructor(staticName = "of")
-  static class MyUseCaseOutput implements UseCaseOutput {
-    int answer;
-  }
-
-  interface MyUseCaseOutputPort extends StandardOutputPort<MyUseCaseOutput> {}
-
-  static class MyTestUseCase
-      extends AbstractUseCase<MyUseCaseInput, MyUseCaseOutput, MyUseCaseOutputPort> {
-
-    public MyTestUseCase(
-        UseCaseInputValidator<MyUseCaseInput> inputValidator, MyUseCaseOutputPort outputPort) {
-      super(inputValidator, outputPort);
+        var useCaseValidator = new UseCaseBeanValidator<MyUseCaseInput>(factory.getValidator());
+        this.useCase = new MyTestUseCase(useCaseValidator, outputPort);
+        this.outputPort = outputPort;
     }
 
-    @Override
-    protected void handle(@NonNull MyUseCaseInput input) {
-      outputPort.standard(MyUseCaseOutput.of(42));
+    @SuppressWarnings("ConstantConditions")
+    @Test
+    void it_should_output_an_error_when_input_is_null() {
+        var thrown = assertThatThrownBy(() -> useCase.execute(null));
+        assertThat(thrown).isNotNull();
     }
-  }
+
+    @Test
+    void it_should_validate_input_before_execution() {
+        var expectedErrors = List.of(ValidationError.of("question", "must not be blank", ""));
+        var input = MyUseCaseInput.of("");
+        useCase.execute(input);
+        verify(outputPort, times(1)).invalidRequest(expectedErrors);
+    }
+
+    @Test
+    void it_should_produce_the_standard_output_on_the_happy_path() {
+        var expectedOutput = MyUseCaseOutput.of(42);
+
+        var input = MyUseCaseInput.of("What's up?");
+        useCase.execute(input);
+
+        verify(outputPort, times(1)).standard(expectedOutput);
+    }
+
+    @AllArgsConstructor(staticName = "of")
+    @Value
+    static class MyUseCaseInput implements UseCaseInput {
+        @NotBlank String question;
+    }
+
+    @Value
+    @AllArgsConstructor(staticName = "of")
+    static class MyUseCaseOutput implements UseCaseOutput {
+        int answer;
+    }
+
+    interface MyUseCaseOutputPort extends StandardOutputPort<MyUseCaseOutput> {}
+
+    static class MyTestUseCase
+            extends AbstractUseCase<MyUseCaseInput, MyUseCaseOutput, MyUseCaseOutputPort> {
+
+        public MyTestUseCase(
+                UseCaseInputValidator<MyUseCaseInput> inputValidator,
+                MyUseCaseOutputPort outputPort) {
+            super(inputValidator, outputPort);
+        }
+
+        @Override
+        protected void handle(@NonNull MyUseCaseInput input) {
+            outputPort.standard(MyUseCaseOutput.of(42));
+        }
+    }
 }

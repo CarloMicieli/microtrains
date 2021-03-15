@@ -18,8 +18,8 @@ package io.github.carlomicieli.usecases.boundaries.output.port;
 import io.github.carlomicieli.usecases.boundaries.output.UseCaseOutput;
 
 public interface StandardOutputPort<OutType extends UseCaseOutput>
-    extends ErrorOutputPort<OutType> {
+        extends ErrorOutputPort<OutType> {
 
-  /** The standard output for this use case */
-  void standard(OutType output);
+    /** The standard output for this use case */
+    void standard(OutType output);
 }

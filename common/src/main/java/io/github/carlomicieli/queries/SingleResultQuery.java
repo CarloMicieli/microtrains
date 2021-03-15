@@ -25,5 +25,5 @@ import java.util.Optional;
  * @param <T> the view model data type
  */
 public interface SingleResultQuery<C extends Criteria, T> extends Query<C, T> {
-  Optional<T> execute(C criteria);
+    Optional<T> execute(C criteria);
 }

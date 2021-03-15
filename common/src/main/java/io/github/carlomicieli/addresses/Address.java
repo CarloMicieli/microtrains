@@ -25,32 +25,32 @@ import lombok.*;
 @Builder
 @With
 public class Address {
-  String line1;
-  String line2;
-  String city;
-  String region;
-  String postalCode;
-  String country;
+    String line1;
+    String line2;
+    String city;
+    String region;
+    String postalCode;
+    String country;
 
-  /**
-   * Checks whether the provided {@code address} is empty.
-   *
-   * <p>An {@code address} is empty if it doesn't contain a valid value for at least one of the
-   * following fields: {@code streetAddress}, {@code postalCode}, {@code city} or {@code country}.
-   *
-   * @param address the address to be checked
-   * @return {@code true} if the {@code Address} is empty, {@code false} otherwise.
-   */
-  public static boolean isEmpty(Address address) {
-    if (address == null) {
-      return true;
+    /**
+     * Checks whether the provided {@code address} is empty.
+     *
+     * <p>An {@code address} is empty if it doesn't contain a valid value for at least one of the
+     * following fields: {@code streetAddress}, {@code postalCode}, {@code city} or {@code country}.
+     *
+     * @param address the address to be checked
+     * @return {@code true} if the {@code Address} is empty, {@code false} otherwise.
+     */
+    public static boolean isEmpty(Address address) {
+        if (address == null) {
+            return true;
+        }
+
+        return Strings.isNullOrEmpty(address.line1)
+                || Strings.isNullOrEmpty(address.postalCode)
+                || Strings.isNullOrEmpty(address.city)
+                || Strings.isNullOrEmpty(address.country);
     }
 
-    return Strings.isNullOrEmpty(address.line1)
-        || Strings.isNullOrEmpty(address.postalCode)
-        || Strings.isNullOrEmpty(address.city)
-        || Strings.isNullOrEmpty(address.country);
-  }
-
-  public static Address NULL_ADDRESS = new Address("", null, "", null, "", "");
+    public static Address NULL_ADDRESS = new Address("", null, "", null, "", "");
 }

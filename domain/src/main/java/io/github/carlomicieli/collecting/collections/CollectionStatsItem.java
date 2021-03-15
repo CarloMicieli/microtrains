@@ -25,8 +25,8 @@ import lombok.Value;
 @Value
 @Builder
 public class CollectionStatsItem {
-  CollectionItemCategory category;
-  Price totalValue;
-  int count;
-  Year year;
+    CollectionItemCategory category;
+    Price totalValue;
+    int count;
+    Year year;
 }

@@ -28,55 +28,55 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RatioTest {
 
-  private static final BigDecimal EIGHTY_SEVEN = BigDecimal.valueOf(87);
+    private static final BigDecimal EIGHTY_SEVEN = BigDecimal.valueOf(87);
 
-  @Test
-  void is_created_from_its_value_as_big_decimal() {
-    var ratio = Ratio.of(EIGHTY_SEVEN);
-    assertThat(ratio).isNotNull();
-    assertThat(ratio.getValue()).isEqualTo(EIGHTY_SEVEN);
-  }
+    @Test
+    void is_created_from_its_value_as_big_decimal() {
+        var ratio = Ratio.of(EIGHTY_SEVEN);
+        assertThat(ratio).isNotNull();
+        assertThat(ratio.getValue()).isEqualTo(EIGHTY_SEVEN);
+    }
 
-  @Test
-  void is_created_from_its_value_as_double() {
-    var ratio = Ratio.of(EIGHTY_SEVEN.doubleValue());
-    assertThat(ratio).isNotNull();
-    assertThat(ratio.getValue()).isEqualTo(BigDecimal.valueOf(87.0));
-  }
+    @Test
+    void is_created_from_its_value_as_double() {
+        var ratio = Ratio.of(EIGHTY_SEVEN.doubleValue());
+        assertThat(ratio).isNotNull();
+        assertThat(ratio.getValue()).isEqualTo(BigDecimal.valueOf(87.0));
+    }
 
-  @Test
-  void is_created_from_its_value_as_long() {
-    var ratio = Ratio.of(EIGHTY_SEVEN.longValue());
-    assertThat(ratio).isNotNull();
-    assertThat(ratio.getValue()).isEqualTo(EIGHTY_SEVEN);
-  }
+    @Test
+    void is_created_from_its_value_as_long() {
+        var ratio = Ratio.of(EIGHTY_SEVEN.longValue());
+        assertThat(ratio).isNotNull();
+        assertThat(ratio.getValue()).isEqualTo(EIGHTY_SEVEN);
+    }
 
-  @Test
-  void must_have_a_positive_value() {
-    var ex =
-        catchThrowableOfType(
-            () -> Ratio.of(BigDecimal.valueOf(-1)), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Ratio: value must be positive");
-  }
+    @Test
+    void must_have_a_positive_value() {
+        var ex =
+                catchThrowableOfType(
+                        () -> Ratio.of(BigDecimal.valueOf(-1)), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("Ratio: value must be positive");
+    }
 
-  @Test
-  void has_a_string_representation() {
-    var ratio1 = Ratio.of(87);
-    var ratio2 = Ratio.of(43.5);
+    @Test
+    void has_a_string_representation() {
+        var ratio1 = Ratio.of(87);
+        var ratio2 = Ratio.of(43.5);
 
-    assertThat(ratio1.toString()).isEqualTo("1:87");
-    assertThat(ratio2.toString()).isEqualTo("1:43.5");
-  }
+        assertThat(ratio1.toString()).isEqualTo("1:87");
+        assertThat(ratio2.toString()).isEqualTo("1:43.5");
+    }
 
-  @SuppressWarnings("EqualsWithItself")
-  @Test
-  void should_compare_two_values() {
-    var ratio1 = Ratio.of(87);
-    var ratio2 = Ratio.of(43.5);
+    @SuppressWarnings("EqualsWithItself")
+    @Test
+    void should_compare_two_values() {
+        var ratio1 = Ratio.of(87);
+        var ratio2 = Ratio.of(43.5);
 
-    assertThat(ratio1.compareTo(ratio1)).isEqualTo(0);
-    assertThat(ratio1.compareTo(ratio2)).isNegative();
-    assertThat(ratio2.compareTo(ratio1)).isPositive();
-  }
+        assertThat(ratio1.compareTo(ratio1)).isEqualTo(0);
+        assertThat(ratio1.compareTo(ratio2)).isNegative();
+        assertThat(ratio2.compareTo(ratio1)).isPositive();
+    }
 }

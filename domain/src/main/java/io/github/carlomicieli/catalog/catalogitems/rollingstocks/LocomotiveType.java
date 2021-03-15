@@ -17,12 +17,12 @@ package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
 
 /** The different kinds of locomotives */
 public enum LocomotiveType {
-  /** The steam locomotives category */
-  STEAM_LOCOMOTIVE,
+    /** The steam locomotives category */
+    STEAM_LOCOMOTIVE,
 
-  /** The diesel locomotives category */
-  DIESEL_LOCOMOTIVE,
+    /** The diesel locomotives category */
+    DIESEL_LOCOMOTIVE,
 
-  /** The electric locomotives category */
-  ELECTRIC_LOCOMOTIVE
+    /** The electric locomotives category */
+    ELECTRIC_LOCOMOTIVE
 }

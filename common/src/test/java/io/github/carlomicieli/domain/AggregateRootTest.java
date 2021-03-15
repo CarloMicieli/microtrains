@@ -27,50 +27,50 @@ import org.junit.jupiter.api.Test;
 
 class AggregateRootTest {
 
-  @Test
-  void firstTest() {
-    var now = Instant.now();
+    @Test
+    void firstTest() {
+        var now = Instant.now();
 
-    var aggregate =
-        TestAggregateRoot.builder()
-            .id(new TestId(UUID.randomUUID()))
-            .first("First value")
-            .second("Second value")
-            .createdDate(now)
-            .modifiedDate(now)
-            .version(42)
-            .build();
-    assertThat(aggregate).isNotNull();
-    assertThat(aggregate.getId()).isNotNull();
-    assertThat(aggregate.getCreatedDate()).isEqualTo(now);
-    assertThat(aggregate.getModifiedDate()).isEqualTo(now);
-    assertThat(aggregate.getVersion()).isEqualTo(42);
-  }
-
-  @Data
-  @AllArgsConstructor
-  @Builder
-  @With
-  static class TestAggregateRoot implements AggregateRoot<TestId> {
-
-    private final TestId id;
-    private final Instant createdDate;
-    private final Instant modifiedDate;
-    private final int version;
-    private final String first;
-    private final String second;
-  }
-
-  static class TestId implements Identifier {
-    UUID value;
-
-    TestId(UUID value) {
-      this.value = value;
+        var aggregate =
+                TestAggregateRoot.builder()
+                        .id(new TestId(UUID.randomUUID()))
+                        .first("First value")
+                        .second("Second value")
+                        .createdDate(now)
+                        .modifiedDate(now)
+                        .version(42)
+                        .build();
+        assertThat(aggregate).isNotNull();
+        assertThat(aggregate.getId()).isNotNull();
+        assertThat(aggregate.getCreatedDate()).isEqualTo(now);
+        assertThat(aggregate.getModifiedDate()).isEqualTo(now);
+        assertThat(aggregate.getVersion()).isEqualTo(42);
     }
 
-    @Override
-    public UUID toUUID() {
-      return value;
+    @Data
+    @AllArgsConstructor
+    @Builder
+    @With
+    static class TestAggregateRoot implements AggregateRoot<TestId> {
+
+        private final TestId id;
+        private final Instant createdDate;
+        private final Instant modifiedDate;
+        private final int version;
+        private final String first;
+        private final String second;
     }
-  }
+
+    static class TestId implements Identifier {
+        UUID value;
+
+        TestId(UUID value) {
+            this.value = value;
+        }
+
+        @Override
+        public UUID toUUID() {
+            return value;
+        }
+    }
 }

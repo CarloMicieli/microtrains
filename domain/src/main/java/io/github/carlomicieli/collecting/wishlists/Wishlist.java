@@ -26,12 +26,12 @@ import lombok.*;
 @Builder
 @With
 public class Wishlist implements AggregateRoot<WishlistId> {
-  WishlistId id;
-  String name;
-  Owner owner;
-  Budget budget;
-  List<WishlistItem> items;
-  Instant createdDate;
-  Instant modifiedDate;
-  int version;
+    WishlistId id;
+    String name;
+    Owner owner;
+    Budget budget;
+    List<WishlistItem> items;
+    Instant createdDate;
+    Instant modifiedDate;
+    int version;
 }

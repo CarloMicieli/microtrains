@@ -26,21 +26,21 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class SortingTest {
 
-  @Test
-  void by_default_is_created_without_any_criteria() {
-    var sorting = Sorting.DEFAULT_SORT;
-    assertThat(sorting.size()).isEqualTo(0);
-  }
+    @Test
+    void by_default_is_created_without_any_criteria() {
+        var sorting = Sorting.DEFAULT_SORT;
+        assertThat(sorting.size()).isEqualTo(0);
+    }
 
-  @Test
-  void is_created_using_a_builder() {
-    var sorting = Sorting.by("id", Direction.ASC).andThenBy("name", Direction.DESC).build();
+    @Test
+    void is_created_using_a_builder() {
+        var sorting = Sorting.by("id", Direction.ASC).andThenBy("name", Direction.DESC).build();
 
-    assertThat(sorting).isNotNull();
-    assertThat(sorting.size()).isEqualTo(2);
-    assertThat(sorting.getCriteriaList().get(0))
-        .isEqualTo(Sorting.SortCriteria.of("id", Direction.ASC));
-    assertThat(sorting.getCriteriaList().get(1))
-        .isEqualTo(Sorting.SortCriteria.of("name", Direction.DESC));
-  }
+        assertThat(sorting).isNotNull();
+        assertThat(sorting.size()).isEqualTo(2);
+        assertThat(sorting.getCriteriaList().get(0))
+                .isEqualTo(Sorting.SortCriteria.of("id", Direction.ASC));
+        assertThat(sorting.getCriteriaList().get(1))
+                .isEqualTo(Sorting.SortCriteria.of("name", Direction.DESC));
+    }
 }

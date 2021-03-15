@@ -21,12 +21,12 @@ import java.time.Clock;
 import java.util.function.Supplier;
 
 public class WishlistFactory extends AggregateRootFactory<Wishlist, WishlistId> {
-  public WishlistFactory(Clock clock, Supplier<WishlistId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public WishlistFactory(Clock clock, Supplier<WishlistId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  public Wishlist createNewWishlist(
-      Owner owner, String listName, Visibility visibility, Budget budget) {
-    throw new UnsupportedOperationException("TODO");
-  }
+    public Wishlist createNewWishlist(
+            Owner owner, String listName, Visibility visibility, Budget budget) {
+        throw new UnsupportedOperationException("TODO");
+    }
 }

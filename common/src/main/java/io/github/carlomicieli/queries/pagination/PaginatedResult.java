@@ -30,44 +30,44 @@ import lombok.ToString;
 @ToString
 public final class PaginatedResult<T> {
 
-  private final List<T> results;
-  private final boolean previous;
-  private final boolean next;
-  private final Page currentPage;
+    private final List<T> results;
+    private final boolean previous;
+    private final boolean next;
+    private final Page currentPage;
 
-  private PaginatedResult(Page currentPage, List<T> results) {
-    this.results = results;
-    this.currentPage = currentPage;
+    private PaginatedResult(Page currentPage, List<T> results) {
+        this.results = results;
+        this.currentPage = currentPage;
 
-    this.next = results.size() > currentPage.getLimit();
-    this.previous = currentPage.getStart() > 0;
-  }
+        this.next = results.size() > currentPage.getLimit();
+        this.previous = currentPage.getStart() > 0;
+    }
 
-  public static <E> PaginatedResult<E> of(Page currentPage, List<E> results) {
-    return new PaginatedResult<>(currentPage, results);
-  }
+    public static <E> PaginatedResult<E> of(Page currentPage, List<E> results) {
+        return new PaginatedResult<>(currentPage, results);
+    }
 
-  public Page getCurrentPage() {
-    return currentPage;
-  }
+    public Page getCurrentPage() {
+        return currentPage;
+    }
 
-  public Optional<Page> nextPage() {
-    return next ? Optional.of(currentPage.next()) : Optional.empty();
-  }
+    public Optional<Page> nextPage() {
+        return next ? Optional.of(currentPage.next()) : Optional.empty();
+    }
 
-  public Page previousPage() {
-    return previous ? currentPage.prev() : Page.DEFAULT_PAGE;
-  }
+    public Page previousPage() {
+        return previous ? currentPage.prev() : Page.DEFAULT_PAGE;
+    }
 
-  public Stream<T> getResults() {
-    return results.stream().limit(currentPage.getLimit());
-  }
+    public Stream<T> getResults() {
+        return results.stream().limit(currentPage.getLimit());
+    }
 
-  public boolean hasPrevious() {
-    return previous;
-  }
+    public boolean hasPrevious() {
+        return previous;
+    }
 
-  public boolean hasNext() {
-    return next;
-  }
+    public boolean hasNext() {
+        return next;
+    }
 }

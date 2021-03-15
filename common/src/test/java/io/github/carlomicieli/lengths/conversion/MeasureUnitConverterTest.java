@@ -28,30 +28,34 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class MeasureUnitConverterTest {
 
-  @Test
-  void it_should_throw_an_exception_when_conversion_is_not_valid() {
-    var converter = new InvalidConverter(MeasureUnit.INCHES, MeasureUnit.KILOMETERS);
-    var ex = catchThrowableOfType(() -> converter.convert(BigDecimal.TEN), RuntimeException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage())
-        .isEqualTo("Unable to find a suitable converter from INCHES to KILOMETERS");
-  }
+    @Test
+    void it_should_throw_an_exception_when_conversion_is_not_valid() {
+        var converter = new InvalidConverter(MeasureUnit.INCHES, MeasureUnit.KILOMETERS);
+        var ex =
+                catchThrowableOfType(
+                        () -> converter.convert(BigDecimal.TEN), RuntimeException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage())
+                .isEqualTo("Unable to find a suitable converter from INCHES to KILOMETERS");
+    }
 
-  @Test
-  void it_should_return_back_the_original_value_for_same_measure_units_converter() {
-    var converter = new SameUnitConverter();
-    var expected = BigDecimal.TEN;
-    var actual = converter.convert(expected);
+    @Test
+    void it_should_return_back_the_original_value_for_same_measure_units_converter() {
+        var converter = new SameUnitConverter();
+        var expected = BigDecimal.TEN;
+        var actual = converter.convert(expected);
 
-    assertThat(actual).isEqualTo(expected);
-  }
+        assertThat(actual).isEqualTo(expected);
+    }
 
-  @Test
-  void it_should_convert_between_measure_units_using_a_conversion_rate() {
-    var converter =
-        new MeasureUnitConverterByRate(
-            MeasureUnit.INCHES, MeasureUnit.MILLIMETERS, ConversionRate.INCHES_TO_MILLIMETERS);
-    var result = converter.convert(BigDecimal.ONE, 1);
-    assertThat(result).isEqualTo(BigDecimal.valueOf(25.4));
-  }
+    @Test
+    void it_should_convert_between_measure_units_using_a_conversion_rate() {
+        var converter =
+                new MeasureUnitConverterByRate(
+                        MeasureUnit.INCHES,
+                        MeasureUnit.MILLIMETERS,
+                        ConversionRate.INCHES_TO_MILLIMETERS);
+        var result = converter.convert(BigDecimal.ONE, 1);
+        assertThat(result).isEqualTo(BigDecimal.valueOf(25.4));
+    }
 }

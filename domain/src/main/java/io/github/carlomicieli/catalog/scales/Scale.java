@@ -18,6 +18,7 @@ package io.github.carlomicieli.catalog.scales;
 import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.util.Slug;
 import java.time.Instant;
+import java.util.List;
 import lombok.*;
 
 /**
@@ -34,18 +35,19 @@ import lombok.*;
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Scale implements AggregateRoot<ScaleId> {
-  ScaleId id;
-  Slug slug;
-  String name;
-  Ratio ratio;
-  ScaleGauge gauge;
-  String description;
-  Integer weight;
-  int version;
-  Instant createdDate;
-  Instant modifiedDate;
+    ScaleId id;
+    Slug slug;
+    String name;
+    Ratio ratio;
+    ScaleGauge gauge;
+    String description;
+    List<ScaleStandard> standards;
+    Integer weight;
+    int version;
+    Instant createdDate;
+    Instant modifiedDate;
 
-  public static Slug buildSlug(String name) {
-    return Slug.of(name);
-  }
+    public static Slug buildSlug(String name) {
+        return Slug.of(name);
+    }
 }

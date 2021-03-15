@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 
 class CategoriesTest {
 
-  @Test
-  void itShouldCheckWhetherCategoryIsLocomotive() {
-    // Categories.isLocomotive("locomotive")
-  }
+    @Test
+    void itShouldCheckWhetherCategoryIsLocomotive() {
+        // Categories.isLocomotive("locomotive")
+    }
 }

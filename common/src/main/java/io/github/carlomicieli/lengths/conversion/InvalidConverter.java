@@ -27,12 +27,14 @@ import lombok.ToString;
 @ToString
 public final class InvalidConverter implements MeasureUnitConverter {
 
-  private final MeasureUnit fromUnit;
-  private final MeasureUnit toUnit;
+    private final MeasureUnit fromUnit;
+    private final MeasureUnit toUnit;
 
-  @Override
-  public BigDecimal convert(BigDecimal value, int decimals) {
-    var msg = String.format("Unable to find a suitable converter from %s to %s", fromUnit, toUnit);
-    throw new RuntimeException(msg);
-  }
+    @Override
+    public BigDecimal convert(BigDecimal value, int decimals) {
+        var msg =
+                String.format(
+                        "Unable to find a suitable converter from %s to %s", fromUnit, toUnit);
+        throw new RuntimeException(msg);
+    }
 }

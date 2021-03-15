@@ -22,16 +22,16 @@ import io.github.carlomicieli.queries.pagination.PaginatedResult;
 import io.github.carlomicieli.queries.sorting.Sorting;
 
 public abstract class AbstractPaginatedQueryWithCriteria<C extends Criteria, T>
-    extends QueryCriteriaValidation<C> implements PaginatedQueryWithCriteria<C, T> {
-  protected AbstractPaginatedQueryWithCriteria(CriteriaValidator<C> criteriaValidator) {
-    super(criteriaValidator);
-  }
+        extends QueryCriteriaValidation<C> implements PaginatedQueryWithCriteria<C, T> {
+    protected AbstractPaginatedQueryWithCriteria(CriteriaValidator<C> criteriaValidator) {
+        super(criteriaValidator);
+    }
 
-  @Override
-  public final PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy) {
-    validateCriteria(criteria);
-    return handle(criteria, currentPage, orderBy);
-  }
+    @Override
+    public final PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy) {
+        validateCriteria(criteria);
+        return handle(criteria, currentPage, orderBy);
+    }
 
-  protected abstract PaginatedResult<T> handle(C criteria, Page currentPage, Sorting orderBy);
+    protected abstract PaginatedResult<T> handle(C criteria, Page currentPage, Sorting orderBy);
 }

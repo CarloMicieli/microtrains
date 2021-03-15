@@ -16,27 +16,20 @@
 package io.github.carlomicieli.web;
 
 import io.github.carlomicieli.web.problems.ProblemDetail;
-import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Error;
-import javax.validation.ConstraintViolationException;
+import io.micronaut.web.router.exceptions.UnsatisfiedBodyRouteException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class GlobalErrorsHandler {
 
-  @Error(status = HttpStatus.BAD_REQUEST, global = true)
-  public HttpResponse<ProblemDetail> onBadRequest(HttpRequest<?> ex) {
-    var problemDetails = ProblemDetail.unprocessableEntity("Invalid request");
-    return HttpResponse.unprocessableEntity().body(problemDetails);
-  }
-
-  @Error(global = true, exception = ConstraintViolationException.class)
-  public HttpResponse<ProblemDetail> onConstraintViolationException(
-      ConstraintViolationException ex) {
-    return HttpResponse.badRequest();
-  }
+    @Error(global = true, exception = UnsatisfiedBodyRouteException.class)
+    public HttpResponse<ProblemDetail> onUnsatisfiedBodyRouteException(
+            UnsatisfiedBodyRouteException ex) {
+        var problemDetail = ProblemDetail.unprocessableEntity(ex.getMessage());
+        return HttpResponse.unprocessableEntity().body(problemDetail);
+    }
 }

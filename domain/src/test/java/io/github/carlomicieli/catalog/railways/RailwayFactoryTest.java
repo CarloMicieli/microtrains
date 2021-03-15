@@ -34,51 +34,51 @@ import org.junit.jupiter.api.Test;
 @DisplayName("A Railway factory")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RailwayFactoryTest {
-  private static final Instant FIXED_INSTANT = Instant.parse("1988-11-25T10:15:30.00Z");
-  private static final RailwayId FIXED_RAILWAY_ID =
-      RailwayId.of(UUID.fromString("e9f5ed5a-edb6-46fa-a55a-bc8632e89d3a"));
-  private static final Clock FIXED_CLOCK = Clock.fixed(FIXED_INSTANT, ZoneId.systemDefault());
+    private static final Instant FIXED_INSTANT = Instant.parse("1988-11-25T10:15:30.00Z");
+    private static final RailwayId FIXED_RAILWAY_ID =
+            RailwayId.of(UUID.fromString("e9f5ed5a-edb6-46fa-a55a-bc8632e89d3a"));
+    private static final Clock FIXED_CLOCK = Clock.fixed(FIXED_INSTANT, ZoneId.systemDefault());
 
-  private final RailwayFactory factory;
+    private final RailwayFactory factory;
 
-  public RailwayFactoryTest() {
-    this.factory = new RailwayFactory(FIXED_CLOCK, () -> FIXED_RAILWAY_ID);
-  }
+    public RailwayFactoryTest() {
+        this.factory = new RailwayFactory(FIXED_CLOCK, () -> FIXED_RAILWAY_ID);
+    }
 
-  @SneakyThrows
-  @Test
-  void should_create_new_railways() {
-    var italy = Country.of("IT");
-    var periodOfActivity = PeriodOfActivity.activeRailway(LocalDate.of(1905, 7, 1));
-    var gauge = RailwayGauge.ofMillimeters(1435, TrackGauge.STANDARD);
-    var totalLength = RailwayLength.ofKilometers(123456);
-    var website = new URI("http://www.trenitalia.com");
+    @SneakyThrows
+    @Test
+    void should_create_new_railways() {
+        var italy = Country.of("IT");
+        var periodOfActivity = PeriodOfActivity.activeRailway(LocalDate.of(1905, 7, 1));
+        var gauge = RailwayGauge.ofMillimeters(1435, TrackGauge.STANDARD);
+        var totalLength = RailwayLength.ofKilometers(123456);
+        var website = new URI("http://www.trenitalia.com");
 
-    var railway =
-        factory.createNewRailway(
-            "FS",
-            "Ferrovie italiane",
-            "Ferrovie dello stato",
-            italy,
-            periodOfActivity,
-            gauge,
-            totalLength,
-            website,
-            "Rome");
+        var railway =
+                factory.createNewRailway(
+                        "FS",
+                        "Ferrovie italiane",
+                        "Ferrovie dello stato",
+                        italy,
+                        periodOfActivity,
+                        gauge,
+                        totalLength,
+                        website,
+                        "Rome");
 
-    assertThat(railway).isNotNull();
-    assertThat(railway.getId()).isEqualTo(FIXED_RAILWAY_ID);
-    assertThat(railway.getCountry()).isEqualTo(italy);
-    assertThat(railway.getName()).isEqualTo("FS");
-    assertThat(railway.getDescription()).isEqualTo("Ferrovie italiane");
-    assertThat(railway.getCompanyName()).isEqualTo("Ferrovie dello stato");
-    assertThat(railway.getPeriodOfActivity()).isEqualTo(periodOfActivity);
-    assertThat(railway.getTrackGauge()).isEqualTo(gauge);
-    assertThat(railway.getTotalLength()).isEqualTo(totalLength);
-    assertThat(railway.getWebsiteUrl()).isEqualTo(website);
-    assertThat(railway.getHeadquarters()).isEqualTo("Rome");
-    assertThat(railway.getCreatedDate()).isNotNull();
-    assertThat(railway.getModifiedDate()).isNull();
-    assertThat(railway.getVersion()).isEqualTo(1);
-  }
+        assertThat(railway).isNotNull();
+        assertThat(railway.getId()).isEqualTo(FIXED_RAILWAY_ID);
+        assertThat(railway.getCountry()).isEqualTo(italy);
+        assertThat(railway.getName()).isEqualTo("FS");
+        assertThat(railway.getDescription()).isEqualTo("Ferrovie italiane");
+        assertThat(railway.getCompanyName()).isEqualTo("Ferrovie dello stato");
+        assertThat(railway.getPeriodOfActivity()).isEqualTo(periodOfActivity);
+        assertThat(railway.getTrackGauge()).isEqualTo(gauge);
+        assertThat(railway.getTotalLength()).isEqualTo(totalLength);
+        assertThat(railway.getWebsiteUrl()).isEqualTo(website);
+        assertThat(railway.getHeadquarters()).isEqualTo("Rome");
+        assertThat(railway.getCreatedDate()).isNotNull();
+        assertThat(railway.getModifiedDate()).isNull();
+        assertThat(railway.getVersion()).isEqualTo(1);
+    }
 }

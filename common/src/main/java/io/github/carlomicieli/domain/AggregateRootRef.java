@@ -27,12 +27,12 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
+    private final ID id;
+    private final String slug;
+    private final String representation;
 
-  @Override
-  public String toString() {
-    return representation;
-  }
+    @Override
+    public String toString() {
+        return representation;
+    }
 }

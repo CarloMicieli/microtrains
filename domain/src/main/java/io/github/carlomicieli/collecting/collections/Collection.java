@@ -32,27 +32,27 @@ import lombok.*;
 @Builder
 @With
 public class Collection implements AggregateRoot<CollectionId> {
-  CollectionId id;
-  Owner owner;
-  String notes;
-  List<CollectionItem> items = new ArrayList<>();
-  Instant createdDate;
-  Instant modifiedDate;
-  int version;
+    CollectionId id;
+    Owner owner;
+    String notes;
+    List<CollectionItem> items = new ArrayList<>();
+    Instant createdDate;
+    Instant modifiedDate;
+    int version;
 
-  private List<CollectionItem> getItems() {
-    return Collections.unmodifiableList(items);
-  }
+    private List<CollectionItem> getItems() {
+        return Collections.unmodifiableList(items);
+    }
 
-  public int size() {
-    return items.size();
-  }
+    public int size() {
+        return items.size();
+    }
 
-  public void addItem(CollectionItem item) {
-    items.add(item);
-  }
+    public void addItem(CollectionItem item) {
+        items.add(item);
+    }
 
-  public void removeItem(CollectionItem item) {
-    items.remove(item);
-  }
+    public void removeItem(CollectionItem item) {
+        items.remove(item);
+    }
 }

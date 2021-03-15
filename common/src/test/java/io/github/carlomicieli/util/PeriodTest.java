@@ -22,30 +22,30 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class PeriodTest {
-  static final String YEARS_LABEL = "interval.years.more.label";
-  static final String YEAR_LABEL = "interval.years.one.label";
-  static final String MONTHS_LABEL = "interval.months.more.label";
-  static final String MONTH_LABEL = "interval.months.one.label";
-  static final String WEEKS_LABEL = "interval.weeks.more.label";
-  static final String WEEK_LABEL = "interval.weeks.one.label";
-  static final String DAYS_LABEL = "interval.days.more.label";
-  static final String DAY_LABEL = "interval.days.one.label";
-  static final String HOURS_LABEL = "interval.hours.more.label";
-  static final String HOUR_LABEL = "interval.hours.one.label";
-  static final String MINUTES_LABEL = "interval.minutes.more.label";
-  static final String MINUTE_LABEL = "interval.minutes.one.label";
+    static final String YEARS_LABEL = "interval.years.more.label";
+    static final String YEAR_LABEL = "interval.years.one.label";
+    static final String MONTHS_LABEL = "interval.months.more.label";
+    static final String MONTH_LABEL = "interval.months.one.label";
+    static final String WEEKS_LABEL = "interval.weeks.more.label";
+    static final String WEEK_LABEL = "interval.weeks.one.label";
+    static final String DAYS_LABEL = "interval.days.more.label";
+    static final String DAY_LABEL = "interval.days.one.label";
+    static final String HOURS_LABEL = "interval.hours.more.label";
+    static final String HOUR_LABEL = "interval.hours.one.label";
+    static final String MINUTES_LABEL = "interval.minutes.more.label";
+    static final String MINUTE_LABEL = "interval.minutes.one.label";
 
-  @Test
-  @Disabled
-  void shouldCalculatePeriodForYears() {
-    int numberOfYears = 3;
-    Instant start = Instant.parse("2010-11-25T10:15:30.00Z");
-    Instant end = Instant.parse("2010-11-25T12:15:30.00Z");
+    @Test
+    @Disabled
+    void shouldCalculatePeriodForYears() {
+        int numberOfYears = 3;
+        Instant start = Instant.parse("2010-11-25T10:15:30.00Z");
+        Instant end = Instant.parse("2010-11-25T12:15:30.00Z");
 
-    var period = Period.between(start, end);
+        var period = Period.between(start, end);
 
-    assertThat(period).isNotNull();
-    assertThat(period.getLabel()).isEqualTo(YEARS_LABEL);
-    assertThat(period.getValue()).isEqualTo(numberOfYears);
-  }
+        assertThat(period).isNotNull();
+        assertThat(period.getLabel()).isEqualTo(YEARS_LABEL);
+        assertThat(period.getValue()).isEqualTo(numberOfYears);
+    }
 }

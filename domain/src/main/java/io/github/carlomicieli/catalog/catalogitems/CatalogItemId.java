@@ -24,19 +24,19 @@ import lombok.Value;
 @AllArgsConstructor(staticName = "of")
 @Value
 public class CatalogItemId implements Identifier {
-  UUID value;
+    UUID value;
 
-  @Override
-  public UUID toUUID() {
-    return value;
-  }
+    @Override
+    public UUID toUUID() {
+        return value;
+    }
 
-  @Override
-  public String toString() {
-    return value.toString();
-  }
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 
-  public static CatalogItemId randomID() {
-    return new CatalogItemId(UUID.randomUUID());
-  }
+    public static CatalogItemId randomID() {
+        return new CatalogItemId(UUID.randomUUID());
+    }
 }

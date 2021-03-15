@@ -16,8 +16,8 @@
 package io.github.carlomicieli.catalog.catalogitems;
 
 public enum Control {
-  NONE,
-  DCC_READY,
-  DCC,
-  DCC_SOUND
+    NONE,
+    DCC_READY,
+    DCC,
+    DCC_SOUND
 }

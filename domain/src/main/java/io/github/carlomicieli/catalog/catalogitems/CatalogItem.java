@@ -32,33 +32,33 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public final class CatalogItem implements AggregateRoot<CatalogItemId> {
 
-  private final CatalogItemId id;
-  private final BrandId brand;
-  private final ScaleId scale;
-  private final ItemNumber itemNumber;
-  private final Slug slug;
-  private final CatalogItemCategory category;
-  private final String description;
-  private final String prototypeDescription;
-  private final String modelDescription;
-  private final List<RollingStock> rollingStocks;
-  private final PowerMethod powerMethod;
-  private final DeliveryDate deliveryDate;
-  private final boolean available;
-  private final int version;
-  private final Instant createdDate;
-  private final Instant modifiedDate;
+    private final CatalogItemId id;
+    private final BrandId brand;
+    private final ScaleId scale;
+    private final ItemNumber itemNumber;
+    private final Slug slug;
+    private final CatalogItemCategory category;
+    private final String description;
+    private final String prototypeDescription;
+    private final String modelDescription;
+    private final List<RollingStock> rollingStocks;
+    private final PowerMethod powerMethod;
+    private final DeliveryDate deliveryDate;
+    private final boolean available;
+    private final int version;
+    private final Instant createdDate;
+    private final Instant modifiedDate;
 
-  public static Slug buildSlug(String brandName, ItemNumber itemNumber) {
-    return Slug.ofValues(brandName, itemNumber.getValue());
-  }
+    public static Slug buildSlug(String brandName, ItemNumber itemNumber) {
+        return Slug.ofValues(brandName, itemNumber.getValue());
+    }
 
-  /** Returns the number of rolling stocks for this catalog item */
-  public int getCount() {
-    return rollingStocks.size();
-  }
+    /** Returns the number of rolling stocks for this catalog item */
+    public int getCount() {
+        return rollingStocks.size();
+    }
 
-  public Stream<RollingStock> getRollingStocks() {
-    return rollingStocks.stream();
-  }
+    public Stream<RollingStock> getRollingStocks() {
+        return rollingStocks.stream();
+    }
 }

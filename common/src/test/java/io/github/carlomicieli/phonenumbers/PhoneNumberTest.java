@@ -26,33 +26,35 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class PhoneNumberTest {
 
-  @Test
-  void is_created_from_values_without_validation() {
-    var phoneNumber = PhoneNumber.valueOf("044 668 18 00");
-    assertThat(phoneNumber).isNotNull();
-    assertThat(phoneNumber.getValue()).isEqualTo("044 668 18 00");
-  }
+    @Test
+    void is_created_from_values_without_validation() {
+        var phoneNumber = PhoneNumber.valueOf("044 668 18 00");
+        assertThat(phoneNumber).isNotNull();
+        assertThat(phoneNumber.getValue()).isEqualTo("044 668 18 00");
+    }
 
-  @Test
-  void is_created_from_only_valid_values() {
-    var phoneNumber = PhoneNumber.valueOf("044 668 18 00", "CH");
-    assertThat(phoneNumber).isNotNull();
-    assertThat(phoneNumber.getValue()).isEqualTo("+41 44 668 18 00");
-  }
+    @Test
+    void is_created_from_only_valid_values() {
+        var phoneNumber = PhoneNumber.valueOf("044 668 18 00", "CH");
+        assertThat(phoneNumber).isNotNull();
+        assertThat(phoneNumber.getValue()).isEqualTo("+41 44 668 18 00");
+    }
 
-  @Test
-  void is_should_fail_to_create_values_from_blank_inputs() {
-    var ex = catchThrowableOfType(() -> PhoneNumber.valueOf(""), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Phone number value cannot be blank or null");
-  }
+    @Test
+    void is_should_fail_to_create_values_from_blank_inputs() {
+        var ex =
+                catchThrowableOfType(() -> PhoneNumber.valueOf(""), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("Phone number value cannot be blank or null");
+    }
 
-  @Test
-  void is_should_fail_to_create_values_from_invalid_inputs() {
-    var ex =
-        catchThrowableOfType(
-            () -> PhoneNumber.valueOf("aaaa bbbb", "CH"), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Invalid value for a phone number");
-  }
+    @Test
+    void is_should_fail_to_create_values_from_invalid_inputs() {
+        var ex =
+                catchThrowableOfType(
+                        () -> PhoneNumber.valueOf("aaaa bbbb", "CH"),
+                        IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("Invalid value for a phone number");
+    }
 }

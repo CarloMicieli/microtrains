@@ -16,23 +16,23 @@
 package io.github.carlomicieli.catalog.catalogitems;
 
 public enum CatalogItemCategory {
-  UNSPECIFIED(' '),
-  /** The train category */
-  TRAINS('T'),
-  /** The locomotive category (including steam, diesel and electric locomotives) */
-  LOCOMOTIVES('L'),
-  /** The passenger cars category */
-  PASSENGER_CARS('P'),
-  /** The freight cars category */
-  FREIGHT_CARS('F');
+    UNSPECIFIED(' '),
+    /** The train category */
+    TRAINS('T'),
+    /** The locomotive category (including steam, diesel and electric locomotives) */
+    LOCOMOTIVES('L'),
+    /** The passenger cars category */
+    PASSENGER_CARS('P'),
+    /** The freight cars category */
+    FREIGHT_CARS('F');
 
-  private char symbol;
+    private char symbol;
 
-  CatalogItemCategory(char symbol) {
-    this.symbol = symbol;
-  }
+    CatalogItemCategory(char symbol) {
+        this.symbol = symbol;
+    }
 
-  char getSymbol() {
-    return symbol;
-  }
+    char getSymbol() {
+        return symbol;
+    }
 }

@@ -27,22 +27,22 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BrandIdTest {
 
-  private final UUID expectedUUID;
+    private final UUID expectedUUID;
 
-  public BrandIdTest() {
-    this.expectedUUID = UUID.fromString("9a19a4b3-a7ff-4004-8b05-fae51dd2fbca");
-  }
+    public BrandIdTest() {
+        this.expectedUUID = UUID.fromString("9a19a4b3-a7ff-4004-8b05-fae51dd2fbca");
+    }
 
-  @Test
-  void is_created_from_UUID_values() {
-    var newId = BrandId.of(expectedUUID);
-    assertThat(newId).isNotNull();
-    assertThat(newId.toUUID()).isEqualTo(expectedUUID);
-  }
+    @Test
+    void is_created_from_UUID_values() {
+        var newId = BrandId.of(expectedUUID);
+        assertThat(newId).isNotNull();
+        assertThat(newId.toUUID()).isEqualTo(expectedUUID);
+    }
 
-  @Test
-  void has_a_string_representation() {
-    var newId = BrandId.of(expectedUUID);
-    assertThat(newId.toString()).isEqualTo(expectedUUID.toString());
-  }
+    @Test
+    void has_a_string_representation() {
+        var newId = BrandId.of(expectedUUID);
+        assertThat(newId.toString()).isEqualTo(expectedUUID.toString());
+    }
 }

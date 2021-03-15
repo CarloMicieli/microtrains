@@ -17,12 +17,12 @@ package io.github.carlomicieli.catalog.catalogitems;
 
 /** The power methods for the model. */
 public enum PowerMethod {
-  /** Direct current. */
-  DC,
+    /** Direct current. */
+    DC,
 
-  /** Alternating current (Maerklin). */
-  AC,
+    /** Alternating current (Maerklin). */
+    AC,
 
-  /** No power method - the value to set for carriages */
-  NONE
+    /** No power method - the value to set for carriages */
+    NONE
 }

@@ -26,60 +26,60 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class EpochTest {
 
-  @Test
-  void provides_constants_for_the_most_common_epochs() {
-    assertThat(Epoch.I.toString()).isEqualTo("I");
-    assertThat(Epoch.II.toString()).isEqualTo("II");
-    assertThat(Epoch.IIa.toString()).isEqualTo("IIa");
-    assertThat(Epoch.IIb.toString()).isEqualTo("IIb");
-    assertThat(Epoch.III.toString()).isEqualTo("III");
-    assertThat(Epoch.IIIa.toString()).isEqualTo("IIIa");
-    assertThat(Epoch.IIIb.toString()).isEqualTo("IIIb");
-    assertThat(Epoch.IV.toString()).isEqualTo("IV");
-    assertThat(Epoch.IVa.toString()).isEqualTo("IVa");
-    assertThat(Epoch.IVb.toString()).isEqualTo("IVb");
-    assertThat(Epoch.V.toString()).isEqualTo("V");
-    assertThat(Epoch.VI.toString()).isEqualTo("VI");
-  }
+    @Test
+    void provides_constants_for_the_most_common_epochs() {
+        assertThat(Epoch.I.toString()).isEqualTo("I");
+        assertThat(Epoch.II.toString()).isEqualTo("II");
+        assertThat(Epoch.IIa.toString()).isEqualTo("IIa");
+        assertThat(Epoch.IIb.toString()).isEqualTo("IIb");
+        assertThat(Epoch.III.toString()).isEqualTo("III");
+        assertThat(Epoch.IIIa.toString()).isEqualTo("IIIa");
+        assertThat(Epoch.IIIb.toString()).isEqualTo("IIIb");
+        assertThat(Epoch.IV.toString()).isEqualTo("IV");
+        assertThat(Epoch.IVa.toString()).isEqualTo("IVa");
+        assertThat(Epoch.IVb.toString()).isEqualTo("IVb");
+        assertThat(Epoch.V.toString()).isEqualTo("V");
+        assertThat(Epoch.VI.toString()).isEqualTo("VI");
+    }
 
-  @Test
-  void should_parse_valid_epoch_values() {
-    var epoch = Epoch.parse("III");
-    assertThat(epoch).isEqualTo(Epoch.III);
-  }
+    @Test
+    void should_parse_valid_epoch_values() {
+        var epoch = Epoch.parse("III");
+        assertThat(epoch).isEqualTo(Epoch.III);
+    }
 
-  @Test
-  void will_fail_to_parse_invalid_values_as_epochs() {
-    var ex = catchThrowableOfType(() -> Epoch.parse("invalid"), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("The value is not a valid epoch");
-  }
+    @Test
+    void will_fail_to_parse_invalid_values_as_epochs() {
+        var ex = catchThrowableOfType(() -> Epoch.parse("invalid"), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("The value is not a valid epoch");
+    }
 
-  @Test
-  void will_parse_multiple_values() {
-    var expected = "III/IV";
-    var result = Epoch.parse(expected);
+    @Test
+    void will_parse_multiple_values() {
+        var expected = "III/IV";
+        var result = Epoch.parse(expected);
 
-    assertThat(result).isNotNull();
-    assertThat(result.toString()).isEqualTo(expected);
-  }
+        assertThat(result).isNotNull();
+        assertThat(result.toString()).isEqualTo(expected);
+    }
 
-  @Test
-  void will_try_to_parse_multiple_values() {
-    var expected = "III/IV";
-    var result = Epoch.tryParse(expected);
+    @Test
+    void will_try_to_parse_multiple_values() {
+        var expected = "III/IV";
+        var result = Epoch.tryParse(expected);
 
-    assertThat(result).isNotNull();
-    assertThat(result).isPresent();
-    assertThat(result.get().toString()).isEqualTo(expected);
-  }
+        assertThat(result).isNotNull();
+        assertThat(result).isPresent();
+        assertThat(result.get().toString()).isEqualTo(expected);
+    }
 
-  @Test
-  void will_fail_to_try_to_parse_invalid_values() {
-    var expected = "invalid";
-    var result = Epoch.tryParse(expected);
+    @Test
+    void will_fail_to_try_to_parse_invalid_values() {
+        var expected = "invalid";
+        var result = Epoch.tryParse(expected);
 
-    assertThat(result).isNotNull();
-    assertThat(result).isEmpty();
-  }
+        assertThat(result).isNotNull();
+        assertThat(result).isEmpty();
+    }
 }

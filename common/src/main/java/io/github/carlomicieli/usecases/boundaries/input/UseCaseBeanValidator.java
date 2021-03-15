@@ -25,11 +25,11 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public final class UseCaseBeanValidator<InType extends UseCaseInput>
-    implements UseCaseInputValidator<InType>, CustomValidator<InType> {
-  private final Validator validator;
+        implements UseCaseInputValidator<InType>, CustomValidator<InType> {
+    private final Validator validator;
 
-  @Override
-  public List<ValidationError> validateInput(InType input) {
-    return validate(input);
-  }
+    @Override
+    public List<ValidationError> validateInput(InType input) {
+        return validate(input);
+    }
 }

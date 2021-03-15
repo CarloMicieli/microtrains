@@ -22,17 +22,17 @@ import lombok.Data;
 @Data
 @JsonSerialize(using = URNSerializer.class)
 public class URN {
-  private final String value;
+    private final String value;
 
-  private URN(String value) {
-    this.value = value;
-  }
+    private URN(String value) {
+        this.value = value;
+    }
 
-  public static URN fromUUID(UUID id) {
-    return new URN(String.format("urn:uuid:%s", id));
-  }
+    public static URN fromUUID(UUID id) {
+        return new URN(String.format("urn:uuid:%s", id));
+    }
 
-  public static URN fromProblemType(String problemType) {
-    return new URN(String.format("urn:problem-type:%s", problemType));
-  }
+    public static URN fromProblemType(String problemType) {
+        return new URN(String.format("urn:problem-type:%s", problemType));
+    }
 }

@@ -21,34 +21,34 @@ import lombok.Value;
 /** It represents the {@code Ratio} between a model railway size and the size of an actual train. */
 @Value
 public class Ratio implements Comparable<Ratio> {
-  BigDecimal value;
+    BigDecimal value;
 
-  private Ratio(BigDecimal value) {
-    if (value.signum() <= 0) {
-      throw new IllegalArgumentException("Ratio: value must be positive");
+    private Ratio(BigDecimal value) {
+        if (value.signum() <= 0) {
+            throw new IllegalArgumentException("Ratio: value must be positive");
+        }
+        this.value = value;
     }
-    this.value = value;
-  }
 
-  public static Ratio of(long value) {
-    return new Ratio(BigDecimal.valueOf(value));
-  }
+    public static Ratio of(long value) {
+        return new Ratio(BigDecimal.valueOf(value));
+    }
 
-  public static Ratio of(double value) {
-    return new Ratio(BigDecimal.valueOf(value));
-  }
+    public static Ratio of(double value) {
+        return new Ratio(BigDecimal.valueOf(value));
+    }
 
-  public static Ratio of(BigDecimal value) {
-    return new Ratio(value);
-  }
+    public static Ratio of(BigDecimal value) {
+        return new Ratio(value);
+    }
 
-  @Override
-  public String toString() {
-    return String.format("1:%s", value.toString());
-  }
+    @Override
+    public String toString() {
+        return String.format("1:%s", value.toString());
+    }
 
-  @Override
-  public int compareTo(Ratio that) {
-    return that.getValue().compareTo(this.getValue());
-  }
+    @Override
+    public int compareTo(Ratio that) {
+        return that.getValue().compareTo(this.getValue());
+    }
 }

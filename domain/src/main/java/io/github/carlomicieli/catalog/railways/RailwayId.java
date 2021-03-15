@@ -24,19 +24,19 @@ import lombok.Value;
 @AllArgsConstructor(staticName = "of")
 @Value
 public class RailwayId implements Identifier {
-  UUID value;
+    UUID value;
 
-  public static RailwayId randomId() {
-    return new RailwayId(UUID.randomUUID());
-  }
+    public static RailwayId randomId() {
+        return new RailwayId(UUID.randomUUID());
+    }
 
-  @Override
-  public UUID toUUID() {
-    return value;
-  }
+    @Override
+    public UUID toUUID() {
+        return value;
+    }
 
-  @Override
-  public String toString() {
-    return value.toString();
-  }
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

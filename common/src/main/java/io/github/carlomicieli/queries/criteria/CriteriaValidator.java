@@ -19,5 +19,5 @@ import io.github.carlomicieli.validation.ValidationError;
 import java.util.List;
 
 public interface CriteriaValidator<C extends Criteria> {
-  List<ValidationError> validateCriteria(C criteria);
+    List<ValidationError> validateCriteria(C criteria);
 }

@@ -24,16 +24,16 @@ import java.time.Clock;
 import java.util.function.Supplier;
 
 public class ShopFactory extends AggregateRootFactory<Shop, ShopId> {
-  public ShopFactory(Clock clock, Supplier<ShopId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public ShopFactory(Clock clock, Supplier<ShopId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  public Shop createNewShop(
-      String name,
-      URL websiteUrl,
-      MailAddress emailAddress,
-      Address address,
-      PhoneNumber phoneNumber) {
-    throw new UnsupportedOperationException("TODO");
-  }
+    public Shop createNewShop(
+            String name,
+            URL websiteUrl,
+            MailAddress emailAddress,
+            Address address,
+            PhoneNumber phoneNumber) {
+        throw new UnsupportedOperationException("TODO");
+    }
 }

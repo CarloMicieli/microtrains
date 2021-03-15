@@ -26,27 +26,29 @@ import lombok.Value;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Value
 public class LengthOverBuffer implements Comparable<LengthOverBuffer> {
-  Length inches;
-  Length millimeters;
+    Length inches;
+    Length millimeters;
 
-  public static LengthOverBuffer of(BigDecimal inches, BigDecimal millimeters) {
-    return new LengthOverBuffer(Length.ofInches(inches), Length.ofMillimeters(millimeters));
-  }
+    public static LengthOverBuffer of(BigDecimal inches, BigDecimal millimeters) {
+        return new LengthOverBuffer(Length.ofInches(inches), Length.ofMillimeters(millimeters));
+    }
 
-  public static LengthOverBuffer ofMillimeters(BigDecimal millimeters) {
-    var converter =
-        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.MILLIMETERS, MeasureUnit.INCHES);
-    return LengthOverBuffer.of(converter.convert(millimeters), millimeters);
-  }
+    public static LengthOverBuffer ofMillimeters(BigDecimal millimeters) {
+        var converter =
+                MeasureUnitsConverters.INSTANCE.getConverter(
+                        MeasureUnit.MILLIMETERS, MeasureUnit.INCHES);
+        return LengthOverBuffer.of(converter.convert(millimeters), millimeters);
+    }
 
-  public static LengthOverBuffer ofInches(BigDecimal inches) {
-    var converter =
-        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.INCHES, MeasureUnit.MILLIMETERS);
-    return LengthOverBuffer.of(inches, converter.convert(inches));
-  }
+    public static LengthOverBuffer ofInches(BigDecimal inches) {
+        var converter =
+                MeasureUnitsConverters.INSTANCE.getConverter(
+                        MeasureUnit.INCHES, MeasureUnit.MILLIMETERS);
+        return LengthOverBuffer.of(inches, converter.convert(inches));
+    }
 
-  @Override
-  public int compareTo(LengthOverBuffer that) {
-    return this.millimeters.compareTo(that.millimeters);
-  }
+    @Override
+    public int compareTo(LengthOverBuffer that) {
+        return this.millimeters.compareTo(that.millimeters);
+    }
 }

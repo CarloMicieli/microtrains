@@ -22,17 +22,18 @@ import java.io.IOException;
 
 public class URNSerializer extends StdSerializer<URN> {
 
-  public URNSerializer() {
-    this(null);
-  }
+    public URNSerializer() {
+        this(null);
+    }
 
-  public URNSerializer(Class<URN> vc) {
-    super(vc);
-  }
+    public URNSerializer(Class<URN> vc) {
+        super(vc);
+    }
 
-  @Override
-  public void serialize(URN urn, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
-      throws IOException {
-    jsonGenerator.writeString(urn.getValue());
-  }
+    @Override
+    public void serialize(
+            URN urn, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
+            throws IOException {
+        jsonGenerator.writeString(urn.getValue());
+    }
 }

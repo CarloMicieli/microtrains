@@ -25,10 +25,10 @@ import io.micronaut.validation.validator.constraints.ConstraintValidatorContext;
 
 /** It represents a validator for languages ISO codes. */
 public final class ISOLanguageValidator implements ConstraintValidator<ISOLanguage, String> {
-  public boolean isValid(
-      @Nullable String value,
-      @NonNull AnnotationValue<ISOLanguage> annotationMetadata,
-      @NonNull ConstraintValidatorContext context) {
-    return ISOValidationUtils.languageIsValid(value);
-  }
+    public boolean isValid(
+            @Nullable String value,
+            @NonNull AnnotationValue<ISOLanguage> annotationMetadata,
+            @NonNull ConstraintValidatorContext context) {
+        return ISOValidationUtils.languageIsValid(value);
+    }
 }

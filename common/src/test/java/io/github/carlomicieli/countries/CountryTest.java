@@ -25,18 +25,18 @@ import org.junit.jupiter.api.Test;
 @DisplayName("A country")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CountryTest {
-  @Test
-  void is_created_from_a_valid_iso_code() {
-    var country = Country.of("DE");
-    assertThat(country).isNotNull();
-    assertThat(country.getCode()).isEqualTo("de");
-    assertThat(country.getEnglishName()).isEqualTo("Germany");
-  }
+    @Test
+    void is_created_from_a_valid_iso_code() {
+        var country = Country.of("DE");
+        assertThat(country).isNotNull();
+        assertThat(country.getCode()).isEqualTo("de");
+        assertThat(country.getEnglishName()).isEqualTo("Germany");
+    }
 
-  @Test
-  void is_validating_the_country_code() {
-    var ex = catchThrowableOfType(() -> Country.of("rr"), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Invalid country code");
-  }
+    @Test
+    void is_validating_the_country_code() {
+        var ex = catchThrowableOfType(() -> Country.of("rr"), IllegalArgumentException.class);
+        assertThat(ex).isNotNull();
+        assertThat(ex.getMessage()).isEqualTo("Invalid country code");
+    }
 }

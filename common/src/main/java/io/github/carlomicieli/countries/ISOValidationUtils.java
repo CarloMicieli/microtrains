@@ -21,29 +21,29 @@ import java.util.Locale;
 /** Utility methods to validate country and language codes against the ISO value. */
 public interface ISOValidationUtils {
 
-  /**
-   * Returns {@code true} if the value is a valid 2-letter language code as defined in ISO 639.
-   *
-   * @param lang the language code
-   * @return {@code true} if the value is a valid language; {@code false} otherwise
-   */
-  static boolean languageIsValid(String lang) {
-    if (lang == null || lang.isBlank()) {
-      return true;
+    /**
+     * Returns {@code true} if the value is a valid 2-letter language code as defined in ISO 639.
+     *
+     * @param lang the language code
+     * @return {@code true} if the value is a valid language; {@code false} otherwise
+     */
+    static boolean languageIsValid(String lang) {
+        if (lang == null || lang.isBlank()) {
+            return true;
+        }
+        return Arrays.binarySearch(Locale.getISOLanguages(), lang.toLowerCase()) >= 0;
     }
-    return Arrays.binarySearch(Locale.getISOLanguages(), lang.toLowerCase()) >= 0;
-  }
 
-  /**
-   * Returns {@code true} if the value is a valid 2-letter country code as defined in ISO 3166.
-   *
-   * @param country the country code
-   * @return {@code true} if the value is a valid country; {@code false} otherwise
-   */
-  static boolean countryIsValid(String country) {
-    if (country == null || country.isBlank()) {
-      return true;
+    /**
+     * Returns {@code true} if the value is a valid 2-letter country code as defined in ISO 3166.
+     *
+     * @param country the country code
+     * @return {@code true} if the value is a valid country; {@code false} otherwise
+     */
+    static boolean countryIsValid(String country) {
+        if (country == null || country.isBlank()) {
+            return true;
+        }
+        return Arrays.binarySearch(Locale.getISOCountries(), country.toUpperCase()) >= 0;
     }
-    return Arrays.binarySearch(Locale.getISOCountries(), country.toUpperCase()) >= 0;
-  }
 }

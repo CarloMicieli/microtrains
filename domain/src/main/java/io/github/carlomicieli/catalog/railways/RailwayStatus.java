@@ -16,6 +16,6 @@
 package io.github.carlomicieli.catalog.railways;
 
 public enum RailwayStatus {
-  ACTIVE,
-  INACTIVE
+    ACTIVE,
+    INACTIVE
 }

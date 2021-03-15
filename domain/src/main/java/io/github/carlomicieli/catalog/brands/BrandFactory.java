@@ -19,44 +19,44 @@ import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.domain.AggregateRootFactory;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.util.Slug;
-import java.net.URL;
+import java.net.URI;
 import java.time.Clock;
 import java.util.function.Supplier;
 
 public final class BrandFactory extends AggregateRootFactory<Brand, BrandId> {
-  public BrandFactory(Clock clock, Supplier<BrandId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public BrandFactory(Clock clock, Supplier<BrandId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  /**
-   * Creates a new {@code Brand}, this method is not making any validation. The caller needs to
-   * ensure only a valid object is created.
-   */
-  public Brand createNewBrand(
-      String name,
-      String companyName,
-      URL websiteUrl,
-      String groupName,
-      String description,
-      Address address,
-      BrandKind brandKind,
-      MailAddress mailAddress) {
-    var newId = generateNewId();
-    var createdDate = getCurrentInstant();
+    /**
+     * Creates a new {@code Brand}, this method is not making any validation. The caller needs to
+     * ensure only a valid object is created.
+     */
+    public Brand createNewBrand(
+            String name,
+            String companyName,
+            URI websiteUrl,
+            String groupName,
+            String description,
+            Address address,
+            BrandKind brandKind,
+            MailAddress mailAddress) {
+        var newId = generateNewId();
+        var createdDate = getCurrentInstant();
 
-    Slug brandSlug = Brand.buildSlug(name);
+        Slug brandSlug = Brand.buildSlug(name);
 
-    return Brand.builder()
-        .id(newId)
-        .name(name)
-        .slug(brandSlug)
-        .companyName(companyName)
-        .groupName(groupName)
-        .address(address)
-        .mailAddress(mailAddress)
-        .brandKind(brandKind)
-        .version(1)
-        .createdDate(createdDate)
-        .build();
-  }
+        return Brand.builder()
+                .id(newId)
+                .name(name)
+                .slug(brandSlug)
+                .companyName(companyName)
+                .groupName(groupName)
+                .address(address)
+                .mailAddress(mailAddress)
+                .brandKind(brandKind)
+                .version(1)
+                .createdDate(createdDate)
+                .build();
+    }
 }

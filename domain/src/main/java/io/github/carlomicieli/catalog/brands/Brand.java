@@ -19,7 +19,7 @@ import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.util.Slug;
-import java.net.URL;
+import java.net.URI;
 import java.time.Instant;
 import lombok.*;
 
@@ -43,21 +43,21 @@ import lombok.*;
 @With
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Brand implements AggregateRoot<BrandId> {
-  BrandId id;
-  String name;
-  String companyName;
-  Slug slug;
-  URL websiteUrl;
-  String groupName;
-  String description;
-  Address address;
-  BrandKind brandKind;
-  MailAddress mailAddress;
-  int version;
-  Instant createdDate;
-  Instant modifiedDate;
+    BrandId id;
+    String name;
+    String companyName;
+    Slug slug;
+    URI websiteUrl;
+    String groupName;
+    String description;
+    Address address;
+    BrandKind brandKind;
+    MailAddress mailAddress;
+    int version;
+    Instant createdDate;
+    Instant modifiedDate;
 
-  protected static Slug buildSlug(String name) {
-    return Slug.of(name);
-  }
+    protected static Slug buildSlug(String name) {
+        return Slug.of(name);
+    }
 }

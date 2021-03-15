@@ -25,10 +25,10 @@ import lombok.*;
 @Builder
 @With
 public class WishlistItem {
-  Priority priority;
-  LocalDate addedDate;
-  LocalDate removedDate;
-  Price price;
-  UUID catalogItemId;
-  String notes;
+    Priority priority;
+    LocalDate addedDate;
+    LocalDate removedDate;
+    Price price;
+    UUID catalogItemId;
+    String notes;
 }

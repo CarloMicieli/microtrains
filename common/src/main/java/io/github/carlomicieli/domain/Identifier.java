@@ -20,6 +20,6 @@ import java.util.UUID;
 /** The identifier for entity and aggregate roots */
 public interface Identifier {
 
-  /** Convert this identifier to a standard java UUID */
-  UUID toUUID();
+    /** Convert this identifier to a standard java UUID */
+    UUID toUUID();
 }

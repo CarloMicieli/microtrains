@@ -25,12 +25,12 @@ import org.junit.jupiter.api.Test;
 @DisplayName("CatalogItemCategory")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CatalogItemCategoryTest {
-  @Test
-  void have_symbols() {
-    assertThat(CatalogItemCategory.TRAINS.getSymbol()).isEqualTo('T');
-    assertThat(CatalogItemCategory.LOCOMOTIVES.getSymbol()).isEqualTo('L');
-    assertThat(CatalogItemCategory.PASSENGER_CARS.getSymbol()).isEqualTo('P');
-    assertThat(CatalogItemCategory.FREIGHT_CARS.getSymbol()).isEqualTo('F');
-    assertThat(CatalogItemCategory.UNSPECIFIED.getSymbol()).isEqualTo(' ');
-  }
+    @Test
+    void have_symbols() {
+        assertThat(CatalogItemCategory.TRAINS.getSymbol()).isEqualTo('T');
+        assertThat(CatalogItemCategory.LOCOMOTIVES.getSymbol()).isEqualTo('L');
+        assertThat(CatalogItemCategory.PASSENGER_CARS.getSymbol()).isEqualTo('P');
+        assertThat(CatalogItemCategory.FREIGHT_CARS.getSymbol()).isEqualTo('F');
+        assertThat(CatalogItemCategory.UNSPECIFIED.getSymbol()).isEqualTo(' ');
+    }
 }

@@ -24,19 +24,19 @@ import lombok.Value;
 @AllArgsConstructor(staticName = "of")
 @Value
 public class WishlistId implements Identifier {
-  UUID value;
+    UUID value;
 
-  public static WishlistId randomId() {
-    return new WishlistId(UUID.randomUUID());
-  }
+    public static WishlistId randomId() {
+        return new WishlistId(UUID.randomUUID());
+    }
 
-  @Override
-  public UUID toUUID() {
-    return value;
-  }
+    @Override
+    public UUID toUUID() {
+        return value;
+    }
 
-  @Override
-  public String toString() {
-    return value.toString();
-  }
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

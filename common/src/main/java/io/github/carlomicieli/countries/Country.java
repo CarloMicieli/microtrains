@@ -30,50 +30,50 @@ import lombok.Value;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Country {
 
-  private static final Map<String, Country> COUNTRIES;
+    private static final Map<String, Country> COUNTRIES;
 
-  static {
-    COUNTRIES =
-        Map.ofEntries(
-            putCountry("at", "Austria"),
-            putCountry("be", "Belgium"),
-            putCountry("ca", "Canada"),
-            putCountry("cn", "China"),
-            putCountry("dk", "Denmark"),
-            putCountry("fi", "Finland"),
-            putCountry("fr", "France"),
-            putCountry("de", "Germany"),
-            putCountry("it", "Italy"),
-            putCountry("jp", "Japan"),
-            putCountry("mx", "Mexico"),
-            putCountry("nl", "Netherlands"),
-            putCountry("no", "Norway"),
-            putCountry("ro", "Romania"),
-            putCountry("ru", "Russian Federation"),
-            putCountry("es", "Spain"),
-            putCountry("se", "Sweden"),
-            putCountry("ch", "Switzerland"),
-            putCountry("tr", "Turkey"),
-            putCountry("uk", "United Kingdom"),
-            putCountry("us", "United States"));
-  }
-
-  private static Map.Entry<String, Country> putCountry(String code, String name) {
-    return Map.entry(code, new Country(code, name));
-  }
-
-  String code;
-  String englishName;
-
-  public static Country of(String code) {
-    if (code == null || code.length() != 2) {
-      throw new IllegalArgumentException("Invalid country code");
+    static {
+        COUNTRIES =
+                Map.ofEntries(
+                        putCountry("at", "Austria"),
+                        putCountry("be", "Belgium"),
+                        putCountry("ca", "Canada"),
+                        putCountry("cn", "China"),
+                        putCountry("dk", "Denmark"),
+                        putCountry("fi", "Finland"),
+                        putCountry("fr", "France"),
+                        putCountry("de", "Germany"),
+                        putCountry("it", "Italy"),
+                        putCountry("jp", "Japan"),
+                        putCountry("mx", "Mexico"),
+                        putCountry("nl", "Netherlands"),
+                        putCountry("no", "Norway"),
+                        putCountry("ro", "Romania"),
+                        putCountry("ru", "Russian Federation"),
+                        putCountry("es", "Spain"),
+                        putCountry("se", "Sweden"),
+                        putCountry("ch", "Switzerland"),
+                        putCountry("tr", "Turkey"),
+                        putCountry("uk", "United Kingdom"),
+                        putCountry("us", "United States"));
     }
 
-    if (!ISOValidationUtils.countryIsValid(code)) {
-      throw new IllegalArgumentException("Invalid country code");
+    private static Map.Entry<String, Country> putCountry(String code, String name) {
+        return Map.entry(code, new Country(code, name));
     }
 
-    return COUNTRIES.getOrDefault(code.toLowerCase(), new Country(code, ""));
-  }
+    String code;
+    String englishName;
+
+    public static Country of(String code) {
+        if (code == null || code.length() != 2) {
+            throw new IllegalArgumentException("Invalid country code");
+        }
+
+        if (!ISOValidationUtils.countryIsValid(code)) {
+            throw new IllegalArgumentException("Invalid country code");
+        }
+
+        return COUNTRIES.getOrDefault(code.toLowerCase(), new Country(code, ""));
+    }
 }

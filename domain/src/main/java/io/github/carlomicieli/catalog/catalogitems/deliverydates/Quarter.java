@@ -16,8 +16,8 @@
 package io.github.carlomicieli.catalog.catalogitems.deliverydates;
 
 public enum Quarter {
-  Q1,
-  Q2,
-  Q3,
-  Q4
+    Q1,
+    Q2,
+    Q3,
+    Q4
 }

@@ -21,8 +21,8 @@ import java.math.BigDecimal;
  * A same unit converter is basically a no-op converter, that returns back the same value untouched.
  */
 public final class SameUnitConverter implements MeasureUnitConverter {
-  @Override
-  public BigDecimal convert(BigDecimal value, int decimals) {
-    return value;
-  }
+    @Override
+    public BigDecimal convert(BigDecimal value, int decimals) {
+        return value;
+    }
 }

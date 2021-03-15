@@ -24,6 +24,6 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CatalogItemCategoriesTest {
 
-  @Test
-  void it_is_found_from_a_single_rolling_stock_catalog_item() {}
+    @Test
+    void it_is_found_from_a_single_rolling_stock_catalog_item() {}
 }

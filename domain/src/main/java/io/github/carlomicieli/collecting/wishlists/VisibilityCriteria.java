@@ -16,7 +16,7 @@
 package io.github.carlomicieli.collecting.wishlists;
 
 public enum VisibilityCriteria {
-  ALL,
-  PUBLIC,
-  PRIVATE,
+    ALL,
+    PUBLIC,
+    PRIVATE,
 }

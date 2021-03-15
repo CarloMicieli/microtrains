@@ -29,41 +29,41 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RailwayGaugeTest {
 
-  private final Length ONE_METER = Length.ofMillimeters(BigDecimal.valueOf(1000));
-  private final Length THIRTY_NINE_INCHES = Length.ofMillimeters(BigDecimal.valueOf(39.3701));
+    private final Length ONE_METER = Length.ofMillimeters(BigDecimal.valueOf(1000));
+    private final Length THIRTY_NINE_INCHES = Length.ofMillimeters(BigDecimal.valueOf(39.3701));
 
-  @Test
-  void is_created_using_a_builder() {
-    var gauge =
-        RailwayGauge.builder()
-            .trackGauge(TrackGauge.NARROW)
-            .millimeters(ONE_METER)
-            .inches(THIRTY_NINE_INCHES)
-            .build();
+    @Test
+    void is_created_using_a_builder() {
+        var gauge =
+                RailwayGauge.builder()
+                        .trackGauge(TrackGauge.NARROW)
+                        .millimeters(ONE_METER)
+                        .inches(THIRTY_NINE_INCHES)
+                        .build();
 
-    assertThat(gauge).isNotNull();
-    assertThat(gauge.getTrackGauge()).isEqualTo(TrackGauge.NARROW);
-    assertThat(gauge.getMillimeters()).isEqualTo(ONE_METER);
-    assertThat(gauge.getInches()).isEqualTo(THIRTY_NINE_INCHES);
-  }
+        assertThat(gauge).isNotNull();
+        assertThat(gauge.getTrackGauge()).isEqualTo(TrackGauge.NARROW);
+        assertThat(gauge.getMillimeters()).isEqualTo(ONE_METER);
+        assertThat(gauge.getInches()).isEqualTo(THIRTY_NINE_INCHES);
+    }
 
-  @Test
-  void is_created_from_millimeters_value() {
-    var gauge = RailwayGauge.ofMillimeters(16.5, TrackGauge.STANDARD);
+    @Test
+    void is_created_from_millimeters_value() {
+        var gauge = RailwayGauge.ofMillimeters(16.5, TrackGauge.STANDARD);
 
-    assertThat(gauge).isNotNull();
-    assertThat(gauge.getTrackGauge()).isEqualTo(TrackGauge.STANDARD);
-    assertThat(gauge.getMillimeters().getValue()).isEqualTo(BigDecimal.valueOf(16.5));
-    assertThat(gauge.getInches().getValue()).isEqualTo(BigDecimal.valueOf(0.65));
-  }
+        assertThat(gauge).isNotNull();
+        assertThat(gauge.getTrackGauge()).isEqualTo(TrackGauge.STANDARD);
+        assertThat(gauge.getMillimeters().getValue()).isEqualTo(BigDecimal.valueOf(16.5));
+        assertThat(gauge.getInches().getValue()).isEqualTo(BigDecimal.valueOf(0.65));
+    }
 
-  @Test
-  void is_created_from_inches_value() {
-    var gauge = RailwayGauge.ofInches(0.65, TrackGauge.STANDARD);
+    @Test
+    void is_created_from_inches_value() {
+        var gauge = RailwayGauge.ofInches(0.65, TrackGauge.STANDARD);
 
-    assertThat(gauge).isNotNull();
-    assertThat(gauge.getTrackGauge()).isEqualTo(TrackGauge.STANDARD);
-    assertThat(gauge.getMillimeters().getValue()).isEqualTo(BigDecimal.valueOf(16.51));
-    assertThat(gauge.getInches().getValue()).isEqualTo(BigDecimal.valueOf(0.65));
-  }
+        assertThat(gauge).isNotNull();
+        assertThat(gauge.getTrackGauge()).isEqualTo(TrackGauge.STANDARD);
+        assertThat(gauge.getMillimeters().getValue()).isEqualTo(BigDecimal.valueOf(16.51));
+        assertThat(gauge.getInches().getValue()).isEqualTo(BigDecimal.valueOf(0.65));
+    }
 }

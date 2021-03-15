@@ -24,10 +24,10 @@ import lombok.*;
 @Builder
 @With
 public class CollectionItem {
-  UUID catalogItemId;
-  Condition condition;
-  PurchasedInfo purchasedInfo;
-  LocalDate addedDate;
-  LocalDate removedDate;
-  String notes;
+    UUID catalogItemId;
+    Condition condition;
+    PurchasedInfo purchasedInfo;
+    LocalDate addedDate;
+    LocalDate removedDate;
+    String notes;
 }

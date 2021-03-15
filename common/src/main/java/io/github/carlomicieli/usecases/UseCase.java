@@ -25,6 +25,6 @@ import io.micronaut.core.annotation.NonNull;
 @FunctionalInterface
 public interface UseCase<InType extends UseCaseInput> {
 
-  /** Execute this {@code UseCase}. */
-  void execute(@NonNull InType input);
+    /** Execute this {@code UseCase}. */
+    void execute(@NonNull InType input);
 }

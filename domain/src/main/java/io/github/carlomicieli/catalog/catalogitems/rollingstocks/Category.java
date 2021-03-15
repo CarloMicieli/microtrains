@@ -17,30 +17,30 @@ package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
 
 /** The enumeration of the model categories. */
 public enum Category {
-  /** The steam locomotives category */
-  STEAM_LOCOMOTIVE,
+    /** The steam locomotives category */
+    STEAM_LOCOMOTIVE,
 
-  /** The diesel locomotives category */
-  DIESEL_LOCOMOTIVE,
+    /** The diesel locomotives category */
+    DIESEL_LOCOMOTIVE,
 
-  /** The electric locomotives category */
-  ELECTRIC_LOCOMOTIVE,
+    /** The electric locomotives category */
+    ELECTRIC_LOCOMOTIVE,
 
-  /** The railcar category */
-  RAILCAR,
+    /** The railcar category */
+    RAILCAR,
 
-  /** The electric multiple unit category */
-  ELECTRIC_MULTIPLE_UNIT,
+    /** The electric multiple unit category */
+    ELECTRIC_MULTIPLE_UNIT,
 
-  /** The freight cars category */
-  FREIGHT_CAR,
+    /** The freight cars category */
+    FREIGHT_CAR,
 
-  /** The passenger cars category */
-  PASSENGER_CAR,
+    /** The passenger cars category */
+    PASSENGER_CAR,
 
-  /** The train set category */
-  TRAIN_SET,
+    /** The train set category */
+    TRAIN_SET,
 
-  /** The starter sets (usually includes the tracks) category */
-  STARTER_SET
+    /** The starter sets (usually includes the tracks) category */
+    STARTER_SET
 }

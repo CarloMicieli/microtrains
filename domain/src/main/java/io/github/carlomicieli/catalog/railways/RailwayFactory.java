@@ -23,43 +23,43 @@ import java.time.Clock;
 import java.util.function.Supplier;
 
 public final class RailwayFactory extends AggregateRootFactory<Railway, RailwayId> {
-  public RailwayFactory(Clock clock, Supplier<RailwayId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public RailwayFactory(Clock clock, Supplier<RailwayId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  /**
-   * Creates a new {@code Railway}, this method is not making any validation. The caller needs to
-   * ensure only a valid object is created.
-   */
-  public Railway createNewRailway(
-      String name,
-      String description,
-      String companyName,
-      Country country,
-      PeriodOfActivity periodOfActivity,
-      RailwayGauge trackGauge,
-      RailwayLength totalLength,
-      URI websiteUrl,
-      String headquarters) {
-    var newId = generateNewId();
-    var createdDate = getCurrentInstant();
+    /**
+     * Creates a new {@code Railway}, this method is not making any validation. The caller needs to
+     * ensure only a valid object is created.
+     */
+    public Railway createNewRailway(
+            String name,
+            String description,
+            String companyName,
+            Country country,
+            PeriodOfActivity periodOfActivity,
+            RailwayGauge trackGauge,
+            RailwayLength totalLength,
+            URI websiteUrl,
+            String headquarters) {
+        var newId = generateNewId();
+        var createdDate = getCurrentInstant();
 
-    Slug railwaySlug = Railway.buildSlug(name);
+        Slug railwaySlug = Railway.buildSlug(name);
 
-    return Railway.builder()
-        .id(newId)
-        .slug(railwaySlug)
-        .name(name)
-        .description(description)
-        .companyName(companyName)
-        .country(country)
-        .periodOfActivity(periodOfActivity)
-        .trackGauge(trackGauge)
-        .totalLength(totalLength)
-        .websiteUrl(websiteUrl)
-        .headquarters(headquarters)
-        .createdDate(createdDate)
-        .version(1)
-        .build();
-  }
+        return Railway.builder()
+                .id(newId)
+                .slug(railwaySlug)
+                .name(name)
+                .description(description)
+                .companyName(companyName)
+                .country(country)
+                .periodOfActivity(periodOfActivity)
+                .trackGauge(trackGauge)
+                .totalLength(totalLength)
+                .websiteUrl(websiteUrl)
+                .headquarters(headquarters)
+                .createdDate(createdDate)
+                .version(1)
+                .build();
+    }
 }

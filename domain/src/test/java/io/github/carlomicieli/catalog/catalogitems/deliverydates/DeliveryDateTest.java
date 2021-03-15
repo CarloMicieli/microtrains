@@ -27,137 +27,139 @@ import org.junit.jupiter.api.Test;
 
 class DeliveryDateTest {
 
-  @Test
-  void shouldCreateNewDeliveryDatesWithYearAndQuarter() {
-    DeliveryDate firstQtrOf2014 = DeliveryDate.of(2014, 1);
-    assertThat(firstQtrOf2014).isNotNull().hasYear(2014).hasQuarter(1);
-  }
+    @Test
+    void shouldCreateNewDeliveryDatesWithYearAndQuarter() {
+        DeliveryDate firstQtrOf2014 = DeliveryDate.of(2014, 1);
+        assertThat(firstQtrOf2014).isNotNull().hasYear(2014).hasQuarter(1);
+    }
 
-  @Test
-  public void shouldCreateNewDeliveryDatesWithYearOnly() {
-    DeliveryDate deliveryDate = DeliveryDate.of(2014);
-    assertThat(deliveryDate).isNotNull().hasYear(2014).hasNoQuarter();
-  }
+    @Test
+    public void shouldCreateNewDeliveryDatesWithYearOnly() {
+        DeliveryDate deliveryDate = DeliveryDate.of(2014);
+        assertThat(deliveryDate).isNotNull().hasYear(2014).hasNoQuarter();
+    }
 
-  @Test
-  public void shouldThrowIllegalArgumentExceptionWhenTheQuarterIsNotValid() {
-    org.junit.jupiter.api.Assertions.assertThrows(
-        IllegalArgumentException.class, () -> DeliveryDate.of(2014, -1));
-  }
-
-  @Test
-  public void shouldCheckWhetherTwoDeliveryDatesAreDifferent() {
-    DeliveryDate x = DeliveryDate.of(2012, 1);
-    DeliveryDate y = DeliveryDate.of(2012, 2);
-    assertThat(x).isNotEqualTo(y);
-  }
-
-  @Test
-  public void shouldCheckWhetherTwoDeliveryDatesAreEquals() {
-    DeliveryDate x = DeliveryDate.of(2012, 1);
-    DeliveryDate y = DeliveryDate.of(2012, 1);
-    assertThat(x).isEqualTo(y);
-  }
-
-  @Test
-  public void shouldProduceStringRepresentationForDeliveryDates() {
-    DeliveryDate dd1 = DeliveryDate.of(2012, 1);
-    DeliveryDate dd2 = DeliveryDate.of(2012);
-
-    assertThat(dd1.toString()).isEqualTo("2012/Q1");
-    assertThat(dd2.toString()).isEqualTo("2012");
-  }
-
-  @Test
-  public void shouldParseStringAsDeliveryDateWithYearOnly() {
-    DeliveryDate dd = DeliveryDate.parseDeliveryDate("2014");
-    assertThat(dd).isNotNull().hasYear(2014).hasNoQuarter();
-  }
-
-  @Test
-  public void shouldParseStringAsDeliveryDateWithYeaAndQuarter() {
-    DeliveryDate dd = DeliveryDate.parseDeliveryDate("2014/Q1");
-    assertThat(dd).isNotNull().hasYear(2014).hasQuarter(1);
-  }
-
-  @Test
-  public void shouldThrowExceptionParsingStringsWithInvalidYearValues() {
-    var ex =
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenTheQuarterIsNotValid() {
         org.junit.jupiter.api.Assertions.assertThrows(
-            IllegalArgumentException.class, () -> DeliveryDate.parseDeliveryDate("20e4/Q1"));
-    assertThat(ex.getMessage()).isEqualTo("Invalid format for a delivery date");
-  }
-
-  @Test
-  public void shouldProduceHasCodesForDeliveryDates() {
-    DeliveryDate x = DeliveryDate.of(2012, 1);
-    DeliveryDate y = DeliveryDate.of(2012, 1);
-    assertThat(x.hashCode()).isEqualTo(y.hashCode());
-  }
-
-  @Test
-  public void shouldCreateRangesOfDeliveryDates() {
-    final List<DeliveryDate> expected =
-        Arrays.asList(
-            DeliveryDate.of(2012, 4),
-            DeliveryDate.of(2012, 3),
-            DeliveryDate.of(2012, 2),
-            DeliveryDate.of(2012, 1),
-            DeliveryDate.of(2011, 4),
-            DeliveryDate.of(2011, 3),
-            DeliveryDate.of(2011, 2),
-            DeliveryDate.of(2011, 1),
-            DeliveryDate.of(2010),
-            DeliveryDate.of(2009));
-
-    Stream<DeliveryDate> stream = DeliveryDate.range(2009, 2010, 2011, 2012);
-
-    assertThat(stream.collect(Collectors.toList())).isEqualTo(expected);
-  }
-
-  static class CustomAssertions extends Assertions {
-    public static DeliveryDateAssert assertThat(DeliveryDate actual) {
-      return new DeliveryDateAssert(actual);
-    }
-  }
-
-  static class DeliveryDateAssert extends AbstractAssert<DeliveryDateAssert, DeliveryDate> {
-    public DeliveryDateAssert(DeliveryDate actual) {
-      super(actual, DeliveryDateAssert.class);
+                IllegalArgumentException.class, () -> DeliveryDate.of(2014, -1));
     }
 
-    public static DeliveryDateAssert assertThat(DeliveryDate actual) {
-      return new DeliveryDateAssert(actual);
+    @Test
+    public void shouldCheckWhetherTwoDeliveryDatesAreDifferent() {
+        DeliveryDate x = DeliveryDate.of(2012, 1);
+        DeliveryDate y = DeliveryDate.of(2012, 2);
+        assertThat(x).isNotEqualTo(y);
     }
 
-    public DeliveryDateAssert hasYear(int year) {
-      isNotNull();
-
-      if (actual.getYear() != year) {
-        failWithMessage("Expected year to be <%d> but was <%d>", year, actual.getYear());
-      }
-
-      return this;
+    @Test
+    public void shouldCheckWhetherTwoDeliveryDatesAreEquals() {
+        DeliveryDate x = DeliveryDate.of(2012, 1);
+        DeliveryDate y = DeliveryDate.of(2012, 1);
+        assertThat(x).isEqualTo(y);
     }
 
-    public DeliveryDateAssert hasQuarter(int quarter) {
-      isNotNull();
+    @Test
+    public void shouldProduceStringRepresentationForDeliveryDates() {
+        DeliveryDate dd1 = DeliveryDate.of(2012, 1);
+        DeliveryDate dd2 = DeliveryDate.of(2012);
 
-      if (actual.getQuarter() != quarter) {
-        failWithMessage("Expected quarter to be <%d> but was <%d>", quarter, actual.getQuarter());
-      }
-
-      return this;
+        assertThat(dd1.toString()).isEqualTo("2012/Q1");
+        assertThat(dd2.toString()).isEqualTo("2012");
     }
 
-    public DeliveryDateAssert hasNoQuarter() {
-      isNotNull();
-
-      if (actual.hasQuarter()) {
-        failWithMessage("Expected to be without quarter but was <%d>", actual.getQuarter());
-      }
-
-      return this;
+    @Test
+    public void shouldParseStringAsDeliveryDateWithYearOnly() {
+        DeliveryDate dd = DeliveryDate.parseDeliveryDate("2014");
+        assertThat(dd).isNotNull().hasYear(2014).hasNoQuarter();
     }
-  }
+
+    @Test
+    public void shouldParseStringAsDeliveryDateWithYeaAndQuarter() {
+        DeliveryDate dd = DeliveryDate.parseDeliveryDate("2014/Q1");
+        assertThat(dd).isNotNull().hasYear(2014).hasQuarter(1);
+    }
+
+    @Test
+    public void shouldThrowExceptionParsingStringsWithInvalidYearValues() {
+        var ex =
+                org.junit.jupiter.api.Assertions.assertThrows(
+                        IllegalArgumentException.class,
+                        () -> DeliveryDate.parseDeliveryDate("20e4/Q1"));
+        assertThat(ex.getMessage()).isEqualTo("Invalid format for a delivery date");
+    }
+
+    @Test
+    public void shouldProduceHasCodesForDeliveryDates() {
+        DeliveryDate x = DeliveryDate.of(2012, 1);
+        DeliveryDate y = DeliveryDate.of(2012, 1);
+        assertThat(x.hashCode()).isEqualTo(y.hashCode());
+    }
+
+    @Test
+    public void shouldCreateRangesOfDeliveryDates() {
+        final List<DeliveryDate> expected =
+                Arrays.asList(
+                        DeliveryDate.of(2012, 4),
+                        DeliveryDate.of(2012, 3),
+                        DeliveryDate.of(2012, 2),
+                        DeliveryDate.of(2012, 1),
+                        DeliveryDate.of(2011, 4),
+                        DeliveryDate.of(2011, 3),
+                        DeliveryDate.of(2011, 2),
+                        DeliveryDate.of(2011, 1),
+                        DeliveryDate.of(2010),
+                        DeliveryDate.of(2009));
+
+        Stream<DeliveryDate> stream = DeliveryDate.range(2009, 2010, 2011, 2012);
+
+        assertThat(stream.collect(Collectors.toList())).isEqualTo(expected);
+    }
+
+    static class CustomAssertions extends Assertions {
+        public static DeliveryDateAssert assertThat(DeliveryDate actual) {
+            return new DeliveryDateAssert(actual);
+        }
+    }
+
+    static class DeliveryDateAssert extends AbstractAssert<DeliveryDateAssert, DeliveryDate> {
+        public DeliveryDateAssert(DeliveryDate actual) {
+            super(actual, DeliveryDateAssert.class);
+        }
+
+        public static DeliveryDateAssert assertThat(DeliveryDate actual) {
+            return new DeliveryDateAssert(actual);
+        }
+
+        public DeliveryDateAssert hasYear(int year) {
+            isNotNull();
+
+            if (actual.getYear() != year) {
+                failWithMessage("Expected year to be <%d> but was <%d>", year, actual.getYear());
+            }
+
+            return this;
+        }
+
+        public DeliveryDateAssert hasQuarter(int quarter) {
+            isNotNull();
+
+            if (actual.getQuarter() != quarter) {
+                failWithMessage(
+                        "Expected quarter to be <%d> but was <%d>", quarter, actual.getQuarter());
+            }
+
+            return this;
+        }
+
+        public DeliveryDateAssert hasNoQuarter() {
+            isNotNull();
+
+            if (actual.hasQuarter()) {
+                failWithMessage("Expected to be without quarter but was <%d>", actual.getQuarter());
+            }
+
+            return this;
+        }
+    }
 }

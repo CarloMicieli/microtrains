@@ -22,29 +22,30 @@ import lombok.Data;
 /** An immutable class to store a phone number */
 @Data
 public final class PhoneNumber {
-  private static final PhoneNumberUtil PHONE_NUMBER_UTIL = PhoneNumberUtil.getInstance();
-  private final String value;
+    private static final PhoneNumberUtil PHONE_NUMBER_UTIL = PhoneNumberUtil.getInstance();
+    private final String value;
 
-  private PhoneNumber(String value) {
-    if (Strings.isNullOrEmpty(value)) {
-      throw new IllegalArgumentException("Phone number value cannot be blank or null");
+    private PhoneNumber(String value) {
+        if (Strings.isNullOrEmpty(value)) {
+            throw new IllegalArgumentException("Phone number value cannot be blank or null");
+        }
+
+        this.value = value;
     }
 
-    this.value = value;
-  }
-
-  public static PhoneNumber valueOf(String value) {
-    return new PhoneNumber(value);
-  }
-
-  public static PhoneNumber valueOf(String value, String regionCode) {
-    try {
-      var phoneNumber = PHONE_NUMBER_UTIL.parse(value, regionCode);
-      var formattedValue =
-          PHONE_NUMBER_UTIL.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
-      return new PhoneNumber(formattedValue);
-    } catch (Exception ex) {
-      throw new IllegalArgumentException("Invalid value for a phone number");
+    public static PhoneNumber valueOf(String value) {
+        return new PhoneNumber(value);
     }
-  }
+
+    public static PhoneNumber valueOf(String value, String regionCode) {
+        try {
+            var phoneNumber = PHONE_NUMBER_UTIL.parse(value, regionCode);
+            var formattedValue =
+                    PHONE_NUMBER_UTIL.format(
+                            phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+            return new PhoneNumber(formattedValue);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Invalid value for a phone number");
+        }
+    }
 }

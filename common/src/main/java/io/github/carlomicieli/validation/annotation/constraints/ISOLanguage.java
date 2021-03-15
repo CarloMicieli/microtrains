@@ -31,9 +31,9 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ISOLanguageValidator.class)
 @Documented
 public @interface ISOLanguage {
-  String message() default "{microtrains.language.code.invalid}";
+    String message() default "{microtrains.language.code.invalid}";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

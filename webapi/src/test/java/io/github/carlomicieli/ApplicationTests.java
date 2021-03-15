@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
 @MicronautTest
 class ApplicationTests {
 
-  @Inject EmbeddedApplication<?> application;
+    @Inject EmbeddedApplication<?> application;
 
-  @Test
-  void testItWorks() {
-    Assertions.assertTrue(application.isRunning());
-  }
+    @Test
+    void testItWorks() {
+        Assertions.assertTrue(application.isRunning());
+    }
 }

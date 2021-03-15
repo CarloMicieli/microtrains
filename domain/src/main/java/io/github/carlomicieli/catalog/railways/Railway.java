@@ -28,22 +28,22 @@ import lombok.*;
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public final class Railway implements AggregateRoot<RailwayId> {
-  private final RailwayId id;
-  private final Slug slug;
-  private final String name;
-  private final String companyName;
-  private final Country country;
-  private final String description;
-  private final PeriodOfActivity periodOfActivity;
-  private final RailwayGauge trackGauge;
-  private final RailwayLength totalLength;
-  private final URI websiteUrl;
-  private final String headquarters;
-  private final Instant createdDate;
-  private final Instant modifiedDate;
-  private final int version;
+    private final RailwayId id;
+    private final Slug slug;
+    private final String name;
+    private final String companyName;
+    private final Country country;
+    private final String description;
+    private final PeriodOfActivity periodOfActivity;
+    private final RailwayGauge trackGauge;
+    private final RailwayLength totalLength;
+    private final URI websiteUrl;
+    private final String headquarters;
+    private final Instant createdDate;
+    private final Instant modifiedDate;
+    private final int version;
 
-  public static Slug buildSlug(String name) {
-    return Slug.of(name);
-  }
+    public static Slug buildSlug(String name) {
+        return Slug.of(name);
+    }
 }

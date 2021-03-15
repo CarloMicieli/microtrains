@@ -24,15 +24,15 @@ import lombok.*;
 @With
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class PassengerCar implements RollingStock {
-  private final RollingStockId id;
-  private final RailwayId railway;
-  private final Category category;
-  private final Epoch epoch;
-  private final LengthOverBuffer lengthOverBuffer;
-  private final MinRadius minRadius;
-  private final Couplers couplers;
-  private final String livery;
-  private final String typeName;
-  private final PassengerCarType type;
-  private final ServiceLevel serviceLevel;
+    private final RollingStockId id;
+    private final RailwayId railway;
+    private final Category category;
+    private final Epoch epoch;
+    private final LengthOverBuffer lengthOverBuffer;
+    private final MinRadius minRadius;
+    private final Couplers couplers;
+    private final String livery;
+    private final String typeName;
+    private final PassengerCarType type;
+    private final ServiceLevel serviceLevel;
 }

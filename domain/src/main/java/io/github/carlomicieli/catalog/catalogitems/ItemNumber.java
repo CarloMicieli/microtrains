@@ -22,30 +22,30 @@ import lombok.Value;
 /** It represents a catalog item number. */
 @Value
 public class ItemNumber implements Comparable<ItemNumber> {
-  String value;
+    String value;
 
-  private ItemNumber(String value) {
-    if (Strings.isNullOrEmpty(value)) {
-      throw new IllegalArgumentException("Item number value cannot be blank or null");
+    private ItemNumber(String value) {
+        if (Strings.isNullOrEmpty(value)) {
+            throw new IllegalArgumentException("Item number value cannot be blank or null");
+        }
+
+        this.value = value;
     }
 
-    this.value = value;
-  }
-
-  public static ItemNumber of(String value) {
-    return new ItemNumber(value);
-  }
-
-  public static Optional<ItemNumber> tryCreate(String v) {
-    if (Strings.isNullOrEmpty(v)) {
-      return Optional.empty();
+    public static ItemNumber of(String value) {
+        return new ItemNumber(value);
     }
 
-    return Optional.of(new ItemNumber(v));
-  }
+    public static Optional<ItemNumber> tryCreate(String v) {
+        if (Strings.isNullOrEmpty(v)) {
+            return Optional.empty();
+        }
 
-  @Override
-  public int compareTo(ItemNumber that) {
-    return this.value.compareTo(that.value);
-  }
+        return Optional.of(new ItemNumber(v));
+    }
+
+    @Override
+    public int compareTo(ItemNumber that) {
+        return this.value.compareTo(that.value);
+    }
 }

@@ -26,16 +26,16 @@ import lombok.*;
 @With
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Locomotive implements RollingStock {
-  private final RollingStockId id;
-  private final RailwayId railway;
-  private final Category category;
-  private final Epoch epoch;
-  private final LengthOverBuffer lengthOverBuffer;
-  private final MinRadius minRadius;
-  private final Couplers couplers;
-  private final String livery;
-  private final Prototype prototype;
-  private final String depot;
-  private final DccInterface dccInterface;
-  private final Control control;
+    private final RollingStockId id;
+    private final RailwayId railway;
+    private final Category category;
+    private final Epoch epoch;
+    private final LengthOverBuffer lengthOverBuffer;
+    private final MinRadius minRadius;
+    private final Couplers couplers;
+    private final String livery;
+    private final Prototype prototype;
+    private final String depot;
+    private final DccInterface dccInterface;
+    private final Control control;
 }

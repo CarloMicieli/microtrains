@@ -30,58 +30,59 @@ import lombok.Data;
 //        define new error response formats for HTTP APIs.
 @Data
 @Builder
-public class ProblemDetail {
-  public static final MediaType JSON_MEDIA_TYPE = new MediaType("application/problem+json");
+public final class ProblemDetail {
+    public static final MediaType JSON_MEDIA_TYPE = new MediaType("application/problem+json");
 
-  URN type;
-  String title;
-  String detail;
-  int status;
+    URN type;
+    String title;
+    String detail;
+    int status;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-  LocalDateTime timestamp;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+    LocalDateTime timestamp;
 
-  URN instance;
-  Map<String, String> fields;
+    URN instance;
+    Map<String, String> fields;
 
-  public static ProblemDetail unprocessableEntity(String message) {
-    UUID id = UUID.randomUUID();
-    return ProblemDetail.builder()
-        .timestamp(LocalDateTime.now())
-        .type(URN.fromProblemType("unprocessable-entity"))
-        .title("Unprocessable entity")
-        .detail(message)
-        .status(HttpStatus.UNPROCESSABLE_ENTITY.getCode())
-        .instance(URN.fromUUID(id))
-        .build();
-  }
+    public static ProblemDetail unprocessableEntity(String message) {
+        UUID id = UUID.randomUUID();
+        return ProblemDetail.builder()
+                .timestamp(LocalDateTime.now())
+                .type(URN.fromProblemType("unprocessable-entity"))
+                .title("Unprocessable entity")
+                .detail(message)
+                .status(HttpStatus.UNPROCESSABLE_ENTITY.getCode())
+                .instance(URN.fromUUID(id))
+                .build();
+    }
 
-  public static ProblemDetail error(String error) {
-    UUID id = UUID.randomUUID();
-    return ProblemDetail.builder()
-        .timestamp(LocalDateTime.now())
-        .type(URN.fromProblemType("internal-server-error"))
-        .title("Internal Server Error")
-        .detail(error)
-        .status(HttpStatus.INTERNAL_SERVER_ERROR.getCode())
-        .instance(URN.fromUUID(id))
-        .build();
-  }
+    public static ProblemDetail error(String error) {
+        UUID id = UUID.randomUUID();
+        return ProblemDetail.builder()
+                .timestamp(LocalDateTime.now())
+                .type(URN.fromProblemType("internal-server-error"))
+                .title("Internal Server Error")
+                .detail(error)
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.getCode())
+                .instance(URN.fromUUID(id))
+                .build();
+    }
 
-  public static ProblemDetail error(Throwable ex) {
-    return error("Oops, something went wrong");
-  }
+    public static ProblemDetail error(Throwable ex) {
+        return error("Oops, something went wrong");
+    }
 
-  public static ProblemDetail invalidRequest(Map<String, String> errors) {
-    UUID id = UUID.randomUUID();
-    return ProblemDetail.builder()
-        .timestamp(LocalDateTime.now())
-        .type(URN.fromProblemType("bad-request"))
-        .title("Invalid request")
-        .detail("Fields validation failed for this request. Check them before you try again.")
-        .status(HttpStatus.BAD_REQUEST.getCode())
-        .instance(URN.fromUUID(id))
-        .fields(errors)
-        .build();
-  }
+    public static ProblemDetail invalidRequest(Map<String, String> errors) {
+        UUID id = UUID.randomUUID();
+        return ProblemDetail.builder()
+                .timestamp(LocalDateTime.now())
+                .type(URN.fromProblemType("bad-request"))
+                .title("Invalid request")
+                .detail(
+                        "Fields validation failed for this request. Check them before you try again.")
+                .status(HttpStatus.BAD_REQUEST.getCode())
+                .instance(URN.fromUUID(id))
+                .fields(errors)
+                .build();
+    }
 }

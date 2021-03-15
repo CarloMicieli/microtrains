@@ -16,23 +16,23 @@
 package io.github.carlomicieli.util;
 
 public interface TryConvert {
-  /**
-   * Try to convert the provided string to an <em>Integer</em> instance.
-   *
-   * @param s the string to be converted
-   * @return an Integer
-   */
-  static Try<Integer> toInteger(final String s) {
-    return Try.apply(() -> Integer.valueOf(s));
-  }
+    /**
+     * Try to convert the provided string to an <em>Integer</em> instance.
+     *
+     * @param s the string to be converted
+     * @return an Integer
+     */
+    static Try<Integer> toInteger(final String s) {
+        return Try.apply(() -> Integer.valueOf(s));
+    }
 
-  /**
-   * Try to convert the provided string to a <em>Double</em> instance.
-   *
-   * @param s the string to be converted
-   * @return a Double
-   */
-  static Try<Double> toDouble(final String s) {
-    return Try.apply(() -> Double.valueOf(s));
-  }
+    /**
+     * Try to convert the provided string to a <em>Double</em> instance.
+     *
+     * @param s the string to be converted
+     * @return a Double
+     */
+    static Try<Double> toDouble(final String s) {
+        return Try.apply(() -> Double.valueOf(s));
+    }
 }

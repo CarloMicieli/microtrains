@@ -18,7 +18,7 @@ package io.github.carlomicieli.collecting.valueobject;
 import java.util.Currency;
 
 public class DifferentCurrencyException extends RuntimeException {
-  public DifferentCurrencyException(Currency lhs, Currency rhs) {
-    super(String.format("Wrong currency, this operation is not allowed (%s != %s)", lhs, rhs));
-  }
+    public DifferentCurrencyException(Currency lhs, Currency rhs) {
+        super(String.format("Wrong currency, this operation is not allowed (%s != %s)", lhs, rhs));
+    }
 }

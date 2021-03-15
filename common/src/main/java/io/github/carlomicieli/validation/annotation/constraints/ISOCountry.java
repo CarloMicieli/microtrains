@@ -37,9 +37,9 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ISOCountryValidator.class)
 @Documented
 public @interface ISOCountry {
-  String message() default "{microtrains.country.code.invalid}";
+    String message() default "{microtrains.country.code.invalid}";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

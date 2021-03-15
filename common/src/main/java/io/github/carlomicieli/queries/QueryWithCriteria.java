@@ -30,21 +30,21 @@ import java.util.stream.Stream;
  */
 public interface QueryWithCriteria<C extends Criteria, T> extends Query<C, T> {
 
-  /**
-   * Execute this {@code Query} using the provided {@code criteria} in order to select the
-   * corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  default Stream<T> execute(C criteria) {
-    return execute(criteria, Sorting.DEFAULT_SORT);
-  }
+    /**
+     * Execute this {@code Query} using the provided {@code criteria} in order to select the
+     * corresponding data.
+     *
+     * @throws QueryExecutionException in case of any error
+     */
+    default Stream<T> execute(C criteria) {
+        return execute(criteria, Sorting.DEFAULT_SORT);
+    }
 
-  /**
-   * Execute this {@code Query} using the provided {@code criteria} in order to select the
-   * corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  Stream<T> execute(C criteria, Sorting orderBy);
+    /**
+     * Execute this {@code Query} using the provided {@code criteria} in order to select the
+     * corresponding data.
+     *
+     * @throws QueryExecutionException in case of any error
+     */
+    Stream<T> execute(C criteria, Sorting orderBy);
 }

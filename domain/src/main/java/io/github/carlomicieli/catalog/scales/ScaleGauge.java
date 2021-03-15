@@ -25,7 +25,7 @@ import lombok.*;
 @Builder
 @With
 public class ScaleGauge {
-  Gauge millimetres;
-  Gauge inches;
-  TrackGauge trackGauge;
+    Gauge millimetres;
+    Gauge inches;
+    TrackGauge trackGauge;
 }

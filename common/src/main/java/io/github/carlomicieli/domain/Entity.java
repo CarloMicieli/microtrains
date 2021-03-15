@@ -21,6 +21,6 @@ package io.github.carlomicieli.domain;
  * @param <ID> the ID type
  */
 public interface Entity<ID extends Identifier> {
-  /** Return the entity identifier */
-  ID getId();
+    /** Return the entity identifier */
+    ID getId();
 }

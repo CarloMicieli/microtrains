@@ -21,21 +21,21 @@ import lombok.Value;
 /** A Collection or Wish list owner name */
 @Value
 public class Owner {
-  String name;
+    String name;
 
-  private Owner(String name) {
-    if (Strings.isNullOrEmpty(name)) {
-      throw new IllegalArgumentException("Owner name is required");
+    private Owner(String name) {
+        if (Strings.isNullOrEmpty(name)) {
+            throw new IllegalArgumentException("Owner name is required");
+        }
+        this.name = name;
     }
-    this.name = name;
-  }
 
-  public static Owner withName(String name) {
-    return new Owner(name);
-  }
+    public static Owner withName(String name) {
+        return new Owner(name);
+    }
 
-  @Override
-  public String toString() {
-    return name;
-  }
+    @Override
+    public String toString() {
+        return name;
+    }
 }

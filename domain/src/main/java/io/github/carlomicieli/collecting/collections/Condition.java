@@ -16,6 +16,6 @@
 package io.github.carlomicieli.collecting.collections;
 
 public enum Condition {
-  NEW,
-  PRE_OWNED,
+    NEW,
+    PRE_OWNED,
 }

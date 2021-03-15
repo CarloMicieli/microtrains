@@ -16,7 +16,7 @@
 package io.github.carlomicieli.collecting.wishlists;
 
 public enum Priority {
-  HIGH,
-  NORMAL,
-  LOW,
+    HIGH,
+    NORMAL,
+    LOW,
 }

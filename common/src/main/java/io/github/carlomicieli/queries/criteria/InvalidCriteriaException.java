@@ -20,19 +20,19 @@ import java.util.Collections;
 import java.util.List;
 
 public final class InvalidCriteriaException extends RuntimeException {
-  private final List<ValidationError> errors;
+    private final List<ValidationError> errors;
 
-  public InvalidCriteriaException(List<ValidationError> errors) {
-    super("Invalid query criteria");
-    this.errors = errors;
-  }
+    public InvalidCriteriaException(List<ValidationError> errors) {
+        super("Invalid query criteria");
+        this.errors = errors;
+    }
 
-  public InvalidCriteriaException(List<ValidationError> errors, Throwable ex) {
-    super("Invalid query criteria", ex);
-    this.errors = errors;
-  }
+    public InvalidCriteriaException(List<ValidationError> errors, Throwable ex) {
+        super("Invalid query criteria", ex);
+        this.errors = errors;
+    }
 
-  public List<ValidationError> getErrors() {
-    return Collections.unmodifiableList(errors);
-  }
+    public List<ValidationError> getErrors() {
+        return Collections.unmodifiableList(errors);
+    }
 }

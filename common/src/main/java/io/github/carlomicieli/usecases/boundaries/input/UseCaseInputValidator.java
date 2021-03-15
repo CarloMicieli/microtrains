@@ -19,5 +19,5 @@ import io.github.carlomicieli.validation.ValidationError;
 import java.util.List;
 
 public interface UseCaseInputValidator<InType extends UseCaseInput> {
-  List<ValidationError> validateInput(InType input);
+    List<ValidationError> validateInput(InType input);
 }

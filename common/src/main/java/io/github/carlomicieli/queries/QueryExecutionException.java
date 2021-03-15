@@ -19,7 +19,7 @@ package io.github.carlomicieli.queries;
  * The exception thrown by {@code Query} execution, it needs also to wrap the original exception.
  */
 public final class QueryExecutionException extends RuntimeException {
-  public QueryExecutionException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public QueryExecutionException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

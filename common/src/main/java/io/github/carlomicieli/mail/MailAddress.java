@@ -25,22 +25,22 @@ import org.apache.commons.validator.routines.EmailValidator;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MailAddress {
 
-  String address;
+    String address;
 
-  public static MailAddress of(String address) {
-    boolean valid = EmailValidator.getInstance().isValid(address);
-    if (!valid) {
-      throw new IllegalArgumentException("Invalid mail address");
-    }
-    return new MailAddress(address);
-  }
-
-  public static Optional<MailAddress> tryParse(String address) {
-    boolean valid = EmailValidator.getInstance().isValid(address);
-    if (valid) {
-      return Optional.of(new MailAddress(address));
+    public static MailAddress of(String address) {
+        boolean valid = EmailValidator.getInstance().isValid(address);
+        if (!valid) {
+            throw new IllegalArgumentException("Invalid mail address");
+        }
+        return new MailAddress(address);
     }
 
-    return Optional.empty();
-  }
+    public static Optional<MailAddress> tryParse(String address) {
+        boolean valid = EmailValidator.getInstance().isValid(address);
+        if (valid) {
+            return Optional.of(new MailAddress(address));
+        }
+
+        return Optional.empty();
+    }
 }

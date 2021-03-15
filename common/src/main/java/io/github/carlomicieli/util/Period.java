@@ -26,30 +26,30 @@ import lombok.Value;
 @Value
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Period {
-  String label;
-  int value;
+    String label;
+    int value;
 
-  public static Period untilNow(Instant start) {
-    return between(start, Instant.now());
-  }
-
-  public static Period untilNow(Instant start, Clock clock) {
-    return between(start, Instant.now());
-  }
-
-  public static Period between(Instant start, Instant end) {
-    var dur = Duration.between(start, end);
-    var seconds = dur.getSeconds();
-    throw new UnsupportedOperationException("TODO");
-  }
-
-  private static Period periodValue(String name, int value) {
-    if (value > 1) {
-      return new Period("interval." + name + ".more.label", value);
-    } else if (value > 0) {
-      return new Period("interval." + name + ".one.label", 1);
+    public static Period untilNow(Instant start) {
+        return between(start, Instant.now());
     }
 
-    return null;
-  }
+    public static Period untilNow(Instant start, Clock clock) {
+        return between(start, Instant.now());
+    }
+
+    public static Period between(Instant start, Instant end) {
+        var dur = Duration.between(start, end);
+        var seconds = dur.getSeconds();
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    private static Period periodValue(String name, int value) {
+        if (value > 1) {
+            return new Period("interval." + name + ".more.label", value);
+        } else if (value > 0) {
+            return new Period("interval." + name + ".one.label", 1);
+        }
+
+        return null;
+    }
 }

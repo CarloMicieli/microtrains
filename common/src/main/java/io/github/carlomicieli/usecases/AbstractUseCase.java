@@ -29,41 +29,41 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public abstract class AbstractUseCase<
-        InType extends UseCaseInput,
-        OutType extends UseCaseOutput,
-        OutPortType extends StandardOutputPort<OutType>>
-    implements UseCase<InType> {
+                InType extends UseCaseInput,
+                OutType extends UseCaseOutput,
+                OutPortType extends StandardOutputPort<OutType>>
+        implements UseCase<InType> {
 
-  protected UseCaseInputValidator<InType> inputValidator;
-  protected OutPortType outputPort;
+    protected UseCaseInputValidator<InType> inputValidator;
+    protected OutPortType outputPort;
 
-  protected AbstractUseCase(@NonNull Validator validator, @NonNull OutPortType outputPort) {
-    Objects.requireNonNull(validator);
-    this.outputPort = Objects.requireNonNull(outputPort);
-    this.inputValidator = new UseCaseBeanValidator<>(validator);
-  }
-
-  @Override
-  public final void execute(@NonNull InType input) {
-    Objects.requireNonNull(input);
-
-    List<ValidationError> validationErrors = inputValidator.validateInput(input);
-    if (!validationErrors.isEmpty()) {
-      outputPort.invalidRequest(validationErrors);
-      return;
+    protected AbstractUseCase(@NonNull Validator validator, @NonNull OutPortType outputPort) {
+        Objects.requireNonNull(validator);
+        this.outputPort = Objects.requireNonNull(outputPort);
+        this.inputValidator = new UseCaseBeanValidator<>(validator);
     }
 
-    try {
-      handle(input);
-    } catch (Exception ex) {
-      // log.error("execute", ex);
-      outputPort.error(ex);
-    }
-  }
+    @Override
+    public final void execute(@NonNull InType input) {
+        Objects.requireNonNull(input);
 
-  /**
-   * The {@code UseCase} handler method. This method must not throw exceptions, but return the error
-   * message using the appropriate output port.
-   */
-  protected abstract void handle(@NonNull InType input);
+        List<ValidationError> validationErrors = inputValidator.validateInput(input);
+        if (!validationErrors.isEmpty()) {
+            outputPort.invalidRequest(validationErrors);
+            return;
+        }
+
+        try {
+            handle(input);
+        } catch (Exception ex) {
+            // log.error("execute", ex);
+            outputPort.error(ex);
+        }
+    }
+
+    /**
+     * The {@code UseCase} handler method. This method must not throw exceptions, but return the
+     * error message using the appropriate output port.
+     */
+    protected abstract void handle(@NonNull InType input);
 }

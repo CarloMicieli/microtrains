@@ -28,30 +28,30 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class GaugeTest {
 
-  @Test
-  void is_created_from_value_in_millimeters() {
-    var gauge = Gauge.ofMillimeters(16.5);
-    assertThat(gauge).isNotNull();
-    assertThat(gauge.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
-  }
+    @Test
+    void is_created_from_value_in_millimeters() {
+        var gauge = Gauge.ofMillimeters(16.5);
+        assertThat(gauge).isNotNull();
+        assertThat(gauge.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
+    }
 
-  @Test
-  void is_created_from_value_in_inches() {
-    var gauge = Gauge.ofMillimeters(16.5);
-    assertThat(gauge).isNotNull();
-    assertThat(gauge.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
-  }
+    @Test
+    void is_created_from_value_in_inches() {
+        var gauge = Gauge.ofMillimeters(16.5);
+        assertThat(gauge).isNotNull();
+        assertThat(gauge.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
+    }
 
-  @Test
-  void is_created_from_a_value_and_a_measure_unit() {
-    var gauge1 = Gauge.of(16.5f, MeasureUnit.MILLIMETERS);
-    var gauge2 = Gauge.of(BigDecimal.valueOf(16.5), MeasureUnit.MILLIMETERS);
+    @Test
+    void is_created_from_a_value_and_a_measure_unit() {
+        var gauge1 = Gauge.of(16.5f, MeasureUnit.MILLIMETERS);
+        var gauge2 = Gauge.of(BigDecimal.valueOf(16.5), MeasureUnit.MILLIMETERS);
 
-    assertThat(gauge1).isNotNull();
-    assertThat(gauge1.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
-    assertThat(gauge1.getMeasureUnit()).isEqualTo(MeasureUnit.MILLIMETERS);
-    assertThat(gauge2).isNotNull();
-    assertThat(gauge2.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
-    assertThat(gauge2.getMeasureUnit()).isEqualTo(MeasureUnit.MILLIMETERS);
-  }
+        assertThat(gauge1).isNotNull();
+        assertThat(gauge1.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
+        assertThat(gauge1.getMeasureUnit()).isEqualTo(MeasureUnit.MILLIMETERS);
+        assertThat(gauge2).isNotNull();
+        assertThat(gauge2.getValue()).isEqualTo(BigDecimal.valueOf(16.5));
+        assertThat(gauge2.getMeasureUnit()).isEqualTo(MeasureUnit.MILLIMETERS);
+    }
 }

@@ -26,53 +26,53 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PeriodOfActivity {
-  RailwayStatus railwayStatus;
-  LocalDate operatingSince;
-  LocalDate operatingUntil;
+    RailwayStatus railwayStatus;
+    LocalDate operatingSince;
+    LocalDate operatingUntil;
 
-  public PeriodOfActivity(
-      RailwayStatus railwayStatus, LocalDate operatingSince, LocalDate operatingUntil) {
-    validatePeriod(railwayStatus, operatingSince, operatingUntil);
+    public PeriodOfActivity(
+            RailwayStatus railwayStatus, LocalDate operatingSince, LocalDate operatingUntil) {
+        validatePeriod(railwayStatus, operatingSince, operatingUntil);
 
-    this.operatingSince = operatingSince;
-    this.operatingUntil = operatingUntil;
-    this.railwayStatus = railwayStatus;
-  }
-
-  public boolean isActive() {
-    return railwayStatus == RailwayStatus.ACTIVE;
-  }
-
-  public static PeriodOfActivity activeRailway(LocalDate operatingSince) {
-    return new PeriodOfActivity(RailwayStatus.ACTIVE, operatingSince, null);
-  }
-
-  public static PeriodOfActivity inactiveRailway(
-      LocalDate operatingSince, LocalDate operatingUntil) {
-    return new PeriodOfActivity(RailwayStatus.INACTIVE, operatingSince, operatingUntil);
-  }
-
-  public static PeriodOfActivity defaultPeriodOfActivity() {
-    return new PeriodOfActivity(RailwayStatus.ACTIVE, null, null);
-  }
-
-  private static void validatePeriod(
-      RailwayStatus status, LocalDate operatingSince, LocalDate operatingUntil) {
-    if (status == RailwayStatus.INACTIVE) {
-      if (operatingSince == null || operatingUntil == null) {
-        throw new IllegalArgumentException(
-            "Invalid period of activity: both operating until and since are required for an inactive railway");
-      }
-
-      if (operatingSince.compareTo(operatingUntil) > 0) {
-        throw new IllegalArgumentException(
-            "Invalid period of activity: operating since > operating until");
-      }
-    } else {
-      if (operatingUntil != null) {
-        throw new IllegalArgumentException(
-            "Invalid period of activity: operating until has a value for an active railway");
-      }
+        this.operatingSince = operatingSince;
+        this.operatingUntil = operatingUntil;
+        this.railwayStatus = railwayStatus;
     }
-  }
+
+    public boolean isActive() {
+        return railwayStatus == RailwayStatus.ACTIVE;
+    }
+
+    public static PeriodOfActivity activeRailway(LocalDate operatingSince) {
+        return new PeriodOfActivity(RailwayStatus.ACTIVE, operatingSince, null);
+    }
+
+    public static PeriodOfActivity inactiveRailway(
+            LocalDate operatingSince, LocalDate operatingUntil) {
+        return new PeriodOfActivity(RailwayStatus.INACTIVE, operatingSince, operatingUntil);
+    }
+
+    public static PeriodOfActivity defaultPeriodOfActivity() {
+        return new PeriodOfActivity(RailwayStatus.ACTIVE, null, null);
+    }
+
+    private static void validatePeriod(
+            RailwayStatus status, LocalDate operatingSince, LocalDate operatingUntil) {
+        if (status == RailwayStatus.INACTIVE) {
+            if (operatingSince == null || operatingUntil == null) {
+                throw new IllegalArgumentException(
+                        "Invalid period of activity: both operating until and since are required for an inactive railway");
+            }
+
+            if (operatingSince.compareTo(operatingUntil) > 0) {
+                throw new IllegalArgumentException(
+                        "Invalid period of activity: operating since > operating until");
+            }
+        } else {
+            if (operatingUntil != null) {
+                throw new IllegalArgumentException(
+                        "Invalid period of activity: operating until has a value for an active railway");
+            }
+        }
+    }
 }

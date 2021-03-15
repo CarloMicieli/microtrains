@@ -22,23 +22,23 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public abstract class AbstractQueryWithCriteria<C extends Criteria, T>
-    extends QueryCriteriaValidation<C> implements QueryWithCriteria<C, T> {
+        extends QueryCriteriaValidation<C> implements QueryWithCriteria<C, T> {
 
-  protected AbstractQueryWithCriteria(CriteriaValidator<C> criteriaValidator) {
-    super(criteriaValidator);
-  }
+    protected AbstractQueryWithCriteria(CriteriaValidator<C> criteriaValidator) {
+        super(criteriaValidator);
+    }
 
-  @Override
-  public final Stream<T> execute(C criteria, Sorting orderBy) {
-    validateOrderBy(orderBy);
-    validateCriteria(criteria);
+    @Override
+    public final Stream<T> execute(C criteria, Sorting orderBy) {
+        validateOrderBy(orderBy);
+        validateCriteria(criteria);
 
-    return handle(criteria, orderBy);
-  }
+        return handle(criteria, orderBy);
+    }
 
-  protected abstract Stream<T> handle(C criteria, Sorting orderBy);
+    protected abstract Stream<T> handle(C criteria, Sorting orderBy);
 
-  private static void validateOrderBy(Sorting orderBy) {
-    Objects.requireNonNull(orderBy);
-  }
+    private static void validateOrderBy(Sorting orderBy) {
+        Objects.requireNonNull(orderBy);
+    }
 }

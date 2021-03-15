@@ -32,14 +32,14 @@ import lombok.With;
 @Builder
 @With
 public class Shop implements AggregateRoot<ShopId> {
-  ShopId id;
-  Slug slug;
-  String name;
-  Address address;
-  PhoneNumber phoneNumber;
-  MailAddress mailAddress;
-  URL websiteUrl;
-  Instant createdDate;
-  Instant modifiedDate;
-  int version;
+    ShopId id;
+    Slug slug;
+    String name;
+    Address address;
+    PhoneNumber phoneNumber;
+    MailAddress mailAddress;
+    URL websiteUrl;
+    Instant createdDate;
+    Instant modifiedDate;
+    int version;
 }

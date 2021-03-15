@@ -19,11 +19,11 @@ import java.math.BigDecimal;
 
 /** Conversion rates for the most common lenghts measure units. */
 public final class ConversionRate {
-  public static final BigDecimal INCHES_TO_MILLIMETERS = BigDecimal.valueOf(25.4);
+    public static final BigDecimal INCHES_TO_MILLIMETERS = BigDecimal.valueOf(25.4);
 
-  public static final BigDecimal MILLIMETERS_TO_INCHES = BigDecimal.valueOf(0.0393701);
+    public static final BigDecimal MILLIMETERS_TO_INCHES = BigDecimal.valueOf(0.0393701);
 
-  public static final BigDecimal MILES_TO_KILOMETERS = BigDecimal.valueOf(1.60934);
+    public static final BigDecimal MILES_TO_KILOMETERS = BigDecimal.valueOf(1.60934);
 
-  public static final BigDecimal KILOMETERS_TO_MILES = BigDecimal.valueOf(0.621371);
+    public static final BigDecimal KILOMETERS_TO_MILES = BigDecimal.valueOf(0.621371);
 }

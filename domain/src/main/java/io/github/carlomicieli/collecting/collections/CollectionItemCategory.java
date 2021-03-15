@@ -16,8 +16,8 @@
 package io.github.carlomicieli.collecting.collections;
 
 public enum CollectionItemCategory {
-  LOCOMOTIVES,
-  PASSENGER_CARS,
-  FREIGHT_CARS,
-  TRAINS,
+    LOCOMOTIVES,
+    PASSENGER_CARS,
+    FREIGHT_CARS,
+    TRAINS,
 }

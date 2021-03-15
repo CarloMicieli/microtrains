@@ -26,44 +26,44 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class ServiceLevelTest {
 
-  @Test
-  void is_created_parsing_a_string_value() {
-    var serviceLevel = ServiceLevel.parse("1cl");
+    @Test
+    void is_created_parsing_a_string_value() {
+        var serviceLevel = ServiceLevel.parse("1cl");
 
-    assertThat(serviceLevel).isNotNull();
-    assertThat(serviceLevel).isEqualTo(ServiceLevel.FirstClass);
-  }
+        assertThat(serviceLevel).isNotNull();
+        assertThat(serviceLevel).isEqualTo(ServiceLevel.FirstClass);
+    }
 
-  @Test
-  void is_able_to_parse_multiple_values() {
-    var serviceLevel = ServiceLevel.parse("1cl/3cl/2cl");
+    @Test
+    void is_able_to_parse_multiple_values() {
+        var serviceLevel = ServiceLevel.parse("1cl/3cl/2cl");
 
-    assertThat(serviceLevel).isNotNull();
-    assertThat(serviceLevel.toString()).isEqualTo("1cl/2cl/3cl");
-  }
+        assertThat(serviceLevel).isNotNull();
+        assertThat(serviceLevel.toString()).isEqualTo("1cl/2cl/3cl");
+    }
 
-  @Test
-  void is_able_to_parse_multiple_values_also_when_duplicates_are_present() {
-    var serviceLevel = ServiceLevel.parse("1cl/2cl/2cl");
+    @Test
+    void is_able_to_parse_multiple_values_also_when_duplicates_are_present() {
+        var serviceLevel = ServiceLevel.parse("1cl/2cl/2cl");
 
-    assertThat(serviceLevel).isNotNull();
-    assertThat(serviceLevel.toString()).isEqualTo("1cl/2cl");
-  }
+        assertThat(serviceLevel).isNotNull();
+        assertThat(serviceLevel.toString()).isEqualTo("1cl/2cl");
+    }
 
-  @Test
-  void is_not_able_to_parse_invalid_service_levels() {
-    var serviceLevel = ServiceLevel.parse("aaa/2cl/2cl");
+    @Test
+    void is_not_able_to_parse_invalid_service_levels() {
+        var serviceLevel = ServiceLevel.parse("aaa/2cl/2cl");
 
-    assertThat(serviceLevel).isNull();
-  }
+        assertThat(serviceLevel).isNull();
+    }
 
-  @Test
-  void is_not_able_to_optionally_parse_service_levels() {
-    var serviceLevel1 = ServiceLevel.tryParse("aaa/2cl/2cl");
-    var serviceLevel2 = ServiceLevel.tryParse("1cl/2cl/2cl");
+    @Test
+    void is_not_able_to_optionally_parse_service_levels() {
+        var serviceLevel1 = ServiceLevel.tryParse("aaa/2cl/2cl");
+        var serviceLevel2 = ServiceLevel.tryParse("1cl/2cl/2cl");
 
-    assertThat(serviceLevel1).isEmpty();
-    assertThat(serviceLevel2).isPresent();
-    assertThat(serviceLevel2.get().toString()).isEqualTo("1cl/2cl");
-  }
+        assertThat(serviceLevel1).isEmpty();
+        assertThat(serviceLevel2).isPresent();
+        assertThat(serviceLevel2.get().toString()).isEqualTo("1cl/2cl");
+    }
 }

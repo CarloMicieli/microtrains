@@ -22,15 +22,15 @@ import lombok.*;
 @Builder
 @With
 public class Prototype {
-  String className;
-  String roadNumber;
-  String series;
+    String className;
+    String roadNumber;
+    String series;
 
-  public static Prototype ofLocomotive(String className, String roadNumber) {
-    return new Prototype(className, roadNumber, null);
-  }
+    public static Prototype ofLocomotive(String className, String roadNumber) {
+        return new Prototype(className, roadNumber, null);
+    }
 
-  public static Prototype ofLocomotive(String className, String roadNumber, String series) {
-    return new Prototype(className, roadNumber, series);
-  }
+    public static Prototype ofLocomotive(String className, String roadNumber, String series) {
+        return new Prototype(className, roadNumber, series);
+    }
 }

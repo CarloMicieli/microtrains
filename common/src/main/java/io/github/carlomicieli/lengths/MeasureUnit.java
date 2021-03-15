@@ -21,31 +21,31 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 public enum MeasureUnit {
-  MILLIMETERS("mm"),
-  INCHES("in"),
-  MILES("mi"),
-  KILOMETERS("km");
+    MILLIMETERS("mm"),
+    INCHES("in"),
+    MILES("mi"),
+    KILOMETERS("km");
 
-  private final String symbol;
+    private final String symbol;
 
-  MeasureUnit(String symbol) {
-    this.symbol = symbol;
-  }
+    MeasureUnit(String symbol) {
+        this.symbol = symbol;
+    }
 
-  String getSymbol() {
-    return symbol;
-  }
+    String getSymbol() {
+        return symbol;
+    }
 
-  String buildString(BigDecimal value) {
-    var df = new DecimalFormat("#,###.0");
-    return df.format(value) + " " + this.symbol;
-  }
+    String buildString(BigDecimal value) {
+        var df = new DecimalFormat("#,###.0");
+        return df.format(value) + " " + this.symbol;
+    }
 
-  /**
-   * Returns the appropriate converter to convert from this MeasureUnit to the other If such
-   * converter does not exist, a converter that always failed is returned instead.
-   */
-  MeasureUnitConverter convertTo(MeasureUnit other) {
-    return MeasureUnitsConverters.INSTANCE.getConverter(this, other);
-  }
+    /**
+     * Returns the appropriate converter to convert from this MeasureUnit to the other If such
+     * converter does not exist, a converter that always failed is returned instead.
+     */
+    MeasureUnitConverter convertTo(MeasureUnit other) {
+        return MeasureUnitsConverters.INSTANCE.getConverter(this, other);
+    }
 }

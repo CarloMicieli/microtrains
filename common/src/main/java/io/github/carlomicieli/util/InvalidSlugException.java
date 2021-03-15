@@ -20,7 +20,7 @@ package io.github.carlomicieli.util;
  * null} or an empty {@code String}.
  */
 public final class InvalidSlugException extends RuntimeException {
-  public InvalidSlugException() {
-    super("Slug: input cannot be null or empty");
-  }
+    public InvalidSlugException() {
+        super("Slug: input cannot be null or empty");
+    }
 }

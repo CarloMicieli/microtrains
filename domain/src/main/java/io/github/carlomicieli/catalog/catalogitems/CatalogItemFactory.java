@@ -26,47 +26,47 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class CatalogItemFactory extends AggregateRootFactory<CatalogItem, CatalogItemId> {
-  public CatalogItemFactory(Clock clock, Supplier<CatalogItemId> identifierSource) {
-    super(clock, identifierSource);
-  }
+    public CatalogItemFactory(Clock clock, Supplier<CatalogItemId> identifierSource) {
+        super(clock, identifierSource);
+    }
 
-  /**
-   * Creates a new {@code CatalogItem}, this method is not making any validation. The caller needs
-   * to ensure only a valid object is created.
-   */
-  public CatalogItem createNewCatalogItem(
-      BrandId brandId,
-      String brandName,
-      ItemNumber itemNumber,
-      CatalogItemCategory category,
-      ScaleId scaleId,
-      PowerMethod powerMethod,
-      String description,
-      String prototypeDescription,
-      String modelDescription,
-      DeliveryDate deliveryDate,
-      boolean available,
-      List<RollingStock> rollingStocks) {
-    var newId = generateNewId();
-    var createdDate = getCurrentInstant();
+    /**
+     * Creates a new {@code CatalogItem}, this method is not making any validation. The caller needs
+     * to ensure only a valid object is created.
+     */
+    public CatalogItem createNewCatalogItem(
+            BrandId brandId,
+            String brandName,
+            ItemNumber itemNumber,
+            CatalogItemCategory category,
+            ScaleId scaleId,
+            PowerMethod powerMethod,
+            String description,
+            String prototypeDescription,
+            String modelDescription,
+            DeliveryDate deliveryDate,
+            boolean available,
+            List<RollingStock> rollingStocks) {
+        var newId = generateNewId();
+        var createdDate = getCurrentInstant();
 
-    Slug slug = CatalogItem.buildSlug(brandName, itemNumber);
+        Slug slug = CatalogItem.buildSlug(brandName, itemNumber);
 
-    return CatalogItem.builder()
-        .id(newId)
-        .slug(slug)
-        .itemNumber(itemNumber)
-        .available(available)
-        .brand(brandId)
-        .category(category)
-        .description(description)
-        .prototypeDescription(prototypeDescription)
-        .modelDescription(modelDescription)
-        .scale(scaleId)
-        .deliveryDate(deliveryDate)
-        .powerMethod(powerMethod)
-        .createdDate(createdDate)
-        .version(1)
-        .build();
-  }
+        return CatalogItem.builder()
+                .id(newId)
+                .slug(slug)
+                .itemNumber(itemNumber)
+                .available(available)
+                .brand(brandId)
+                .category(category)
+                .description(description)
+                .prototypeDescription(prototypeDescription)
+                .modelDescription(modelDescription)
+                .scale(scaleId)
+                .deliveryDate(deliveryDate)
+                .powerMethod(powerMethod)
+                .createdDate(createdDate)
+                .version(1)
+                .build();
+    }
 }

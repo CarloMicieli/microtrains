@@ -27,11 +27,11 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class MinRadiusTest {
 
-  @Test
-  void is_created_from_its_value_in_millimeters() {
-    var minRadius = MinRadius.ofMillimeters(360);
+    @Test
+    void is_created_from_its_value_in_millimeters() {
+        var minRadius = MinRadius.ofMillimeters(360);
 
-    assertThat(minRadius).isNotNull();
-    assertThat(minRadius.getMillimeters()).isEqualTo(BigDecimal.valueOf(360));
-  }
+        assertThat(minRadius).isNotNull();
+        assertThat(minRadius.getMillimeters()).isEqualTo(BigDecimal.valueOf(360));
+    }
 }
