@@ -29,7 +29,7 @@ Note: Writing OpenAPI View to destination: /webapi/build/classes/java/main/META-
 | |\/| | |/ __| '__/ _ \| '_ \ / _` | | | | __|
 | |  | | | (__| | | (_) | | | | (_| | |_| | |_ 
 |_|  |_|_|\___|_|  \___/|_| |_|\__,_|\__,_|\__|
-  Micronaut (v2.4.0)
+  Micronaut (v2.4.1)
 
 11:40:26.562 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 740ms. Server Running: http://localhost:8080
 ```

@@ -108,6 +108,7 @@ configurations.create("coverageDataElements") {
 
 dependencies {
     implementation(platform("io.micronaut:micronaut-bom:${Micronaut.Version}"))
+    implementation("com.google.guava:guava:30.0-jre")
     annotationProcessor("org.projectlombok:lombok:${Lombok.Version}")
     testAnnotationProcessor("org.projectlombok:lombok:${Lombok.Version}")
     compileOnly("org.projectlombok:lombok:${Lombok.Version}")
@@ -116,6 +117,6 @@ dependencies {
     testImplementation("org.assertj:assertj-core")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.mockito:mockito-core:3.8.0")
-    testImplementation("org.mockito:mockito-junit-jupiter:3.8.0")
+    testImplementation("org.mockito:mockito-core:${Mockito.Version}")
+    testImplementation("org.mockito:mockito-junit-jupiter:${Mockito.Version}")
 }
