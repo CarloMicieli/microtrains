@@ -1,6 +1,3 @@
 rootProject.name = "microtrains"
-include("common")
-include("domain")
-include("application")
-include("infrastructure")
-include("webapi")
+include("common", "domain", "application", "infrastructure", "webapi")
+include("code-coverage-report")

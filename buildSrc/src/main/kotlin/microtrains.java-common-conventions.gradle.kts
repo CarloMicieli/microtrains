@@ -5,6 +5,7 @@ import io.github.carlomicieli.*
 plugins {
     java
     jacoco
+    id("com.adarshr.test-logger")
     id("com.diffplug.spotless")
     id("com.github.kt3k.coveralls")
 }
@@ -20,8 +21,11 @@ configurations {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+        vendor.set(JvmVendorSpec.ADOPTOPENJDK)
+        implementation.set(JvmImplementation.VENDOR_SPECIFIC)
+    }
 }
 
 tasks.compileJava {
@@ -36,12 +40,14 @@ group = "io.github.carlomicieli"
 tasks {
     test {
         useJUnitPlatform()
+
         testLogging {
-            info.events(PASSED, FAILED, SKIPPED)
+            events(PASSED, FAILED, STANDARD_ERROR, SKIPPED)
             exceptionFormat = FULL
             showExceptions = true
             showCauses = true
             showStackTraces = true
+            showStandardStreams = true
         }
         failFast = false
     }
@@ -58,39 +64,46 @@ spotless {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.6"
-    reportsDirectory.set(file("${project.rootDir}/build/jacoco-report-dir"))
+coveralls {
+    jacocoReportPath = "${project.rootDir}/code-coverage-report/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
 }
 
+// Do not generate reports for individual projects
 tasks.jacocoTestReport {
-    dependsOn(tasks.test)
-    reports {
-        xml.isEnabled = true
-        html.isEnabled = true
+    enabled = false
+}
+
+// Share sources folder with other projects for aggregated JaCoCo reports
+configurations.create("transitiveSourcesElements") {
+    isVisible = false
+    isCanBeResolved = false
+    isCanBeConsumed = true
+    extendsFrom(configurations.implementation.get())
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("source-folders"))
+    }
+    sourceSets.main.get().java.srcDirs.forEach {
+        outgoing.artifact(it)
     }
 }
 
-tasks.jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = "0.5".toBigDecimal()
-            }
-        }
-
-        rule {
-            enabled = false
-            element = "CLASS"
-            includes = listOf("org.gradle.*")
-
-            limit {
-                counter = "LINE"
-                value = "TOTALCOUNT"
-                maximum = "0.3".toBigDecimal()
-            }
-        }
+// Share the coverage data to be aggregated for the whole product
+configurations.create("coverageDataElements") {
+    isVisible = false
+    isCanBeResolved = false
+    isCanBeConsumed = true
+    extendsFrom(configurations.implementation.get())
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("jacoco-coverage-data"))
     }
+    // This will cause the test task to run if the coverage data is requested by the aggregation task
+    outgoing.artifact(tasks.test.map { task ->
+        task.extensions.getByType<JacocoTaskExtension>().destinationFile!!
+    })
 }
 
 dependencies {

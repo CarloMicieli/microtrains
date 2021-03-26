@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - '**.java'
+      - '**.gradle.kts'
   pull_request:
     paths:
       - '**.java'
+      - '**.gradle.kts'
 
 jobs:
   build:
@@ -32,17 +34,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Build with Gradle
-        run: ./gradlew -q build
+      - name: Build & run tests with Gradle
+        run: ./gradlew check -x :code-coverage-report:codeCoverageReport
 
-      - name: Run tests with Gradle
-        run: ./gradlew -q test
-
-      - name: Check formatting
-        run: ./gradlew -q spotlessCheck
-
-      - name: Send code coverage to coveralls
-        run: ./gradlew -q jacocoTestReport coveralls
+      #- name: Send code coverage to coveralls
+      #  run: ./gradlew -q codeCoverageReport coveralls
+      #  env:
+      #    COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
